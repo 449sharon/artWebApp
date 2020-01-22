@@ -1,6 +1,11 @@
 
 
-<!-- [ngClass]="{'flipInX': list, 'flipOutX': !list}" -->
+<!-- [ngClass]="{'flipInX': list, 'flipOutX': !list}"    <div>
+
+
+                    <div  class="wishListIcon">
+                      <ion-icon name="heart" color="dark"></ion-icon>
+                  </div>    </div> -->
 <ion-content>
 <div class="content-container" >
 
@@ -20,6 +25,14 @@
                     <ion-icon name="star" color="warning"></ion-icon>
                     <ion-icon name="star-outline" color="warning"></ion-icon>
                   </div>
+                  <!-- <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+                    <ion-fab-button>
+                      <ion-icon name="arrow-dropup"></ion-icon>
+                    </ion-fab-button>
+                  </ion-fab> -->
+                  
+
+
                 </div>
                 <div class="cards"(click)=" createViewProduct()">
                   <img src="../../assets/asset-3.png" alt="">

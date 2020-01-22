@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-view-product-details',
@@ -6,10 +7,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-product-details.page.scss'],
 })
 export class ViewProductDetailsPage implements OnInit {
-
-  constructor() { }
+  private currentNumber = 0;
+  constructor(public modalController: ModalController) { }
 
   ngOnInit() {
   }
 
+  private increment () {
+    this.currentNumber++;
+  }
+  
+  private decrement () {
+    this.currentNumber--;
+  }
+
+    
+  dismiss() {
+    this.modalController.dismiss({
+      'dismissed': true
+    });
+    }
 }

@@ -25,6 +25,12 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+.my-custom-modal-css{
+  --width: 608px;
+  --height:700px;
+  z-index: 99999999999;
+}
+
 .loader-container {
     position: absolute;
     top: 0;
@@ -130,6 +136,7 @@
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAHBAMAAADzDtBxAAAAD1BMV…h/TXEAAAAaSURBVAjXYxCEAgY4UIICBmMogMsgFLtAAQCNSwXZKOdPxgAAAABJRU5ErkJggg==);
     background-repeat: repeat-x;
     content: "";
+    z-index: 0;
   }
 
   * {
@@ -320,7 +327,7 @@
     justify-content: center;
   }
   .title > div{
-    
+
   }
   
   
