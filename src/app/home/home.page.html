@@ -1,4 +1,59 @@
- <!-- (click)="showList()" -->
+<!-- (click)="showList()" *ngIf="!list" -->
+
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      <div class="title">
+        <div class="text" padding>Special Up to 75%</div>
+        <div padding>
+          <ion-button fill="outline" color="light"> Shop Now </ion-button>
+        </div>
+      </div>
+    </ion-title>
+  </ion-toolbar> 
+       <div class="navigation-bar">
+        <nav>
+          <ul class="menu">
+            <li class="logo"><img src="../../assets/Group 60.png" alt=""></li>         
+            <!-- <li class="item"><a href="#">Home</a></li> -->
+            <ion-button class="item" color="medium"  fill="clear" (click)="openHome()" slot="end">Home</ion-button>
+            <ion-button class="item" color="medium"  fill="clear" (click)="openAboutUS()" slot="end">About Us</ion-button>
+            <ion-button class="item" color="medium"  fill="clear" (click)="ContactUs()" slot="end">Contact Us </ion-button>
+            <ion-button class="item" color="medium"  fill="clear"  slot="end">FARQ's</ion-button>
+
+            <ion-button class="item" color="medium"  fill="clear" slot="end"> 
+               <ion-icon name="person"></ion-icon>
+              </ion-button>
+              <ion-button class="item" color="medium"  fill="clear"  slot="end"> 
+                <ion-icon name="cart"></ion-icon>
+               </ion-button>
+               <ion-button class="item" color="medium"  fill="clear" slot="end"> 
+                <ion-icon name="heart"></ion-icon>
+               </ion-button>
+
+
+
+            <!-- <li (click)="categorylist()" class="item">About</li> -->
+            <!-- <li class="item"><a href="#">FARQ's</a></li> -->
+            <!-- <li class="item"><a href="#">Contact</a></li> -->
+            <!-- <li class="item button"><a href="#">
+                <ion-icon name="person"></ion-icon>
+              </a></li>
+            <li class="item button"><a href="#">
+                <ion-icon name="cart"></ion-icon>
+              </a></li>
+            <li class="item button"><a href="#">
+                <ion-icon name="heart"></ion-icon>
+              </a></li> -->
+            <li class="toggle"><a href="#">
+                <ion-icon name="close"></ion-icon>
+              </a></li>
+          </ul>
+        </nav>
+      </div>
+</ion-header> 
+
 <ion-content scroll="true">
   <div class="loader-container" *ngIf="loader">
     <div class="loader">Loading...</div>
@@ -9,12 +64,13 @@
       <div class="content-section">
         <div class="mainContent-cover" >
 
-          <div class="landing" *ngIf="!list" >
+          <div class="landing" >
             <div class="category-Container" >
               <div class="First-Category-Block"  (click)="categorylist()" (click)="getProducts('Photo Frame')" >
                 <img src="../../assets/Frame.jpg" alt="">
                 <ion-label class="category-label"><span>Deco</span></ion-label> <br>
-                <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon name="arrow-forward"></ion-icon></span>
+                <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
+                      name="arrow-forward"></ion-icon></span>
                 </ion-label>
               </div>
 
@@ -22,7 +78,8 @@
                 <div class="firstSecond-block">
                   <img src="../../assets/Pottery.jpg" alt="">
                   <ion-label class="category-label"><span>Pottery</span></ion-label> <br>
-                  <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon name="arrow-forward"></ion-icon></span>
+                  <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
+                        name="arrow-forward"></ion-icon></span>
                   </ion-label>
                 </div>
 
@@ -30,7 +87,8 @@
                   <div class="seconSecond-block"  (click)="categorylist()" (click)="getProducts('Lamps')" >
                     <img src="../../assets/lamp.png" alt="">
                     <ion-label class="category-label"><span>Lamps</span></ion-label> <br>
-                    <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon name="arrow-forward"></ion-icon></span>
+                    <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
+                          name="arrow-forward"></ion-icon></span>
                     </ion-label>
                   </div>
 
@@ -115,6 +173,7 @@
                   <img src="../../assets/asset-4.png" alt="">
                   <ion-label class="price"> R 222 .45</ion-label>
                   <ion-label class="name"> Crim Vase</ion-label>
+                  
                   <div class="stars">
                     <ion-icon name="star" color="warning"></ion-icon>
                     <ion-icon name="star" color="warning"></ion-icon>
@@ -122,10 +181,10 @@
                     <ion-icon name="star" color="warning"></ion-icon>
                     <ion-icon name="star" color="warning"></ion-icon>
                   </div>
-                  <div class="wishListIcon" >
-                    <ion-icon name="heart" color=""  ></ion-icon>
+                  <!-- <div padding class="wishListIcon">
+                    <ion-icon name="heart" color="dark"></ion-icon>
+                  </div> -->
 
-                  </div>
                 </div>
               </div>
               <div class="special-section">
@@ -142,9 +201,23 @@
         </div>
       </div>
     </div>
-  </div>    <div class="contactUs-section">
+  </div>
+  <div class="contactUs-section">
+    <div>
+      <ion-title>Contact Us</ion-title>
+    </div>
+    <div class="contactus">
+      <div class="contactUs-labels">
+        <div>
+          <ion-label class="heading">Call Us</ion-label>
+          <div class="callUs-labels">
             <div>
-              <ion-title>Contact Us</ion-title>
+              <span>
+                <ion-icon padding name="call"></ion-icon>
+              </span>
+              <span>
+                <ion-label>+2771 234 5678 </ion-label>
+              </span>
             </div>
             
             <div class="contactus"  >
@@ -206,20 +279,57 @@
                   </div>
                   <div>
 
-                  </div>
-                </div>
-              </div>
             </div>
-            <ion-toolbar color="primary">
+            <div>
+              <span>
+                <ion-icon padding name="pin"></ion-icon>
+              </span>
+              <span>
+                <ion-label>Soweto, Johannesburg, 2091</ion-label>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <ion-label class="heading">Leave Us a Message</ion-label>
+          <div class="messageInputs">
+            <form>
+              <ion-item color="light">
+                <ion-input type="text" oninput=" handleNamesValue(event)" placeholder="Ful Names"></ion-input>
+              </ion-item>
 
-              <div class="footer">
-                <img src="../../assets/Group 60.png" width="100px" height="50px" alt="">
-                <div>
-                  &copy; Pitseng Arts &amp; Crafts 2019
-                </div>
+              <ion-item>
+                <ion-input type="text" oninput=" handleEmailValue(event)" placeholder="Email Address">
+                </ion-input>
+              </ion-item>
+              <div>
+                <ion-list>
+                  <ion-item>
+                    <ion-textarea name="" id="" placeholder="Message"></ion-textarea>
+                  </ion-item>
+                </ion-list>
               </div>
-            </ion-toolbar>
+              <div>
+                <ion-button>Submit</ion-button>
+              </div>
+            </form>
+          </div>
+          <div>
 
           </div>
+        </div>
+      </div>
+    </div>
+    <ion-toolbar color="primary">
+
+      <div class="footer">
+        <img src="../../assets/Group 60.png" width="100px" height="50px" alt="">
+        <div>
+          &copy; Pitseng Arts &amp; Crafts 2019
+        </div>
+      </div>
+    </ion-toolbar>
+
+  </div>
 
 </ion-content>

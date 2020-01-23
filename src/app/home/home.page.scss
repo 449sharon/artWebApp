@@ -12,18 +12,25 @@
 }
 ion-content {
   // --overflow: hidden;
-  top: 20%;
-
 }
 ion-title {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-weight: lighter;
   letter-spacing: 3px;
   text-align: center;
+  // padding-right: 16px;
 }
 .title {
   display: flex;
   justify-content: center;
+}
+.title > div {
+  padding-left: 18px;
+  text-align: center;
+
+}
+.text{
+  padding-top: 8px;
 }
 .main-container {
 //   border: solid red;
@@ -66,8 +73,9 @@ ul {
 a {
   color: #777777;
   text-decoration: none;
+  list-style-type: none;
 }
-a:hover {
+.item:hover {
   text-decoration: underline;
 }
 .logo a:hover {
@@ -146,6 +154,12 @@ a:hover {
   text-align: center;
   order: 3;
   display: none;
+  color: #777777;
+  text-decoration: none;
+  list-style-type: none;
+  text-transform: capitalize;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: medium;
 //   border: solid rgb(175, 10, 18);
 }
 .item.active {
@@ -227,7 +241,7 @@ a:hover {
 .category-Container {
   // border: solid black;
   width: 90%;
-  height: 832px;
+  height: 732px;
   display: flex;
   margin: 0 auto;
   justify-content: center;
@@ -468,7 +482,7 @@ ion-label {
   //  height: 100%;
   //  border: solid black;
     // margin-top: 2%;
-    margin-bottom: 194px;
+    // margin-bottom: 194px;
 }
 .contactus{
      width: 100%;
@@ -620,5 +634,12 @@ text-align: left;
       justify-content: center;
       margin: 0 auto;
 
+    }
+    .wishListIcon{
+
+    text-align: right;
+    margin-right: 16px;
+    // padding-bottom: 26%;
+ 
     }
    
