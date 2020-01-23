@@ -34,13 +34,16 @@
 
 }
 .image-container{
-    border: 0.2px solid #707070a9;
+    // border: 0.2px solid #707070a9;
     height: 400px;
    width: 450px;
     margin: 0 auto;
 }
 .image-container > img{
     object-fit: cover;
+    margin-bottom: 116px;
+    border-radius: 10px;
+      border: 0.2px solid #707070a9;
     
 }
 .image-container > ion-fab{
@@ -176,6 +179,9 @@
     justify-content: baseline;
     // width: 50%;
 }
+.size > p {
+  margin-top: 1%;
+}
 .quantity{
     display: flex;
     flex-direction: row;
@@ -197,6 +203,8 @@
    color: #707070;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    text-transform: capitalize;
+   padding: 0%;
+   margin-top: 1.5%;
 
 }
 .cartButton{
