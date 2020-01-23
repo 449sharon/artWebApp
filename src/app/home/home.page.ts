@@ -1,6 +1,8 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
+import { BehaviorSubject } from 'rxjs';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-home',
@@ -8,20 +10,49 @@ import { CartService } from '../cart.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage  {
+  cartItemCount: BehaviorSubject<number>;
+  wishItemCount: BehaviorSubject<number>;
+  @ViewChild('cart', {static: false, read: ElementRef})fab: ElementRef;
+  dbWishlist = firebase.firestore().collection('Wishlist');
+  dbMessages = firebase.firestore().collection('Messages');
+  db = firebase.firestore();
+  event = {
+    id: '',
+    image: '',
+    categories:'',
+    name:'',
+    price:null,
+    productno:'',
+    desc: null,
+    small:'',
+    medium:'',
+    large: ''
+  };
+  active: boolean;
+  errtext = '';
+  myProduct = false;
    controller = document.querySelector('ion-alert-controller');
    email
    names
-   message
+  // message
+  message = {
+    fullname: '',
+    email: '',
+    message:''
+ }
 
+   Products = []
    currentDiv: boolean;
    mainContentDiv
    ShowThisDiv:boolean;
-
+   categories
    listDiv: any = document.getElementsByClassName('categorySection');
    list: boolean = false;
 
    loader: boolean = true;
-  constructor(private router: Router, private cartService: CartService, private render: Renderer2) {}
+  constructor(private router: Router, private cartService: CartService, private render: Renderer2) {
+    this.adminInfo();
+  }
 
 
   ionViewWillEnter() {
@@ -78,14 +109,92 @@ export class HomePage  {
       this.ShowThisDiv  = false
     }
   }
-  // ShowThisDiv(){
-    
+
+  // ShowThisDiv(){  
   // }
 
   categorylist(){
     this.router.navigateByUrl('/categorylist');
   }
+  getProducts(categories) {
+    let obj = {id : '', obj : {}};
+    if(categories == 'Vase') {
+          this.active = true;
+      }
+    if(categories) {
+        this.db.collection('Products').where('categories', '==', categories).get().then((snapshot) => {
+        this.Products = [];
+    if (snapshot.empty) {
+         this.myProduct = false;
+             //  alert('the are no Vase')
+          console.log(" Category is Empty...")
+     } else {
+             this.myProduct = true;
+             snapshot.forEach(doc => {
+             obj.id = doc.id;
+            obj.obj = doc.data();
+            this.Products.push(obj);
+            obj = {id : '', obj : {}};
+            console.log("herererer", this.Products);
+           });
+            return this.Products;
+           }
+       })
+    }else {
+          this.db.collection('Products').get().then(snapshot => {
+          this.Products = [];
+         if (snapshot.empty) {
+               this.myProduct = false;
+           } else {
+                 this.myProduct = true;
+                     snapshot.forEach(doc => {
+                      obj.id = doc.id;
+                      obj.obj = doc.data();
+                      this.Products.push(obj);
+                      obj = {id : '', obj : {}};
+                        console.log("herererer", this.Products);
+                      });
+                      return this.Products;
+                    }
+            });
+          }
+          this.router.navigateByUrl('/categorylist');
+     }
 
 
- 
+Info = []
+adminInfo(){
+  this.db.collection('admins').get().then(snapshot => {
+  this.Info = [];
+  if (snapshot.empty) {
+         this.myProduct = false;
+       } else {
+         this.myProduct = true;
+         snapshot.forEach(doc => {
+           this.Info.push(doc.data());
+           console.log("admin", this.Info);
+         });
+         return this.Products;
+       }
+   })
+}
+
+addMessage() {
+    if(firebase.auth().currentUser){
+     let customerUid = firebase.auth().currentUser.uid;
+     this.dbMessages.add({
+       customerUid: customerUid,
+       name : this.message.fullname,
+       email : this.message.email,
+       message : this.message.message
+  
+      }).then(() => {
+        //
+     }).catch(err => {
+              console.error(err);
+     });
+    }else{
+      //this.createModalLogin();
+    }
+  }
 }
