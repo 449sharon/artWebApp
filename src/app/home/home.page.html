@@ -1,4 +1,6 @@
-<!-- (click)="showList()" -->
+<!-- (click)="showList()" *ngIf="!list" -->
+
+
 <ion-content scroll="true">
   <div class="loader-container" *ngIf="loader">
     <div class="loader">Loading...</div>
@@ -9,7 +11,7 @@
       <div class="content-section">
         <div class="mainContent-cover">
 
-          <div class="landing" *ngIf="!list">
+          <div class="landing" >
             <div class="category-Container">
               <div class="First-Category-Block" (click)="categorylist()">
                 <img src="../../assets/Frame.jpg" alt="">

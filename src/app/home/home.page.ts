@@ -55,22 +55,22 @@ export class HomePage  {
   this.email = event.target.value;
   }
 
-  showList() {
-    this.list = !this.list;
-    this.loader = true;
+  // showList() {
+  //   this.list = !this.list;
+  //   this.loader = true;
 
-      setTimeout(() => {
-        if(this.list) {
-          this.render.setStyle(this.listDiv[0], 'display', 'block');
+  //     setTimeout(() => {
+  //       if(this.list) {
+  //         this.render.setStyle(this.listDiv[0], 'display', 'block');
     
-        }else {
-          setTimeout(() => {
-            this.render.setStyle(this.listDiv[0], 'display', 'none');
-          }, 500);
-        }
-        this.loader = false;
-      }, 1000);
-  }
+  //       }else {
+  //         setTimeout(() => {
+  //           this.render.setStyle(this.listDiv[0], 'display', 'none');
+  //         }, 500);
+  //       }
+  //       this.loader = false;
+  //     }, 1000);
+  // }
 
  handleNamesValue(event) {
     this.names = event.target.value;
