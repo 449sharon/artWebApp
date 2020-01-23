@@ -1,5 +1,7 @@
 {
   "name": "pitsengApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
