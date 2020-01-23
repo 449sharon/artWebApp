@@ -1,3 +1,5 @@
+import { ProductService } from 'src/app/services/product-service.service';
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
@@ -15,7 +17,7 @@ export class CategorylistPage implements OnInit {
 
   Products = [];
   myProduct = false;
-  constructor(private router: Router,  public modalController: ModalController, ) { }
+  constructor(private router: Router,  public modalController: ModalController, private data: ProductService) { }
 
   ngOnInit() {
     this.getProduct();
@@ -42,7 +44,8 @@ export class CategorylistPage implements OnInit {
   });
   }
 
-  async createViewProduct() {
+  async createViewProduct(event) {
+    this.data.data = event
     const modal = await this.modalController.create({
       component:ViewProductDetailsPage,
       cssClass: 'my-custom-modal-css'

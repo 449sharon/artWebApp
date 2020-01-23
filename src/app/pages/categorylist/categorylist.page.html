@@ -15,7 +15,7 @@
             <div class=" categoryList">
               <div class="cards-container" >
                 <div  class="products-section" *ngFor="let event of Products">
-                <div *ngIf="myProduct" class="cards"(click)=" createViewProduct()">
+                <div *ngIf="myProduct" class="cards"(click)=" createViewProduct(event)">
                   <img src="{{event.obj.image}}" alt="">
                   <ion-label class="price">R &nbsp; {{event.obj.price}}</ion-label>
                   <ion-label class="name"> {{event.obj.name}} </ion-label>
