@@ -21,10 +21,10 @@ export class ViewProductDetailsPage implements OnInit {
     this.currentNumber--;
   }
 
-    
-  dismiss() {
-    this.modalController.dismiss({
-      'dismissed': true
-    });
-    }
+dismmis(){
+  this.modalController.dismiss({
+    'dismissed':true
+  });
+}
+ 
 }
