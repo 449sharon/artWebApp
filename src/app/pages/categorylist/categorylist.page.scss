@@ -4,7 +4,7 @@ ion-content{
 .content-container {
     height: 100%;
     width: 75%;
-  //   border: solid blue;
+    // border: solid blue;
     margin: 0 auto;
     margin-bottom: 24%;
   }
@@ -30,7 +30,7 @@ ion-content{
   }
   .specials-title {
     text-align: left;
-    border-bottom: solid black;
+    // border-bottom: solid black;
     border-bottom: 0.5px solid #7070709d;
   }
   .cards-container {
@@ -90,5 +90,13 @@ ion-content{
     font-size: xx-large;
     // padding-bottom: 500px;
  
+    }
+    .products-section{
+      // border: solid lightcoral;
+      display: flex;
+      margin: auto;
+      justify-content: center;
+      justify-content: space-around;
+      margin-bottom: 3%;
     }
    
