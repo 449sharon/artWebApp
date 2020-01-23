@@ -2,17 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-view-product-details',
-  templateUrl: './view-product-details.page.html',
-  styleUrls: ['./view-product-details.page.scss'],
+  selector: 'app-add-to-wish-list',
+  templateUrl: './add-to-wish-list.page.html',
+  styleUrls: ['./add-to-wish-list.page.scss'],
 })
-export class ViewProductDetailsPage implements OnInit {
+export class AddToWishListPage implements OnInit {
   private currentNumber = 0;
   constructor(public modalController: ModalController) { }
 
   ngOnInit() {
   }
-
+  dismiss(){
+    this.modalController.dismiss({
+      'dismissed':true
+    });
+  }
   private increment () {
     this.currentNumber++;
   }
@@ -21,10 +25,4 @@ export class ViewProductDetailsPage implements OnInit {
     this.currentNumber--;
   }
 
-dismiss(){
-  this.modalController.dismiss({
-    'dismissed':true
-  });
-}
- 
 }
