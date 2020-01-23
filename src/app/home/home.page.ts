@@ -1,6 +1,9 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
+import { AddToCartPage } from '../pages/add-to-cart/add-to-cart.page';
+import { ModalController } from '@ionic/angular';
+import { AddToWishListPage } from '../pages/add-to-wish-list/add-to-wish-list.page';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +24,8 @@ export class HomePage  {
    list: boolean = false;
 
    loader: boolean = true;
-  constructor(private router: Router, private cartService: CartService, private render: Renderer2) {}
+  constructor(private router: Router, private cartService: CartService, private render: Renderer2,
+    public modalController: ModalController,) {}
 
 
   ionViewWillEnter() {
@@ -46,6 +50,25 @@ export class HomePage  {
   this.email = event.target.value;
   }
 
+  async createAddToWishList() {
+    const modal = await this.modalController.create({
+      component:AddToWishListPage,
+      cssClass: 'my-add-to-cart',
+      
+    
+    });
+    return await modal.present();
+  }
+
+  async createAddToCart() {
+    const modal = await this.modalController.create({
+      component:AddToCartPage,
+      cssClass: 'my-add-to-cart',
+      
+    
+    });
+    return await modal.present();
+  }
   // showList() {
   //   this.list = !this.list;
   //   this.loader = true;
@@ -91,6 +114,9 @@ export class HomePage  {
   openHome(){
     this.router.navigateByUrl('/')
   }
+  // openCart(){
+  //   this.router.navigateByUrl('/add-to-cart')
+  // }
 
 
  

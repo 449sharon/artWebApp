@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AddToCartPage } from '../add-to-cart/add-to-cart.page';
+import { ModalController } from '@ionic/angular';
+import { AddToWishListPage } from '../add-to-wish-list/add-to-wish-list.page';
 
 @Component({
   selector: 'app-about-us',
@@ -8,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AboutUsPage implements OnInit {
 
-  constructor(private router: Router, ) { }
+  constructor(private router: Router,  public modalController: ModalController) { }
 
   ngOnInit() {
   }
@@ -17,5 +20,24 @@ export class AboutUsPage implements OnInit {
   }
   openAboutUS(){
     this.router.navigateByUrl('/about-us')
+  }
+  async createAddToWishList() {
+    const modal = await this.modalController.create({
+      component:AddToWishListPage,
+      cssClass: 'my-add-to-cart',
+      
+    
+    });
+    return await modal.present();
+  }
+
+  async createAddToCart() {
+    const modal = await this.modalController.create({
+      component:AddToCartPage,
+      cssClass: 'my-add-to-cart',
+      
+    
+    });
+    return await modal.present();
   }
 }
