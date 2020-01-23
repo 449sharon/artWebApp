@@ -163,13 +163,13 @@
       <div class="contactUs-labels">
         <div>
           <ion-label class="heading">Call Us</ion-label>
-          <div class="callUs-labels">
+          <div *ngFor = "let admin of Info" class="callUs-labels">
             <div>
               <span>
                 <ion-icon padding name="call"></ion-icon>
               </span>
               <span>
-                <ion-label>+2771 234 5678 </ion-label>
+                <ion-label>{{admin.phoneNumber}} </ion-label>
               </span>
             </div>
             <div>
@@ -177,7 +177,7 @@
                 <ion-icon padding name="mail"></ion-icon>
               </span>
               <span>
-                <ion-label>pitsengartsandcrafts@pitseng.com</ion-label>
+                <ion-label>{{admin.email}}</ion-label>
               </span>
 
             </div>
@@ -186,7 +186,7 @@
                 <ion-icon padding name="pin"></ion-icon>
               </span>
               <span>
-                <ion-label>Soweto, Johannesburg, 2091</ion-label>
+                <ion-label>{{admin.address}}</ion-label>
               </span>
             </div>
           </div>

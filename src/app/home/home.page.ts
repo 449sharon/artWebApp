@@ -1,6 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartService } from '../cart.service';
+import { CartService } from '../cart.service'; 
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,8 @@ import { CartService } from '../cart.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage  {
+  db = firebase.firestore();
+ 
    controller = document.querySelector('ion-alert-controller');
    email
    names
@@ -16,13 +19,19 @@ export class HomePage  {
    currentDiv: boolean;
    mainContentDiv
    ShowThisDiv:boolean;
+   myProduct = false;
+   Products = [];
 
    listDiv: any = document.getElementsByClassName('categorySection');
    list: boolean = false;
 
    loader: boolean = true;
   constructor(private router: Router, private cartService: CartService, private render: Renderer2) {}
-
+  
+  ngOnInit() {
+   
+   this. adminInfo();
+  }
 
   ionViewWillEnter() {
     setTimeout(() => {
@@ -85,6 +94,22 @@ export class HomePage  {
   categorylist(){
     this.router.navigateByUrl('/categorylist');
   }
+  Info = []
+adminInfo(){
+this.db.collection('admins').get().then(snapshot => {
+ this.Info = [];
+ if (snapshot.empty) {
+         this.myProduct = false;
+       } else {
+         this.myProduct = true;
+         snapshot.forEach(doc => {
+           this.Info.push(doc.data());
+           console.log("admin", this.Info);
+         });
+         return this.Products;
+       }
+})
+}
 
 
  
