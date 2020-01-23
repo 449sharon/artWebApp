@@ -21,7 +21,7 @@ export class ViewProductDetailsPage implements OnInit {
     this.currentNumber--;
   }
 
-dismmis(){
+dismiss(){
   this.modalController.dismiss({
     'dismissed':true
   });

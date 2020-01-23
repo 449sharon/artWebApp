@@ -50,6 +50,9 @@ export class CategorylistPage implements OnInit {
     });
     return await modal.present();
   }
+  openHome(){
+    this.router.navigateByUrl('/')
+  }
 
 
 }

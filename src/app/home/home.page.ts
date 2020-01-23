@@ -85,6 +85,12 @@ export class HomePage  {
   categorylist(){
     this.router.navigateByUrl('/categorylist');
   }
+  openAboutUS(){
+    this.router.navigateByUrl('/about-us')
+  }
+  openHome(){
+    this.router.navigateByUrl('/')
+  }
 
 
  
