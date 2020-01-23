@@ -45,9 +45,11 @@ export class CategorylistPage implements OnInit {
   async createViewProduct() {
     const modal = await this.modalController.create({
       component:ViewProductDetailsPage,
+      cssClass: 'my-custom-modal-css'
     
     });
     return await modal.present();
   }
+
 
 }

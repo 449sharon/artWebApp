@@ -135,7 +135,11 @@
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAHBAMAAADzDtBxAAAAD1BMV…h/TXEAAAAaSURBVAjXYxCEAgY4UIICBmMogMsgFLtAAQCNSwXZKOdPxgAAAABJRU5ErkJggg==);
     background-repeat: repeat-x;
     content: "";
+    z-index: 0;
   }
+ion-header{
+  height:5px;
+}
 
   * {
     box-sizing: border-box;
@@ -143,7 +147,7 @@
     margin: 0;
   }
   body {
-    // font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   .navigation-bar{
     width: 75%;
@@ -325,7 +329,7 @@
     justify-content: center;
   }
   .title > div{
-    
+
   }
   
   
