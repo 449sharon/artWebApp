@@ -175,11 +175,10 @@ export class HomePage  {
     }
   }
 
-  // ShowThisDiv(){  
-  // }
 
   categorylist(){
-    this.router.navigateByUrl('/categorylist');
+  
+  //   this.router.navigateByUrl('/categorylist');
   }
 
   Allspecials(){

@@ -10,39 +10,36 @@
 <ion-content>
   <div class="content-section">
 
-    <div class="content">
+    <div class="content"*ngFor="let p of Products">
       <div class="image-section">
     
 
         <div class="image-container"> 
-               <!-- fab placed to the top start -->
+               
   <ion-fab  vertical="top" horizontal="end" slot="fixed">
     
       <ion-icon color="dark" name="heart"></ion-icon>
     
   </ion-fab>
-          <img src="../../../assets/asset-1.png" width="100%" height="100%" alt="">
+          <img src={{p.obj.image}} width="100%" height="100%" alt="">
         </div>
       </div>
       <div class="product-details">
         <div class="firstItems">
           <div  class="product-name">
-            <ion-label>crim vase</ion-label>
+            <ion-label>{{p.obj.name}}</ion-label>
           </div>
           <div class="product-price">
-            <ion-label>R 284. 00</ion-label>
+            <ion-label>{{p.obj.price | currency: '&#82;'}}</ion-label>
 
           </div>
 
         </div>
         <div class="productcode">
-          <ion-label>product code: JKH74893234895 </ion-label>
+          <ion-label>Product Code: {{p.obj.productCode}}</ion-label>
         </div>
         <div  class="productDescription">
-          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-            aliquyam erat, sed diam voluptua.
-            </p>
+          <p>{{p.obj.desc}}</p>
         </div>
 
         <div class="Productselection">
@@ -70,14 +67,14 @@
 
           </div>
           <div class="quantity">
-            <div  ><p no-padding >Qty:   {{currentNumber}}</p></div>
-            <div> <ion-icon name="remove-circle" color="danger" (click)="decrement()"></ion-icon>
-              <ion-icon name="add-circle" color="success" (click)="increment()"></ion-icon></div>
+            <div  ><p>Qty:   {{currentNumber}}</p></div>
+            <div> <ion-icon name="remove-circle" color="danger" (click)="decrement(p)"></ion-icon>
+              <ion-icon name="add-circle" color="success" (click)="increment(p)"></ion-icon></div>
            
           </div>
         </div>
         <div class="cartButton" >
-          <ion-button color="primary" expand="block" >add to cart</ion-button>
+          <ion-button color="primary" expand="block" (click)="addToCart(p)" >add to cart</ion-button>
         </div>
       </div>
     </div>
