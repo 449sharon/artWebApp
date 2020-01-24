@@ -35,9 +35,7 @@ export class CategorylistPage implements OnInit {
               this.Products.push(obj);
               obj = {id : '', obj : {}};
             });
-            return this.Products;
-            console.log("details", this.Products);
-            
+            return this.Products;  
           }
   });
   }

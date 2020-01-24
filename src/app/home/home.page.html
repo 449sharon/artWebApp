@@ -1,4 +1,41 @@
- <!-- (click)="showList()" -->
+
+<!-- (click)="showList()" *ngIf="!list" -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      <div class="title">
+        <div class="text" padding>Special Up to 75%</div>
+        <div padding>
+          <ion-button fill="outline" color="light"> Shop Now </ion-button>
+        </div>
+      </div>
+    </ion-title>
+  </ion-toolbar> 
+       <div class="navigation-bar">
+        <nav>
+          <ul class="menu">
+            <li class="logo"><img src="../../assets/Group 60.png" alt=""></li>         
+            <!-- <li class="item"><a href="#">Home</a></li> -->
+            <ion-button class="item" color="medium"  fill="clear" (click)="openHome()" slot="end">Home</ion-button>
+            <ion-button class="item" color="medium"  fill="clear" (click)="openAboutUS()" slot="end">About Us</ion-button>
+            <ion-button class="item" color="medium"  fill="clear" (click)="ContactUs()" slot="end">Contact Us </ion-button>
+            <ion-button class="item" color="medium"  fill="clear"  slot="end">FARQ's</ion-button>
+            <ion-button class="item" color="medium"  fill="clear" slot="end"> 
+               <ion-icon name="person"></ion-icon>
+              </ion-button>
+              <ion-button class="item" color="medium"  fill="clear"  slot="end"> 
+                <ion-icon name="cart"></ion-icon>
+               </ion-button>
+               <ion-button class="item" color="medium"  fill="clear" slot="end"> 
+                <ion-icon name="heart"></ion-icon>
+               </ion-button>
+            <li class="toggle"><a href="#">
+                <ion-icon name="close"></ion-icon>
+              </a></li>
+          </ul>
+        </nav>
+      </div>
+</ion-header> 
 <ion-content scroll="true">
   <div class="loader-container" *ngIf="loader">
     <div class="loader">Loading...</div>
@@ -7,41 +44,48 @@
     <div class="content-container">
       <!-- starts landing page content -->
       <div class="content-section">
-        <div class="mainContent-cover" >
+        <div class="mainContent-cover">
+          <div class="landing" >
+            <div class="category-Container">
 
-          <div class="landing" *ngIf="!list" >
-            <div class="category-Container" >
-              <div class="First-Category-Block"  (click)="categorylist()" (click)="getProducts('Photo Frame')" >
-                <img src="../../assets/Frame.jpg" alt="">
+              <div class="First-Category-Block" (click)="categorylist()" (click)="getProducts('Photo Frame')"  *ngFor="let all of Homescreen.slice(2, 3)">
+
+                <img  src="{{all.obj.image}}" alt="">
                 <ion-label class="category-label"><span>Deco</span></ion-label> <br>
-                <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon name="arrow-forward"></ion-icon></span>
+                <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
+                      name="arrow-forward"></ion-icon></span>
                 </ion-label>
               </div>
 
-              <div class="Second-Category-Block"  (click)="categorylist()" (click)="getProducts('Cups')" >
+              <div class="Second-Category-Block" (click)="categorylist()" (click)="getProducts('Cups')" *ngFor="let all of Homescreen.slice(0, 1)" >
                 <div class="firstSecond-block">
-                  <img src="../../assets/Pottery.jpg" alt="">
+                  <!-- <img src="../../assets/Pottery.jpg" alt=""> -->
+                  <img  src="{{all.obj.image}}" alt="">
                   <ion-label class="category-label"><span>Pottery</span></ion-label> <br>
-                  <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon name="arrow-forward"></ion-icon></span>
+                  <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
+                        name="arrow-forward"></ion-icon></span>
                   </ion-label>
                 </div>
-
                 <div class="container-bottom2">
-                  <div class="seconSecond-block"  (click)="categorylist()" (click)="getProducts('Lamps')" >
-                    <img src="../../assets/lamp.png" alt="">
+                  <div class="seconSecond-block" (click)="categorylist()" (click)="getProducts('Lamps')" *ngFor="let all of Homescreen.slice(1, 2)">
+                    <!-- <img src="../../assets/lamp.png" alt=""> -->
+                    <img  src="{{all.obj.image}}" alt="">
                     <ion-label class="category-label"><span>Lamps</span></ion-label> <br>
-                    <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon name="arrow-forward"></ion-icon></span>
+                    <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
+                          name="arrow-forward"></ion-icon></span>
                     </ion-label>
                   </div>
-
-                  <div class="thirdSecond-block" (click)="categorylist()" (click)="getProducts('Vase')" >
-                    <img src="../../assets/Vases.jpg" alt="">
-                    <ion-label class="category-label"><span>Vases </span></ion-label> <br>
-                    <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon name="arrow-forward"></ion-icon></span>
+                  <div class="thirdSecond-block" (click)="categorylist()"  (click)="getProducts('Vase')" *ngFor="let all of Homescreen.slice(3, 4)">
+                    <img  src="{{all.obj.image}}" alt="">
+                    <ion-label class="category-label"><span>Vases</span></ion-label> <br>
+                    <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
+                          name="arrow-forward"></ion-icon></span>
                     </ion-label>
                   </div>
                 </div>
               </div>
+
+
             </div>
             <div class="description-text">
               <div>
@@ -53,172 +97,153 @@
                   sed diam voluptua. At vero eos et accusam et justo duo
                   dolores et ea rebum. Stet clita kasd gubergren</p>
               </div>
-
             </div>
             <div class="cards-section" >
-              <div >
+              <div>
                 <ion-title padding class="specials-title">Specials</ion-title>
               </div>
-              <div class="cards-container" >
+
+
+              <div class="cards-container"  >
+
+                      <!-- Fetching all products on special -->
+                <div  *ngFor="let lis of proSales.slice(0, 5);">
                 <div class="cards" >
-                  <img src="../../assets/03_3252710369_SI_00.png" alt="">
-                  <ion-label class="price"> R 235.09</ion-label>
-                  <ion-label class="name"> Crim Vase</ion-label>
+                  <img class="animated fadeInDown 2s" src="{{lis.obj.image}}" alt="">
+                  <ion-label class="price"> R{{lis.obj.price}}</ion-label>
+                  <ion-label class="name">  {{lis.obj.name}} </ion-label>
                   <div class="stars">
                     <ion-icon name="star" color="warning"></ion-icon>
                     <ion-icon name="star" color="warning"></ion-icon>
                     <ion-icon name="star" color="warning"></ion-icon>
                     <ion-icon name="star" color="warning"></ion-icon>
                     <ion-icon name="star-outline" color="warning"></ion-icon>
-                  </div>
-                </div>
-                <div class="cards">
-                  <img src="../../assets/asset-3.png" alt="">
-                  <ion-label class="price">R 3484 .90</ion-label>
-                  <ion-label class="name"> Crim Vase</ion-label>
-                  <div class="stars">
-                    <ion-icon name="star" color="warning"></ion-icon>
-                    <ion-icon name="star" color="warning"></ion-icon>
-                    <ion-icon name="star" color="warning"></ion-icon>
-                    <ion-icon name="star-half" color="warning"></ion-icon>
-                    <ion-icon name="star-outline" color="warning"></ion-icon>
-                  </div>
-
-                </div>
-                <div class="cards">
-                  <img src="../../assets/asset-1.png" alt="">
-                  <ion-label class="price">R 345 .99 </ion-label>
-                  <ion-label class="name"> Crim Vase</ion-label>
-                  <div class="stars">
-                    <ion-icon name="star-half" color="warning"></ion-icon>
-                    <ion-icon name="star-outline" color="warning"></ion-icon>
-                    <ion-icon name="star-outline" color="warning"></ion-icon>
-                    <ion-icon name="star-outline" color="warning"></ion-icon>
-                    <ion-icon name="star-outline" color="warning"></ion-icon>
-                  </div>
-
-                </div>
-                <div class="cards">
-                  <img src="../../assets/asset-2.png" alt="">
-                  <ion-label class="price"> R 555 .00</ion-label>
-                  <ion-label class="name"> Crim Vase</ion-label>
-                  <div class="stars">
-                    <ion-icon name="star" color="warning"></ion-icon>
-                    <ion-icon name="star-half" color="warning"></ion-icon>
-                    <ion-icon name="star-outline" color="warning"></ion-icon>
-                    <ion-icon name="star-outline" color="warning"></ion-icon>
-                    <ion-icon name="star-outline" color="warning"></ion-icon>
-                  </div>
-
-                </div>
-                <div class="cards">
-                  <img src="../../assets/asset-4.png" alt="">
-                  <ion-label class="price"> R 222 .45</ion-label>
-                  <ion-label class="name"> Crim Vase</ion-label>
-                  <div class="stars">
-                    <ion-icon name="star" color="warning"></ion-icon>
-                    <ion-icon name="star" color="warning"></ion-icon>
-                    <ion-icon name="star" color="warning"></ion-icon>
-                    <ion-icon name="star" color="warning"></ion-icon>
-                    <ion-icon name="star" color="warning"></ion-icon>
-                  </div>
-                  <div class="wishListIcon" >
-                    <ion-icon name="heart" color=""  ></ion-icon>
-
                   </div>
                 </div>
               </div>
-              <div class="special-section">
+              </div>
+
+              <div class="special-section"  (click)="Allspecials()">
+                <div *ngFor="let me of SpecialScrin.slice(0, 1);" >
                 <div class="specials">
-                  <img src="../../assets/photo-1493106641515-6b5631de4bb9.png" alt="">
+                  <img src="{{me.obj.image}}" alt="">
                   <ion-title>Up to 50% off </ion-title>
                 </div>
               </div>
             </div>
+            </div>
           </div>
           <div>
           </div>
-
         </div>
       </div>
     </div>
-  </div>    <div class="contactUs-section">
+  </div>
+  <div class="contactUs-section">
+    <div>
+      <ion-title>Contact Us</ion-title>
+    </div>
+    <div class="contactus">
+      <div class="contactUs-labels">
+        <div *ngFor="let my of Info">
+          <ion-label class="heading">Call Us</ion-label>
+          <div class="callUs-labels">
             <div>
-              <ion-title>Contact Us</ion-title>
+              <span>
+                <ion-icon padding name="call"></ion-icon>
+              </span>
+              <span>
+                
+                <ion-label>{{my.phoneNumber}} </ion-label>
+              </span>
             </div>
-            
-            <div class="contactus"  >
-              <div class="contactUs-labels">
-                <div *ngFor="let my of Info">
-                  <ion-label class="heading">Call Us</ion-label>
-                  <div class="callUs-labels">
-                    <div>
-                      <span>
-                        <ion-icon padding name="call"></ion-icon>
-                      </span>
-                      <span>
-                        
-                        <ion-label>{{my.phoneNumber}} </ion-label>
-                      </span>
-                    </div>
-                    <div>
-                      <span>
-                        <ion-icon padding name="mail"></ion-icon>
-                      </span>
-                      <span>
-                        <ion-label>{{my.email}}</ion-label>
-                      </span>
+            <div>
+              <span>
+                <ion-icon padding name="mail"></ion-icon>
+              </span>
+              <span>
+                <ion-label>{{my.email}}</ion-label>
+              </span>
 
-                    </div>
-                    <div>
-                      <span>
-                        <ion-icon padding name="pin"></ion-icon>
-                      </span>
-                      <span>
-                        <ion-label>{{my.address}}</ion-label>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <ion-label class="heading">Leave Us a Message</ion-label>
-                  <div class="messageInputs">
-                    <!-- <form> -->
-                      <ion-item color="light">
-                        <ion-input type="text" [(ngModel)]="message.fullname"  placeholder="fullnames"></ion-input>
-                      </ion-item>
-
-                      <ion-item>
-                        <ion-input type="email" [(ngModel)]="message.email"  placeholder="Email address">
-                        </ion-input>
-                      </ion-item>
-                      <div>
-                        <ion-list>
-                          <ion-item>
-                            <ion-textarea name="" [(ngModel)]="message.message" id="" placeholder="message"></ion-textarea>
-                          </ion-item>
-                        </ion-list>
-                      </div>
-                      <div>
-                        <ion-button  (click)="addMessage()">Submit</ion-button>
-                      </div>
-                    <!-- </form> -->
-                  </div>
-                  <div>
-
-                  </div>
-                </div>
-              </div>
             </div>
-            <ion-toolbar color="primary">
-
-              <div class="footer">
-                <img src="../../assets/Group 60.png" width="100px" height="50px" alt="">
-                <div>
-                  &copy; Pitseng Arts &amp; Crafts 2019
-                </div>
-              </div>
-            </ion-toolbar>
-
+            <div>
+              <span>
+                <ion-icon padding name="pin"></ion-icon>
+              </span>
+              <span>
+                <ion-label>{{my.address}}</ion-label>
+              </span>
+            </div>
           </div>
+        </div>
+        <div>
+          <ion-label class="heading">Leave Us a Message</ion-label>
+          <div class="messageInputs">
+           
+            <!-- <form class="form" [formGroup]="validations_form"  (ngSubmit)="addMessage(validations_form)"> -->
+              <ion-item color="light">
+                <ion-input type="text"  [(ngModel)]="message.fullname"  placeholder="fullnames"></ion-input> 
+              </ion-item>
+              <!--
+                formControlName="name" class="form-controll"
+                <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.name">
+                  <div class="error-message"
+                    *ngIf="validations_form.get('name').hasError(validation.type) && (validations_form.get('name').dirty || validations_form.get('name').touched)">
+                     <ion-label  color="danger" >{{ validation.message }}</ion-label> 
+                  </div>
+                </ng-container>
+              </div> -->
+
+              <ion-item>
+                <ion-input type="email"  [(ngModel)]="message.email"  placeholder="Email address">
+                </ion-input>
+              </ion-item>
+              <!--
+                formControlName="email" class="form-controll"
+                <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.email">
+                  <div class="error-message"
+                    *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                     <ion-label  color="danger" >{{ validation.message }}</ion-label> 
+                  </div>
+                </ng-container>
+             </div> -->
+
+
+              <div>
+                <ion-list>
+                  <ion-item>
+                    <ion-textarea name=""  [(ngModel)]="message.message" id="" placeholder="message"></ion-textarea>
+                  </ion-item>
+                  <!--
+                    formControlName="message" class="form-controll"
+                    <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.message">
+                      <div class="error-message"
+                        *ngIf="validations_form.get('name').hasError(validation.type) && (validations_form.get('message').dirty || validations_form.get('message').touched)">
+                         <ion-label  color="danger" >{{ validation.message }}</ion-label> 
+                      </div>
+                    </ng-container>
+                 </div> -->
+                </ion-list>
+              </div>
+              <div>
+                <!-- <ion-button type="submit"  [disabled]="!validations_form.valid"  >Submit</ion-button> -->
+                <ion-button  (click)="addMessage()" >Submit</ion-button>
+              </div>
+            <!-- </form> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <ion-toolbar color="primary">
+      <div class="footer">
+        <img src="../../assets/Group 60.png" width="100px" height="50px" alt="">
+        <div>
+          &copy; Pitseng Arts &amp; Crafts 2019
+        </div>
+      </div>
+    </ion-toolbar>
+  </div>
 </ion-content>
