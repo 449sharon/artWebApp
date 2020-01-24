@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { ViewProductDetailsPage } from '../view-product-details/view-product-details.page';
 import * as firebase from 'firebase';
+import { AddToCartPage } from '../add-to-cart/add-to-cart.page';
 
 @Component({
   selector: 'app-categorylist',
@@ -37,9 +38,7 @@ export class CategorylistPage implements OnInit {
               this.Products.push(obj);
               obj = {id : '', obj : {}};
             });
-            return this.Products;
-            console.log("details", this.Products);
-            
+            return this.Products;  
           }
   });
   }
@@ -54,9 +53,35 @@ export class CategorylistPage implements OnInit {
     });
     return await modal.present();
   }
+  async createAddToWishList() {
+    const modal = await this.modalController.create({
+      component:AddToCartPage,
+      cssClass: 'my-add-to-cart',
+      
+    
+    });
+    return await modal.present();
+  }
+
+  async createAddToCart() {
+    const modal = await this.modalController.create({
+      component:AddToCartPage,
+      cssClass: 'my-add-to-cart',
+      
+    
+    });
+    return await modal.present();
+  }
   openHome(){
     this.router.navigateByUrl('/')
   }
+  openAboutUS(){
+    this.router.navigateByUrl('/about-us')
+  }
+  // openCart(){
+  //   this.router.navigateByUrl('/add-to-cart')
+  // }
+
 
 
 }
