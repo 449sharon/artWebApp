@@ -27,7 +27,11 @@ const routes: Routes = [
   {
     path: 'add-to-wish-list',
     loadChildren: () => import('./pages/add-to-wish-list/add-to-wish-list.module').then( m => m.AddToWishListPageModule)
+  },  {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
   },
+
 
 ];
 

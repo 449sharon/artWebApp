@@ -7,6 +7,7 @@ import { ModalController } from '@ionic/angular';
 import { AddToWishListPage } from '../pages/add-to-wish-list/add-to-wish-list.page';
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
+import { ProfilePage } from '../pages/profile/profile.page';
 
 @Component({
   selector: 'app-home',
@@ -136,6 +137,15 @@ export class HomePage  {
   async createAddToCart() {
     const modal = await this.modalController.create({
       component:AddToCartPage,
+      cssClass: 'my-add-to-cart',
+      
+    
+    });
+    return await modal.present();
+  }
+  async createProfile() {
+    const modal = await this.modalController.create({
+      component:ProfilePage,
       cssClass: 'my-add-to-cart',
       
     
