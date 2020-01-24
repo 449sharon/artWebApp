@@ -2,6 +2,9 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/co
 // import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
+import { AddToCartPage } from '../pages/add-to-cart/add-to-cart.page';
+import { ModalController } from '@ionic/angular';
+import { AddToWishListPage } from '../pages/add-to-wish-list/add-to-wish-list.page';
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
 
@@ -57,7 +60,8 @@ export class HomePage  {
 
    Homescreen = [];
    SpecialScrin = []
-  constructor(private router: Router, private cartService: CartService, private render: Renderer2) {
+
+  constructor(private router: Router, private cartService: CartService, private render: Renderer2, public modalController: ModalController,) {
     this.adminInfo();
     this.getSpecials();
 
@@ -119,6 +123,41 @@ export class HomePage  {
   this.email = event.target.value;
   }
 
+  async createAddToWishList() {
+    const modal = await this.modalController.create({
+      component:AddToWishListPage,
+      cssClass: 'my-add-to-cart',
+      
+    
+    });
+    return await modal.present();
+  }
+
+  async createAddToCart() {
+    const modal = await this.modalController.create({
+      component:AddToCartPage,
+      cssClass: 'my-add-to-cart',
+      
+    
+    });
+    return await modal.present();
+  }
+  // showList() {
+  //   this.list = !this.list;
+  //   this.loader = true;
+
+  //     setTimeout(() => {
+  //       if(this.list) {
+  //         this.render.setStyle(this.listDiv[0], 'display', 'block');
+    
+  //       }else {
+  //         setTimeout(() => {
+  //           this.render.setStyle(this.listDiv[0], 'display', 'none');
+  //         }, 500);
+  //       }
+  //       this.loader = false;
+  //     }, 1000);
+  // }
 
  handleNamesValue(event) {
     this.names = event.target.value;
@@ -258,6 +297,9 @@ openAboutUS(){
   openHome(){
     this.router.navigateByUrl('/')
   }
+  // openCart(){
+  //   this.router.navigateByUrl('/add-to-cart')
+  // }
 
 addMessage() {
     if(firebase.auth().currentUser){
