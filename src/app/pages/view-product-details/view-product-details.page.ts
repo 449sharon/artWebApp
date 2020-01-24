@@ -35,6 +35,8 @@ export class ViewProductDetailsPage implements OnInit {
     total:0
   };
  
+
+  image  = ""
   constructor(public modalController: ModalController, private cartService: CartService,
     public productService: ProductService,
     public data: ProductService,
@@ -43,6 +45,7 @@ export class ViewProductDetailsPage implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+
   }
 
   private increment (p) {
@@ -58,7 +61,7 @@ export class ViewProductDetailsPage implements OnInit {
     return this.currentNumber;
   }
 
-  ionViewWillEnter() {
+  ionViewWillEnter(event) {
     this.Products.push(this.data.data)
   }
 
@@ -78,7 +81,7 @@ export class ViewProductDetailsPage implements OnInit {
        amount : i.obj.price * this.event.quantity
     //   }).then(() => {
     //    this.toastController(' product Added to cart')
-      //  this.dismiss();
+    //    this.dismiss();
     //  })
     //    .catch(err => {
     //           console.error(err);

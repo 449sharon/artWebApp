@@ -45,6 +45,7 @@ export class CategorylistPage implements OnInit {
   }
 
   async createViewProduct(event) {
+    
     this.data.data = event
     const modal = await this.modalController.create({
       component:ViewProductDetailsPage,

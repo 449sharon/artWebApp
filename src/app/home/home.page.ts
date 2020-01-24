@@ -110,11 +110,10 @@ export class HomePage  {
     }
   }
 
-  // ShowThisDiv(){  
-  // }
 
   categorylist(){
-    this.router.navigateByUrl('/categorylist');
+  
+  //   this.router.navigateByUrl('/categorylist');
   }
   getProducts(categories) {
     let obj = {id : '', obj : {}};
