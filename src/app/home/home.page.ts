@@ -1,9 +1,9 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
-// import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { AddToCartPage } from '../pages/add-to-cart/add-to-cart.page';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { AddToWishListPage } from '../pages/add-to-wish-list/add-to-wish-list.page';
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
@@ -61,7 +61,7 @@ export class HomePage  {
    Homescreen = [];
    SpecialScrin = []
 
-  constructor(private router: Router, private cartService: CartService, private render: Renderer2, public modalController: ModalController,) {
+  constructor( public toastCtrl: ToastController,private router: Router, private cartService: CartService, private render: Renderer2, public modalController: ModalController,) {
     this.adminInfo();
     this.getSpecials();
 
@@ -310,13 +310,27 @@ addMessage() {
        email : this.message.email,
        message : this.message.message
   
+       
       }).then(() => {
-        //
+        this.toastController('Message Sent!')
      }).catch(err => {
               console.error(err);
      });
+
+     this.message = {
+      fullname: '',
+      email: '',
+      message:''
+   }
+
     }else{
       //this.createModalLogin();
     }
   }
+
+async toastController(message) {
+    let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
+    return toast.present();
+}
+
 }
