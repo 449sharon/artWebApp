@@ -19,6 +19,7 @@ export class AddToWishListPage implements OnInit {
   myArr = [];
   mysize: string = '';
   sizes = [];
+  quantity : number = 1;
   checkbox=[];
   checked : boolean = false;
   name;

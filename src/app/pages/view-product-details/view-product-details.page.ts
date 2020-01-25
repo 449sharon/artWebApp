@@ -126,10 +126,13 @@ export class ViewProductDetailsPage implements OnInit {
       this.dbWishlist.add({
         timestamp: new Date().getTime(),
         customerUid: customerUid,
-        product_name : i.obj.name,
+        name : i.obj.name,
         price: i.obj.price,
-        size:i.obj.size,
+        // size:i.obj.size,
+        productCode: i.obj.productCode,
         quantity: i.obj.quantity,
+        percentage:i.obj.percentage,
+        totalprice:i.obj.totalprice,
         image: i.obj.image
        }).then(() => {
         this.toastController('product Added to wishlist')

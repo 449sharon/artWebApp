@@ -310,7 +310,8 @@ ngOnInit() {
         name : i.obj.name,
         price: i.obj.price,
         // size:i.obj.size,
-        // quantity: i.obj.quantity,
+        productCode: i.obj.productCode,
+        quantity: i.obj.quantity,
         percentage:i.obj.percentage,
         totalprice:i.obj.totalprice,
         image: i.obj.image

@@ -33,7 +33,8 @@
           <ion-label>{{ p.product.price | currency:'R':'symbol' }}</ion-label>
         </div>
         <div class="code">
-          <ion-label>Code: FSG2112377</ion-label>
+          <!-- <ion-label>Code: FSG2112377</ion-label> -->
+          <ion-label>Code: {{ p.product.productCode }}</ion-label>
         </div>
         <div class="Productselection">
           <div class="size">
@@ -60,7 +61,7 @@
 
           </div>
           <div class="quantity">
-            <div  ><p no-padding >Qty:   {{ p.product.quantity }}</p></div>
+            <div  ><p no-padding >Qty:  {{ p.product.quantity }}</p></div>
             <div> <ion-icon name="remove-circle" color="danger" (click)="decreaseCartItem(j)"></ion-icon>
               <ion-icon name="add-circle" color="success" (click)="increaseCartItem(j)"></ion-icon></div>
            
@@ -74,13 +75,7 @@
         <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="removeCartItem(p.id)"> 
           <ion-icon name="trash"></ion-icon>
          </ion-button>
-
-
       </div>
-
-
-
-
 
     </div>
     <p class="divided">
@@ -90,9 +85,7 @@
     </p>
   </div>
     <div class="cartButton" >
-      <ion-button color="primary" expand="block" >add to cart (R 3 905. 00) </ion-button>
+      <ion-button color="primary" expand="block" >add to cart   {{ getTotal() | currency:'R':'symbol' }} </ion-button>
     </div>
-
   </div>
-
 </ion-content>
