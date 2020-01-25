@@ -5,6 +5,7 @@ import * as firebase from 'firebase';
 import { BehaviorSubject } from 'rxjs';
 import { ProductService } from 'src/app/services/product-service.service';
 import { CartService } from 'src/app/cart.service';
+import { CartServiceService } from 'src/app/services/cart-service.service';
 
 @Component({
   selector: 'app-view-product-details',
@@ -12,6 +13,7 @@ import { CartService } from 'src/app/cart.service';
   styleUrls: ['./view-product-details.page.scss'],
 })
 export class ViewProductDetailsPage implements OnInit {
+  //cartItemCount:BehaviorSubject<number>;
   wishItemCount: BehaviorSubject<number>;
   @ViewChild('cart', {static: false, read: ElementRef})fab: ElementRef;
   dbWishlist = firebase.firestore().collection('Wishlist');
@@ -40,15 +42,16 @@ export class ViewProductDetailsPage implements OnInit {
  
 
   image  = ""
-  constructor(public modalController: ModalController, private cartService: CartService,
+  constructor(public modalController: ModalController,
     public productService: ProductService,
     public data: ProductService,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
+    public cartService : CartServiceService,
     private router: Router) { }
 
   ngOnInit() {
-
+    this.wishItemCount = this.cartService.getWishCount();
   }
 
   private increment (p) {
@@ -76,12 +79,12 @@ export class ViewProductDetailsPage implements OnInit {
      this.dbCart.add({
        timestamp: new Date().getTime(),
       //  customerUid: customerUid,
-       product_name : i.obj.name,
+       product_name : i.name,
        size : this.sizes,
-       price: i.obj.price,
+       price: i.price,
        quantity: this.event.quantity,
-       image: i.obj.image,
-       amount : i.obj.price * this.event.quantity
+       image: i.image,
+       amount : i.price * this.event.quantity
     //   }).then(() => {
     //    this.toastController(' product Added to cart')
     //    this.dismiss();
@@ -123,10 +126,13 @@ export class ViewProductDetailsPage implements OnInit {
       this.dbWishlist.add({
         timestamp: new Date().getTime(),
         customerUid: customerUid,
-        product_name : i.obj.name,
+        name : i.obj.name,
         price: i.obj.price,
-        size:i.obj.size,
+        // size:i.obj.size,
+        productCode: i.obj.productCode,
         quantity: i.obj.quantity,
+        percentage:i.obj.percentage,
+        totalprice:i.obj.totalprice,
         image: i.obj.image
        }).then(() => {
         this.toastController('product Added to wishlist')
@@ -135,13 +141,11 @@ export class ViewProductDetailsPage implements OnInit {
                console.error(err);
       });
 
-      this.wishItemCount.next(this.wishItemCount.value + 1);
+    //  this.wishItemCount.next(this.wishItemCount.value + 1);
     
     }else{
      // this.createModalLogin();
     }    
  }
 
-
- 
 }
