@@ -144,7 +144,7 @@ export class HomePage  {
     });
     return await modal.present();
   }
-  
+ 
   async createProfile() {
     const modal = await this.modalController.create({
       component:ProfilePage,

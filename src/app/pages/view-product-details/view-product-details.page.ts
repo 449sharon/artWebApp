@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ModalController, ToastController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { BehaviorSubject } from 'rxjs';
 import { ProductService } from 'src/app/services/product-service.service';
 import { CartService } from 'src/app/cart.service';
+import { CartServiceService } from 'src/app/services/cart-service.service';
 
 @Component({
   selector: 'app-view-product-details',
@@ -12,6 +13,10 @@ import { CartService } from 'src/app/cart.service';
   styleUrls: ['./view-product-details.page.scss'],
 })
 export class ViewProductDetailsPage implements OnInit {
+  //cartItemCount:BehaviorSubject<number>;
+  wishItemCount: BehaviorSubject<number>;
+  @ViewChild('cart', {static: false, read: ElementRef})fab: ElementRef;
+  dbWishlist = firebase.firestore().collection('Wishlist');
   private cartItemCount = new BehaviorSubject(0);
 
   dbCart = firebase.firestore().collection('Cart');
@@ -37,15 +42,16 @@ export class ViewProductDetailsPage implements OnInit {
  
 
   image  = ""
-  constructor(public modalController: ModalController, private cartService: CartService,
+  constructor(public modalController: ModalController,
     public productService: ProductService,
     public data: ProductService,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
+    public cartService : CartServiceService,
     private router: Router) { }
 
   ngOnInit() {
-
+    this.wishItemCount = this.cartService.getWishCount();
   }
 
   private increment (p) {
@@ -105,4 +111,42 @@ export class ViewProductDetailsPage implements OnInit {
   });
 }
  
+
+////////
+  /////
+  // async toastController(message) {
+  //   let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
+  //   return toast.present();
+  // }
+
+  addWishlist(i) {
+    //
+    if(firebase.auth().currentUser){
+    let  customerUid = firebase.auth().currentUser.uid;
+      console.log(i);
+      this.dbWishlist.add({
+        timestamp: new Date().getTime(),
+        customerUid: customerUid,
+        name : i.obj.name,
+        price: i.obj.price,
+        // size:i.obj.size,
+        productCode: i.obj.productCode,
+        quantity: i.obj.quantity,
+        percentage:i.obj.percentage,
+        totalprice:i.obj.totalprice,
+        image: i.obj.image
+       }).then(() => {
+        this.toastController('product Added to wishlist')
+      })
+        .catch(err => {
+               console.error(err);
+      });
+
+    //  this.wishItemCount.next(this.wishItemCount.value + 1);
+    
+    }else{
+     // this.createModalLogin();
+    }    
+ }
+
 }
