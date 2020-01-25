@@ -17,7 +17,7 @@ import { ProfilePage } from '../pages/profile/profile.page';
 })
 export class HomePage  {
   cartItemCount: BehaviorSubject<number>;
-  wishItemCount: BehaviorSubject<number>;
+  // wishItemCount: BehaviorSubject<number>;
   @ViewChild('cart', {static: false, read: ElementRef})fab: ElementRef;
   dbWishlist = firebase.firestore().collection('Wishlist');
   dbMessages = firebase.firestore().collection('Messages');
@@ -293,8 +293,8 @@ async toastController(message) {
 }
 
 ngOnInit() {
-  this.cartItemCount = this.cartService.getCartItemCount();
-  this.wishItemCount = this.cartService.getWishCount();
+  // this.cartItemCount = this.cartService.getCartItemCount();
+  // this.wishItemCount = this.cartService.getWishCount();
 }
 ////////
 /////
@@ -322,7 +322,7 @@ ngOnInit() {
                console.error(err);
       });
 
-      this.wishItemCount.next(this.wishItemCount.value + 1);
+      // this.wishItemCount.next(this.wishItemCount.value + 1);
     
     }else{
      // this.createModalLogin();
