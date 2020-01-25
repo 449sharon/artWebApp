@@ -5,6 +5,8 @@ import * as firebase from 'firebase';
 import { AlertController, PopoverController, NavParams } from '@ionic/angular';
 import { Router, NavigationExtras } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { TrackOrderPage } from '../track-order/track-order.page';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -203,5 +205,14 @@ async getImage(image){
     this.modalController.dismiss({
       'dismissed':true
     });
+  }
+  async createTrackOder() {
+    const modal = await this.modalController.create({
+      component:TrackOrderPage,
+      cssClass: 'track-order',
+      
+    
+    });
+    return await modal.present();
   }
 }

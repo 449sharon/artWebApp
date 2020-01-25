@@ -13,6 +13,7 @@ import * as firebase from 'firebase';
 import { AddToCartPageModule } from './pages/add-to-cart/add-to-cart.module';
 import { AddToWishListPageModule } from './pages/add-to-wish-list/add-to-wish-list.module';
 import { ProfilePageModule } from './pages/profile/profile.module';
+import { TrackOrderPageModule } from './pages/track-order/track-order.module';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCEdqt_gOew6SACcVm3xMXETdQxxbdbLJE",
@@ -29,8 +30,9 @@ firebase.initializeApp(firebaseConfig);
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule, ReactiveFormsModule,ViewProductDetailsPageModule,AddToCartPageModule,
-    AddToWishListPageModule,ProfilePageModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule, ReactiveFormsModule,ViewProductDetailsPageModule,
+    AddToCartPageModule,
+    AddToWishListPageModule,ProfilePageModule,TrackOrderPageModule],
   providers: [
     StatusBar,
     SplashScreen,

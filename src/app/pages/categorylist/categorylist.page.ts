@@ -5,6 +5,8 @@ import { ModalController } from '@ionic/angular';
 import { ViewProductDetailsPage } from '../view-product-details/view-product-details.page';
 import * as firebase from 'firebase';
 import { AddToCartPage } from '../add-to-cart/add-to-cart.page';
+import { ProfilePage } from '../profile/profile.page';
+
 @Component({
   selector: 'app-categorylist',
   templateUrl: './categorylist.page.html',
@@ -64,7 +66,15 @@ export class CategorylistPage implements OnInit {
     });
     return await modal.present();
   }
-  
+  async createProfile() {
+    const modal = await this.modalController.create({
+      component:ProfilePage,
+      cssClass: 'my-add-to-cart',
+      
+    
+    });
+    return await modal.present();
+  }
   openHome(){
     this.router.navigateByUrl('/')
   }

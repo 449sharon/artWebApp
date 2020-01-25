@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
   },
+  {
+    path: 'track-order',
+    loadChildren: () => import('./pages/track-order/track-order.module').then( m => m.TrackOrderPageModule)
+  },
 
 
 ];
