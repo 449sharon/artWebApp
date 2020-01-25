@@ -1,13 +1,14 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
-// import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { AddToCartPage } from '../pages/add-to-cart/add-to-cart.page';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { AddToWishListPage } from '../pages/add-to-wish-list/add-to-wish-list.page';
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
-import {NavigationExtras} from '@angular/router';
+import { ProfilePage } from '../pages/profile/profile.page';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -61,7 +62,7 @@ export class HomePage  {
    Homescreen = [];
    SpecialScrin = []
 
-  constructor(private router: Router, private cartService: CartService, private render: Renderer2, public modalController: ModalController,) {
+  constructor( public toastCtrl: ToastController,private router: Router, private cartService: CartService, private render: Renderer2, public modalController: ModalController,) {
     this.adminInfo();
     this.getSpecials();
 
@@ -142,7 +143,32 @@ export class HomePage  {
     });
     return await modal.present();
   }
- 
+  async createProfile() {
+    const modal = await this.modalController.create({
+      component:ProfilePage,
+      cssClass: 'my-add-to-cart',
+      
+    
+    });
+    return await modal.present();
+  }
+  // showList() {
+  //   this.list = !this.list;
+  //   this.loader = true;
+
+  //     setTimeout(() => {
+  //       if(this.list) {
+  //         this.render.setStyle(this.listDiv[0], 'display', 'block');
+    
+  //       }else {
+  //         setTimeout(() => {
+  //           this.render.setStyle(this.listDiv[0], 'display', 'none');
+  //         }, 500);
+  //       }
+  //       this.loader = false;
+  //     }, 1000);
+  // }
+
  handleNamesValue(event) {
     this.names = event.target.value;
   }
@@ -252,13 +278,27 @@ addMessage() {
        email : this.message.email,
        message : this.message.message
   
+       
       }).then(() => {
-        //
+        this.toastController('Message Sent!')
      }).catch(err => {
               console.error(err);
      });
+
+     this.message = {
+      fullname: '',
+      email: '',
+      message:''
+   }
+
     }else{
       //this.createModalLogin();
     }
   }
+
+async toastController(message) {
+    let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
+    return toast.present();
+}
+
 }

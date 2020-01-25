@@ -14,7 +14,10 @@
       <ion-title>WishList <ion-icon name="heart" ></ion-icon> </ion-title>
     </div>
     <div class="ng-for-goes-here" >
-      <!-- <ion-checkbox disabled slot="start"></ion-checkbox> -->
+      <div class="checkBox-add-to-cart" >
+        <ion-checkbox color="primary" checked slot="start"></ion-checkbox>
+      </div>
+      
   
     <div class="cart-item-section" >
 
@@ -86,20 +89,6 @@
       <span></span>
     </p>
   </div>
-
-  <!-- <div class="delivery-method" >
-    <div class="cartButton" >
-      <ion-button class="delivery" color="dark" expand="block"   >delivery</ion-button>
-    </div>
-    <div class="cartButton" >
-      <ion-button class="collection" color="dark" expand="block" >collection</ion-button>
-    </div>
-  </div> -->
-  
-
-  
-  <!-- <button *ngFor="let button of [1,2,3,4]; let i = index" 
-  [ngClass]="{'active':isClicked[i]}" (click)="isClicked[i] = (isClicked[i]? false :true )">collection</button> -->
     <div class="cartButton" >
       <ion-button color="primary" expand="block" >add to cart (R 3 905. 00) </ion-button>
     </div>
