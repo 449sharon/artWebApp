@@ -23,12 +23,20 @@
             <ion-button class="item" color="medium"  fill="clear" slot="end"> 
                <ion-icon name="person"></ion-icon>
               </ion-button>
-              <ion-button class="item" color="medium"  fill="clear"  slot="end" (click)="createAddToCart()" > 
+              <!-- <ion-button class="item" color="medium"  fill="clear"  slot="end" (click)="createAddToCart()" > 
+                <ion-icon name="cart"></ion-icon>
+               </ion-button> -->
+
+               <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="createAddToCart()" >
+                 <ion-label>{{cartItemCount | async }}</ion-label> 
                 <ion-icon name="cart"></ion-icon>
                </ion-button>
-               <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="createAddToWishList()" > 
+
+               <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="createAddToWishList()">
+                <ion-label  color="warning" class="wishlist-length">{{ wishItemCount | async }}</ion-label>
                 <ion-icon name="heart"></ion-icon>
-               </ion-button>
+              </ion-button> 
+
             <li class="toggle"><a href="#">
                 <ion-icon name="close"></ion-icon>
               </a></li>
@@ -121,6 +129,10 @@
                     <ion-icon name="star" color="warning"></ion-icon>
                     <ion-icon name="star-outline" color="warning"></ion-icon>
                   </div>
+
+                  <ion-icon color="dark" name="heart" (click)="addWishlist(lis)"></ion-icon>
+                   
+            
                 </div>
               </div>
               </div>

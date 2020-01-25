@@ -5,6 +5,7 @@ import * as firebase from 'firebase';
 import { BehaviorSubject } from 'rxjs';
 import { ProductService } from 'src/app/services/product-service.service';
 import { CartService } from 'src/app/cart.service';
+import { CartServiceService } from 'src/app/services/cart-service.service';
 
 @Component({
   selector: 'app-view-product-details',
@@ -12,6 +13,7 @@ import { CartService } from 'src/app/cart.service';
   styleUrls: ['./view-product-details.page.scss'],
 })
 export class ViewProductDetailsPage implements OnInit {
+  //cartItemCount:BehaviorSubject<number>;
   wishItemCount: BehaviorSubject<number>;
   @ViewChild('cart', {static: false, read: ElementRef})fab: ElementRef;
   dbWishlist = firebase.firestore().collection('Wishlist');
@@ -40,15 +42,16 @@ export class ViewProductDetailsPage implements OnInit {
  
 
   image  = ""
-  constructor(public modalController: ModalController, private cartService: CartService,
+  constructor(public modalController: ModalController,
     public productService: ProductService,
     public data: ProductService,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
+    public cartService : CartServiceService,
     private router: Router) { }
 
   ngOnInit() {
-
+    this.wishItemCount = this.cartService.getWishCount();
   }
 
   private increment (p) {
@@ -135,13 +138,11 @@ export class ViewProductDetailsPage implements OnInit {
                console.error(err);
       });
 
-      this.wishItemCount.next(this.wishItemCount.value + 1);
+    //  this.wishItemCount.next(this.wishItemCount.value + 1);
     
     }else{
      // this.createModalLogin();
     }    
  }
 
-
- 
 }

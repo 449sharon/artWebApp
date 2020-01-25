@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController, AlertController } from '@ionic/angular';
+import { BehaviorSubject } from 'rxjs';
+import * as firebase from 'firebase';
+import { CartServiceService } from 'src/app/services/cart-service.service';
 
 @Component({
   selector: 'app-add-to-wish-list',
@@ -7,22 +10,89 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./add-to-wish-list.page.scss'],
 })
 export class AddToWishListPage implements OnInit {
+  private cartItemCount = new BehaviorSubject(0);
+  private wishItemCount = new BehaviorSubject(0);
+  //db = firebase.firestore();
+   db = firebase.database();
+  
+  cart = [];
+  myArr = [];
+  mysize: string = '';
+  sizes = [];
+  checkbox=[];
+  checked : boolean = false;
+  name;
+  key;
+  total = 0;
+  amount: number;
+  dbWishlist = firebase.firestore().collection('Wishlist');
+  ///
+  productis = [];
+  dbOrder = firebase.firestore().collection('Order');
+  dbUser = firebase.firestore().collection('UserProfile');
+  cartProduct = [];
+  orderProd = [];
   private currentNumber = 0;
-  constructor(public modalController: ModalController) { }
+  constructor(public modalController: ModalController ,public toastController : ToastController,private cartService: CartServiceService, private alertCtrl: AlertController) {
+    this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
+      console.log(element.data());
+      this.name = element.data().name
+    })
+   }
 
   ngOnInit() {
+    //this.cart = this.cartService.getCart();
+    this.getProducts();
   }
+  getProducts() {
+    console.log("mylist....");
+    
+    this.dbWishlist.where('customerUid','==',firebase.auth().currentUser.uid).onSnapshot((res)=>{
+      this.cart = [];
+      console.log("inside....mylist");
+      res.forEach((doc)=>{
+        this.cart.push({id: doc.id, product: doc.data()});
+
+        let i = this.cart.length
+        this.cart[i -1]['productID'] = doc.id
+console.log("vvv", this.cart);
+
+     // return  this.total = this.getTotal();
+    // return this.total = this.total + parseFloat(doc.data().price) * parseFloat(doc.data().quantity);
+    ///
+   
+      })
+    })
+  }
+ 
+  decreaseCartItem(p) {
+  
+    this.cart[p].product.quantity--;
+  }
+ 
+  increaseCartItem(p) {
+    console.log(p);
+    this.cart[p].product.quantity++;
+
+  }
+ 
+  removeCartItem(id) {
+
+    this.dbWishlist.doc(id).delete();
+  }
+ 
+  getTotal() {
+    return this.cart.reduce((i, j) => i + j.product.price * j.product.quantity, 0);
+    
+  }
+  sizeSelect(i, val, y) {
+    this.sizes = i.detail.value;
+   }
+
   dismiss(){
     this.modalController.dismiss({
       'dismissed':true
     });
-  }
-  private increment () {
-    this.currentNumber++;
-  }
-  
-  private decrement () {
-    this.currentNumber--;
   }
 
 }

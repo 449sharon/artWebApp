@@ -7,6 +7,7 @@ import { ModalController, ToastController } from '@ionic/angular';
 import { AddToWishListPage } from '../pages/add-to-wish-list/add-to-wish-list.page';
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
+import { CartServiceService } from '../services/cart-service.service';
 
 @Component({
   selector: 'app-home',
@@ -61,15 +62,11 @@ export class HomePage  {
    Homescreen = [];
    SpecialScrin = []
 
-  constructor( public toastCtrl: ToastController,private router: Router, private cartService: CartService, private render: Renderer2, public modalController: ModalController,) {
+  constructor(   public cartService : CartServiceService, public toastCtrl: ToastController,private router: Router, private render: Renderer2, public modalController: ModalController,) {
     this.adminInfo();
     this.getSpecials();
-
-
     //////
     this.getPictures();
-
-
     ///////
     // this.validations_form = this.formBuilder.group({
     //   email: new FormControl('', Validators.compose([
@@ -127,8 +124,6 @@ export class HomePage  {
     const modal = await this.modalController.create({
       component:AddToWishListPage,
       cssClass: 'my-add-to-cart',
-      
-    
     });
     return await modal.present();
   }
@@ -142,22 +137,6 @@ export class HomePage  {
     });
     return await modal.present();
   }
-  // showList() {
-  //   this.list = !this.list;
-  //   this.loader = true;
-
-  //     setTimeout(() => {
-  //       if(this.list) {
-  //         this.render.setStyle(this.listDiv[0], 'display', 'block');
-    
-  //       }else {
-  //         setTimeout(() => {
-  //           this.render.setStyle(this.listDiv[0], 'display', 'none');
-  //         }, 500);
-  //       }
-  //       this.loader = false;
-  //     }, 1000);
-  // }
 
  handleNamesValue(event) {
     this.names = event.target.value;
@@ -293,12 +272,9 @@ openAboutUS(){
     this.router.navigateByUrl('/about-us');
 }
 
-  openHome(){
+openHome(){
     this.router.navigateByUrl('/')
   }
-  // openCart(){
-  //   this.router.navigateByUrl('/add-to-cart')
-  // }
 
 addMessage() {
     if(firebase.auth().currentUser){
@@ -308,8 +284,7 @@ addMessage() {
        name : this.message.fullname,
        email : this.message.email,
        message : this.message.message
-  
-       
+ 
       }).then(() => {
         this.toastController('Message Sent!')
      }).catch(err => {
@@ -331,5 +306,41 @@ async toastController(message) {
     let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
     return toast.present();
 }
+
+ngOnInit() {
+  this.cartItemCount = this.cartService.getCartItemCount();
+  this.wishItemCount = this.cartService.getWishCount();
+}
+////////
+/////
+
+  addWishlist(i) {
+    //
+    if(firebase.auth().currentUser){
+    let  customerUid = firebase.auth().currentUser.uid;
+      console.log(i);
+      this.dbWishlist.add({
+        timestamp: new Date().getTime(),
+        customerUid: customerUid,
+        name : i.obj.name,
+        price: i.obj.price,
+        // size:i.obj.size,
+        // quantity: i.obj.quantity,
+        percentage:i.obj.percentage,
+        totalprice:i.obj.totalprice,
+        image: i.obj.image
+       }).then(() => {
+        this.toastController('product Added to wishlist')
+      })
+        .catch(err => {
+               console.error(err);
+      });
+
+      this.wishItemCount.next(this.wishItemCount.value + 1);
+    
+    }else{
+     // this.createModalLogin();
+    }    
+ }
 
 }
