@@ -1,6 +1,6 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { CartService } from '../cart.service';
 import { AddToCartPage } from '../pages/add-to-cart/add-to-cart.page';
 import { ModalController, ToastController } from '@ionic/angular';
@@ -8,6 +8,7 @@ import { AddToWishListPage } from '../pages/add-to-wish-list/add-to-wish-list.pa
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
 import { CartServiceService } from '../services/cart-service.service';
+import { ProfilePage } from '../pages/profile/profile.page';
 
 @Component({
   selector: 'app-home',
@@ -137,6 +138,31 @@ export class HomePage  {
     });
     return await modal.present();
   }
+  async createProfile() {
+    const modal = await this.modalController.create({
+      component:ProfilePage,
+      cssClass: 'my-add-to-cart',
+      
+    
+    });
+    return await modal.present();
+  }
+  // showList() {
+  //   this.list = !this.list;
+  //   this.loader = true;
+
+  //     setTimeout(() => {
+  //       if(this.list) {
+  //         this.render.setStyle(this.listDiv[0], 'display', 'block');
+    
+  //       }else {
+  //         setTimeout(() => {
+  //           this.render.setStyle(this.listDiv[0], 'display', 'none');
+  //         }, 500);
+  //       }
+  //       this.loader = false;
+  //     }, 1000);
+  // }
 
  handleNamesValue(event) {
     this.names = event.target.value;
@@ -155,61 +181,20 @@ export class HomePage  {
   }
 
 
-  categorylist(){
-  
-  //   this.router.navigateByUrl('/categorylist');
+  categorylist(i){
+    console.log('seko',i);
+    
+    let navigationExtras: NavigationExtras = {
+      state: {
+        parms: i
+      }
+    }
+    this.router.navigate(['categorylist'],navigationExtras)   
   }
 
   Allspecials(){
     this.router.navigateByUrl('/specials');
   }
-
-
-  getProducts(categories) {
-    let obj = {id : '', obj : {}};
-    if(categories == 'Vase') {
-          this.active = true;
-      }
-    if(categories) {
-        this.db.collection('Products').where('categories', '==', categories).get().then((snapshot) => {
-        this.Products = [];
-    if (snapshot.empty) {
-         this.myProduct = false;
-             //  alert('the are no Vase')
-          console.log(" Category is Empty...")
-     } else {
-             this.myProduct = true;
-             snapshot.forEach(doc => {
-             obj.id = doc.id;
-            obj.obj = doc.data();
-            this.Products.push(obj);
-            obj = {id : '', obj : {}};
-            console.log("herererer", this.Products);
-           });
-            return this.Products;
-           }
-       })
-    }else {
-          this.db.collection('Products').get().then(snapshot => {
-          this.Products = [];
-         if (snapshot.empty) {
-               this.myProduct = false;
-           } else {
-                 this.myProduct = true;
-                     snapshot.forEach(doc => {
-                      obj.id = doc.id;
-                      obj.obj = doc.data();
-                      this.Products.push(obj);
-                      obj = {id : '', obj : {}};
-                        console.log("herererer", this.Products);
-                      });
-                      return this.Products;
-                    }
-            });
-          }
-        //  this.router.navigateByUrl('/categorylist');
-     }
-
 
      ///////////////// for sales
     getSpecials(){

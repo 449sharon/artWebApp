@@ -79,12 +79,12 @@ export class ViewProductDetailsPage implements OnInit {
      this.dbCart.add({
        timestamp: new Date().getTime(),
       //  customerUid: customerUid,
-       product_name : i.obj.name,
+       product_name : i.name,
        size : this.sizes,
-       price: i.obj.price,
+       price: i.price,
        quantity: this.event.quantity,
-       image: i.obj.image,
-       amount : i.obj.price * this.event.quantity
+       image: i.image,
+       amount : i.price * this.event.quantity
     //   }).then(() => {
     //    this.toastController(' product Added to cart')
     //    this.dismiss();
