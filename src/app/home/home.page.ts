@@ -7,6 +7,7 @@ import { ModalController, ToastController } from '@ionic/angular';
 import { AddToWishListPage } from '../pages/add-to-wish-list/add-to-wish-list.page';
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
+import {NavigationExtras} from '@angular/router';
 import { ProfilePage } from '../pages/profile/profile.page';
 
 @Component({
@@ -143,6 +144,7 @@ export class HomePage  {
     });
     return await modal.present();
   }
+  
   async createProfile() {
     const modal = await this.modalController.create({
       component:ProfilePage,
