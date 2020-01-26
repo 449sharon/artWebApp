@@ -8,6 +8,7 @@ import { AddToWishListPage } from './pages/add-to-wish-list/add-to-wish-list.pag
 import { AddToCartPage } from './pages/add-to-cart/add-to-cart.page';
 import { ProfilePage } from './pages/profile/profile.page';
 import { TrackOrderPage } from './pages/track-order/track-order.page';
+import { FaqsPage } from './pages/faqs/faqs.page';
 
 @Component({
   selector: 'app-root',
@@ -55,6 +56,16 @@ export class AppComponent {
   async createProfile() {
     const modal = await this.modalController.create({
       component:ProfilePage,
+      cssClass: 'my-add-to-cart',
+      
+    
+    });
+    return await modal.present();
+  }
+  
+  async createFaqs() {
+    const modal = await this.modalController.create({
+      component:FaqsPage,
       cssClass: 'my-add-to-cart',
       
     

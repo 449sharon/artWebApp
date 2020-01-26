@@ -35,6 +35,10 @@ const routes: Routes = [
     path: 'track-order',
     loadChildren: () => import('./pages/track-order/track-order.module').then( m => m.TrackOrderPageModule)
   },
+  {
+    path: 'faqs',
+    loadChildren: () => import('./pages/faqs/faqs.module').then( m => m.FaqsPageModule)
+  },
 
 
 ];
