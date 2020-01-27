@@ -1,13 +1,13 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { AddToCartPage } from '../pages/add-to-cart/add-to-cart.page';
 import { ModalController, ToastController } from '@ionic/angular';
 import { AddToWishListPage } from '../pages/add-to-wish-list/add-to-wish-list.page';
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
-import { CartServiceService } from '../services/cart-service.service';
+import {NavigationExtras} from '@angular/router';
 import { ProfilePage } from '../pages/profile/profile.page';
 
 @Component({
@@ -63,11 +63,15 @@ export class HomePage  {
    Homescreen = [];
    SpecialScrin = []
 
-  constructor(   public cartService : CartServiceService, public toastCtrl: ToastController,private router: Router, private render: Renderer2, public modalController: ModalController,) {
+  constructor( public toastCtrl: ToastController,private router: Router, private cartService: CartService, private render: Renderer2, public modalController: ModalController,) {
     this.adminInfo();
     this.getSpecials();
+
+
     //////
     this.getPictures();
+
+
     ///////
     // this.validations_form = this.formBuilder.group({
     //   email: new FormControl('', Validators.compose([
@@ -125,6 +129,8 @@ export class HomePage  {
     const modal = await this.modalController.create({
       component:AddToWishListPage,
       cssClass: 'my-add-to-cart',
+      
+    
     });
     return await modal.present();
   }
@@ -138,6 +144,7 @@ export class HomePage  {
     });
     return await modal.present();
   }
+ 
   async createProfile() {
     const modal = await this.modalController.create({
       component:ProfilePage,
@@ -257,9 +264,12 @@ openAboutUS(){
     this.router.navigateByUrl('/about-us');
 }
 
-openHome(){
+  openHome(){
     this.router.navigateByUrl('/')
   }
+  // openCart(){
+  //   this.router.navigateByUrl('/add-to-cart')
+  // }
 
 addMessage() {
     if(firebase.auth().currentUser){
@@ -269,7 +279,8 @@ addMessage() {
        name : this.message.fullname,
        email : this.message.email,
        message : this.message.message
- 
+  
+       
       }).then(() => {
         this.toastController('Message Sent!')
      }).catch(err => {

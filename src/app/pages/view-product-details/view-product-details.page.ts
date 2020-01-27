@@ -101,22 +101,23 @@ export class ViewProductDetailsPage implements OnInit {
   createModalLogin() {
     throw new Error("Method not implemented.");
   }
-  // toastController(arg0: string) {
-  //   throw new Error("Method not implemented.");
-  // }
+  toastController(arg0: string) {
+    throw new Error("Method not implemented.");
+  }
 
   dismiss(){
   this.modalController.dismiss({
     'dismissed':true
   });
 }
+ 
 
 ////////
   /////
-  async toastController(message) {
-    let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
-    return toast.present();
-  }
+  // async toastController(message) {
+  //   let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
+  //   return toast.present();
+  // }
 
   addWishlist(i) {
     //
