@@ -1,6 +1,6 @@
 
 <!-- (click)="showList()" *ngIf="!list" -->
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar color="primary">
     <ion-title>
       <div class="title">
@@ -15,27 +15,31 @@
         <nav>
           <ul class="menu">
             <li class="logo"><img src="../../assets/Group 60.png" alt=""></li>         
-            <!-- <li class="item"><a href="#">Home</a></li> -->
             <ion-button class="item" color="medium"  fill="clear" (click)="openHome()" slot="end">Home</ion-button>
             <ion-button class="item" color="medium"  fill="clear" (click)="openAboutUS()" slot="end">About Us</ion-button>
             <ion-button class="item" color="medium"  fill="clear" (click)="ContactUs()" slot="end">Contact Us </ion-button>
             <ion-button class="item" color="medium"  fill="clear"  slot="end">FARQ's</ion-button>
-            <ion-button class="item" color="medium"  fill="clear" slot="end"> 
+            <ion-button class="item" color="medium"  fill="clear" slot="end"  (click)= "createProfile()"> 
                <ion-icon name="person"></ion-icon>
               </ion-button>
-              <ion-button class="item" color="medium"  fill="clear"  slot="end" (click)="createAddToCart()" > 
+
+               <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="createAddToCart()" >
+                 <ion-label>{{cartItemCount | async }}</ion-label> 
                 <ion-icon name="cart"></ion-icon>
                </ion-button>
-               <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="createAddToWishList()" > 
+
+               <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="createAddToWishList()">
+                <ion-label  color="warning" class="wishlist-length">{{ wishItemCount | async }}</ion-label>
                 <ion-icon name="heart"></ion-icon>
-               </ion-button>
+              </ion-button>
+
             <li class="toggle"><a href="#">
                 <ion-icon name="close"></ion-icon>
               </a></li>
           </ul>
         </nav>
       </div>
-</ion-header> 
+</ion-header>  -->
 <ion-content scroll="true">
   <div class="loader-container" *ngIf="loader">
     <div class="loader">Loading...</div>
@@ -187,9 +191,9 @@
           <div class="messageInputs">
            
             <!-- <form class="form" [formGroup]="validations_form"  (ngSubmit)="addMessage(validations_form)"> -->
-              <ion-item color="light">
+              <!-- <ion-item color="light">
                 <ion-input type="text"  [(ngModel)]="message.fullname"  placeholder="fullnames"></ion-input> 
-              </ion-item>
+              </ion-item> -->
               <!--
                 formControlName="name" class="form-controll"
                 <div class="validation-errors">
@@ -201,10 +205,10 @@
                 </ng-container>
               </div> -->
 
-              <ion-item>
+              <!-- <ion-item>
                 <ion-input type="email"  [(ngModel)]="message.email"  placeholder="Email address">
                 </ion-input>
-              </ion-item>
+              </ion-item> -->
               <!--
                 formControlName="email" class="form-controll"
                 <div class="validation-errors">
@@ -217,11 +221,11 @@
              </div> -->
 
 
-              <div>
+              <!-- <div>
                 <ion-list>
                   <ion-item>
                     <ion-textarea name=""  [(ngModel)]="message.message" id="" placeholder="message"></ion-textarea>
-                  </ion-item>
+                  </ion-item> -->
                   <!--
                     formControlName="message" class="form-controll"
                     <div class="validation-errors">
@@ -232,12 +236,36 @@
                       </div>
                     </ng-container>
                  </div> -->
-                </ion-list>
+                <!-- </ion-list>
+              </div>
+              <div> -->
+                <!-- <ion-button type="submit"  [disabled]="!validations_form.valid"  >Submit</ion-button> -->
+                <!-- <ion-button  (click)="addMessage()" >Submit</ion-button>
+              </div> -->
+
+             
+                <!-- <form> -->
+                  <ion-item color="light">
+                    <ion-input type="text"   [(ngModel)]="message.fullname"  placeholder="fullnames" required></ion-input> 
+                  </ion-item>
+                  <ion-item>
+                    <ion-input type="email"   [(ngModel)]="message.email"  placeholder="Email address" required>
+                    </ion-input>
+                  </ion-item>
+                  <div>
+                    <ion-list>
+                      <ion-item>
+                        <ion-textarea name=""  [(ngModel)]="message.message" id="" placeholder="message" required></ion-textarea>
+                      </ion-item>
+                    </ion-list>
+                  </div>
+                  <div>
+                    <ion-button  (click)="addMessage()">Submit</ion-button>
+                  </div>
+                <!-- </form> -->
               </div>
               <div>
-                <!-- <ion-button type="submit"  [disabled]="!validations_form.valid"  >Submit</ion-button> -->
-                <ion-button  (click)="addMessage()" >Submit</ion-button>
-              </div>
+              
             <!-- </form> -->
           </div>
         </div>

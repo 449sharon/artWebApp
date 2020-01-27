@@ -1,0 +1,252 @@
+<div  class="heading" >
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+   
+      <ion-icon (click)="dismiss()" color="dark" name="close"></ion-icon>
+ 
+  </ion-fab>
+  <hr>
+</div>
+<ion-content>
+<div class="main-content" >
+  <div class="cartTitle" >
+    <ion-title>Profile</ion-title>
+  </div>
+  <div  class="content-cover">
+    <div class="profile-section" >
+      <div class="profile-picture" >
+        <ion-avatar>
+          <img src="../../../assets/2e2fac9d4a392456e511345021592dd2 (1).jpg">
+        </ion-avatar>
+      </div>
+      <div class="profile-details" >
+        <div class="name" >
+          <!-- <ion-label>Pitseng Arts</ion-label> -->
+          <ion-input [(ngModel)]='name' ></ion-input>
+        </div>
+        <div class="email" >
+          <!-- <ion-label>arts@pitseng.com</ion-label> -->
+          <ion-input  [(ngModel)]='email' disabled></ion-input>
+        </div>
+        <div class="address" >
+          <ion-label>4877 uGago Street
+            Protea Glen Ext 3
+            Johannesburg
+            1819</ion-label>
+            <ion-input [(ngModel)]='address'></ion-input>
+        </div>
+        <div class="contacts" >
+          <!-- <ion-label>071 234 4567 </ion-label> -->
+          <ion-input type="number" min="0" max="10" [(ngModel)]='number'></ion-input> 
+        </div>
+
+      </div>
+      <div class="edit" >
+        <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed"> -->
+   
+          <ion-icon color="dark" name="create"></ion-icon>
+     
+      <!-- </ion-fab> -->
+      </div>
+
+    </div>
+    <div class="orders" >
+      <!-- <div>
+        <ion-title>Your Oders</ion-title>
+      </div> -->
+      <div class="row">
+        <div class="col">    
+          <div class="tabs">
+            <div class="tab">
+              <input type="checkbox" id="chck1">
+              <label class="tab-label" for="chck1">Pending Orders</label>
+              <div class="tab-content">
+                <div class="pedding-oders" *ngFor="let li of Allorders">
+                  <div class="image" >
+                     <img src="../../../assets/Frame.jpg" alt="">
+                  </div>
+                  <div class="details" >
+                    <div class="invoice" >
+                      <!-- <ion-label>KHJ456237857</ion-label> -->
+                      <ion-label>Refference : {{li.ref}}</ion-label>
+                    </div>
+                    <div class="purchase-date" >
+                      <ion-label >purchased date: </ion-label><ion-label padding >{{li.info.date }}</ion-label>
+                    </div>
+                    <div class="expected-date" >
+                      <ion-label >expected date:</ion-label> <ion-label padding >30/01/2020</ion-label>
+                    </div>
+                      <div class="track-button" >
+                      <ion-button color="primary" expand="block" (click)="createTrackOder()" >Track </ion-button>
+
+                    </div>
+                  </div>
+                
+                </div>
+                <div class="pedding-oders" >
+                  <div class="image" >
+                     <img src="../../../assets/Frame.jpg" alt="">
+                  </div>
+                  <div class="details" >
+                    <div class="invoice" >
+                      <ion-label>KHJ456237857</ion-label>
+                    </div>
+                    <div class="purchase-date" >
+                      <ion-label >purchased date: </ion-label><ion-label padding >23/01/2020</ion-label>
+                    </div>
+                    <div class="expected-date" >
+                      <ion-label >expected date:</ion-label> <ion-label padding >30/01/2020</ion-label>
+                    </div>
+                      <div class="track-button" >
+                      <ion-button color="primary" expand="block"  (click)="createTrackOder()" >Track </ion-button>
+
+                    </div>
+                  </div>
+                
+                </div>
+                <div class="pedding-oders" >
+                  <div class="image" >
+                     <img src="../../../assets/Frame.jpg" alt="">
+                  </div>
+                  <div class="details" >
+                    <div class="invoice" >
+                      <ion-label>KHJ456237857</ion-label>
+                    </div>
+                    <div class="purchase-date" >
+                      <ion-label >purchased date: </ion-label><ion-label padding >23/01/2020</ion-label>
+                    </div>
+                    <div class="expected-date" >
+                      <ion-label >expected date:</ion-label> <ion-label padding >30/01/2020</ion-label>
+                    </div>
+                      <div class="track-button" >
+                      <ion-button color="primary" expand="block"  (click)="createTrackOder()" >Track </ion-button>
+
+                    </div>
+                  </div>
+                
+                </div>
+                <div class="pedding-oders" >
+                  <div class="image" >
+                     <img src="../../../assets/Frame.jpg" alt="">
+                  </div>
+                  <div class="details" >
+                    <div class="invoice" >
+                      <ion-label>KHJ456237857</ion-label>
+                    </div>
+                    <div class="purchase-date" >
+                      <ion-label >purchased date: </ion-label><ion-label padding >23/01/2020</ion-label>
+                    </div>
+                    <div class="expected-date" >
+                      <ion-label >expected date:</ion-label> <ion-label padding >30/01/2020</ion-label>
+                    </div>
+                      <div class="track-button" >
+                      <ion-button color="primary" expand="block"  (click)="createTrackOder()" >Track </ion-button>
+
+                    </div>
+                  </div>
+                
+                </div>
+              
+              </div>
+            </div>
+            <div class="tab">
+              <input type="checkbox" id="chck2">
+              <label class="tab-label" for="chck2">Order History</label>
+              <div class="tab-content">
+                <div class="pedding-oders" >
+                  <div class="image" >
+                     <img src="../../../assets/Frame.jpg" alt="">
+                  </div>
+                  <div class="details" >
+                    <div class="invoice" >
+                      <ion-label>KHJ456237857</ion-label>
+                    </div>
+                    <div class="purchase-date" >
+                      <ion-label >purchased date: </ion-label><ion-label padding >23/01/2020</ion-label>
+                    </div>
+                    <div class="expected-date" >
+                      <ion-label >expected date:</ion-label> <ion-label padding >30/01/2020</ion-label>
+                    </div>
+                      <div class="track-button" >
+                      <ion-button color="primary" expand="block" >Track </ion-button>
+
+                    </div>
+                  </div>
+                
+                </div>
+                <div class="pedding-oders" >
+                  <div class="image" >
+                     <img src="../../../assets/Frame.jpg" alt="">
+                  </div>
+                  <div class="details" >
+                    <div class="invoice" >
+                      <ion-label>invoice</ion-label>
+                    </div>
+                    <div class="purchase-date" >
+                      <ion-label >purchased date: </ion-label><ion-label padding >23/01/2020</ion-label>
+                    </div>
+                    <div class="expected-date" >
+                      <ion-label >expected date:</ion-label> <ion-label padding >30/01/2020</ion-label>
+                    </div>
+                      <div class="track-button" >
+                      <ion-button color="primary" expand="block" >Track </ion-button>
+
+                    </div>
+                  </div>
+                
+                </div>
+                <div class="pedding-oders" >
+                  <div class="image" >
+                     <img src="../../../assets/Frame.jpg" alt="">
+                  </div>
+                  <div class="details" >
+                    <div class="invoice" >
+                      <ion-label>KHJ456237857</ion-label>
+                    </div>
+                    <div class="purchase-date" >
+                      <ion-label >purchased date: </ion-label><ion-label padding >23/01/2020</ion-label>
+                    </div>
+                    <div class="expected-date" >
+                      <ion-label >expected date:</ion-label> <ion-label padding >30/01/2020</ion-label>
+                    </div>
+                      <div class="track-button" >
+                      <ion-button color="primary" expand="block" >Track </ion-button>
+
+                    </div>
+                  </div>
+                
+                </div>
+                <div class="pedding-oders" >
+                  <div class="image" >
+                     <img src="../../../assets/Frame.jpg" alt="">
+                  </div>
+                  <div class="details" >
+                    <div class="invoice" >
+                      <ion-label>KHJ456237857</ion-label>
+                    </div>
+                    <div class="purchase-date" >
+                      <ion-label >purchased date: </ion-label><ion-label padding >23/01/2020</ion-label>
+                    </div>
+                    <div class="expected-date" >
+                      <ion-label >expected date:</ion-label> <ion-label padding >30/01/2020</ion-label>
+                    </div>
+                      <div class="track-button" >
+                      <ion-button color="primary" expand="block" >Track </ion-button>
+
+                    </div>
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+</ion-content>

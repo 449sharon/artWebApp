@@ -1,4 +1,4 @@
-
+<!-- 
 
   <ion-header>
     <ion-toolbar color="primary">
@@ -15,15 +15,12 @@
           <nav>
             <ul class="menu">
               <li class="logo"><img src="../../assets/Group 60.png" alt=""></li>         
-              <!-- <li class="item"><a href="#">Home</a></li> -->
               <ion-button class="item" color="medium"  fill="clear" (click)="openHome()" slot="end">Home</ion-button>
               <ion-button class="item" color="medium"  fill="clear" (click)="openAboutUS()" slot="end">About Us</ion-button>
               <ion-button class="item" color="medium"  fill="clear" (click)="categorylist()" slot="end">Contact Us </ion-button>
               <ion-button class="item" color="medium"  fill="clear" (click)="categorylist()" slot="end">FARQ's</ion-button>
 
-              <ion-button class="item" color="medium"  fill="clear" (click)="categorylist()" slot="end"> 
-                 <ion-icon name="person"></ion-icon>
-                </ion-button>
+              <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="createProfile()" > <ion-icon name="person"></ion-icon></ion-button>
                 <ion-button class="item" color="medium"  fill="clear"  slot="end" (click)="createAddToCart()" > 
                   <ion-icon name="cart"></ion-icon>
                  </ion-button>
@@ -36,32 +33,31 @@
             </ul>
           </nav>
         </div>
-  </ion-header>
+  </ion-header> -->
 
 <ion-content>
-
-      <div class="content-container">
-            <!-- view by categories section -->
-          <div class="categorySection animated fadeInDown 2s "  >
-            <div class=" categoryList">
-              <div class="cards-container" >
-                <div  class="products-section" *ngFor="let event of Products">
-                <div *ngIf="myProduct" class="cards"(click)=" createViewProduct()">
-                  <img class="animated fadeInDown 2s" src="{{event.obj.image}}" alt="">
-                  <ion-label class="price">R &nbsp; {{event.obj.price}}</ion-label>
-                  <ion-label class="name"> {{event.obj.name}} </ion-label>
-                  <div class="stars">
-                    <ion-icon name="star" color="warning"></ion-icon>
-                    <ion-icon name="star" color="warning"></ion-icon>
-                    <ion-icon name="star" color="warning"></ion-icon>
-                    <ion-icon name="star-half" color="warning"></ion-icon>
-                    <ion-icon name="star-outline" color="warning"></ion-icon>
-                  </div>
-                </div> 
+    <div class="content-container">
+          <!-- view by categories section -->
+        <div class="categorySection animated fadeInDown 2s "  >
+          <div class=" categoryList">
+            <div class="cards-container" >
+             
+              <div  class="products-section" *ngFor="let event of Products">
+              <div *ngIf="Products" class="cards"(click)=" createViewProduct(event)">
+                <img class="animated fadeInDown 2s" src="{{event.image}}" alt="">
+                <ion-label class="price">R &nbsp; {{event.price}}</ion-label>
+                <ion-label class="name"> {{event.name}} </ion-label>
+                <div class="stars">
+                  <ion-icon name="star" color="warning"></ion-icon>
+                  <ion-icon name="star" color="warning"></ion-icon>
+                  <ion-icon name="star" color="warning"></ion-icon>
+                  <ion-icon name="star-half" color="warning"></ion-icon>
+                  <ion-icon name="star-outline" color="warning"></ion-icon>
                 </div>
+              </div> 
               </div>
             </div>
           </div>
         </div>
-
+      </div>
 </ion-content>

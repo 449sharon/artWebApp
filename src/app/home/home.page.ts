@@ -1,12 +1,14 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
-// import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Router, NavigationExtras } from '@angular/router';
 import { CartService } from '../cart.service';
 import { AddToCartPage } from '../pages/add-to-cart/add-to-cart.page';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { AddToWishListPage } from '../pages/add-to-wish-list/add-to-wish-list.page';
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
+import { CartServiceService } from '../services/cart-service.service';
+import { ProfilePage } from '../pages/profile/profile.page';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +17,7 @@ import * as firebase from 'firebase';
 })
 export class HomePage  {
   cartItemCount: BehaviorSubject<number>;
-  wishItemCount: BehaviorSubject<number>;
+  // wishItemCount: BehaviorSubject<number>;
   @ViewChild('cart', {static: false, read: ElementRef})fab: ElementRef;
   dbWishlist = firebase.firestore().collection('Wishlist');
   dbMessages = firebase.firestore().collection('Messages');
@@ -61,15 +63,11 @@ export class HomePage  {
    Homescreen = [];
    SpecialScrin = []
 
-  constructor(private router: Router, private cartService: CartService, private render: Renderer2, public modalController: ModalController,) {
+  constructor(   public cartService : CartServiceService, public toastCtrl: ToastController,private router: Router, private render: Renderer2, public modalController: ModalController,) {
     this.adminInfo();
     this.getSpecials();
-
-
     //////
     this.getPictures();
-
-
     ///////
     // this.validations_form = this.formBuilder.group({
     //   email: new FormControl('', Validators.compose([
@@ -127,8 +125,6 @@ export class HomePage  {
     const modal = await this.modalController.create({
       component:AddToWishListPage,
       cssClass: 'my-add-to-cart',
-      
-    
     });
     return await modal.present();
   }
@@ -136,6 +132,15 @@ export class HomePage  {
   async createAddToCart() {
     const modal = await this.modalController.create({
       component:AddToCartPage,
+      cssClass: 'my-add-to-cart',
+      
+    
+    });
+    return await modal.present();
+  }
+  async createProfile() {
+    const modal = await this.modalController.create({
+      component:ProfilePage,
       cssClass: 'my-add-to-cart',
       
     
@@ -175,63 +180,21 @@ export class HomePage  {
     }
   }
 
-  // ShowThisDiv(){  
-  // }
 
-  categorylist(){
-    this.router.navigateByUrl('/categorylist');
+  categorylist(i){
+    console.log('seko',i);
+    
+    let navigationExtras: NavigationExtras = {
+      state: {
+        parms: i
+      }
+    }
+    this.router.navigate(['categorylist'],navigationExtras)   
   }
 
   Allspecials(){
     this.router.navigateByUrl('/specials');
   }
-
-
-  getProducts(categories) {
-    let obj = {id : '', obj : {}};
-    if(categories == 'Vase') {
-          this.active = true;
-      }
-    if(categories) {
-        this.db.collection('Products').where('categories', '==', categories).get().then((snapshot) => {
-        this.Products = [];
-    if (snapshot.empty) {
-         this.myProduct = false;
-             //  alert('the are no Vase')
-          console.log(" Category is Empty...")
-     } else {
-             this.myProduct = true;
-             snapshot.forEach(doc => {
-             obj.id = doc.id;
-            obj.obj = doc.data();
-            this.Products.push(obj);
-            obj = {id : '', obj : {}};
-            console.log("herererer", this.Products);
-           });
-            return this.Products;
-           }
-       })
-    }else {
-          this.db.collection('Products').get().then(snapshot => {
-          this.Products = [];
-         if (snapshot.empty) {
-               this.myProduct = false;
-           } else {
-                 this.myProduct = true;
-                     snapshot.forEach(doc => {
-                      obj.id = doc.id;
-                      obj.obj = doc.data();
-                      this.Products.push(obj);
-                      obj = {id : '', obj : {}};
-                        console.log("herererer", this.Products);
-                      });
-                      return this.Products;
-                    }
-            });
-          }
-        //  this.router.navigateByUrl('/categorylist');
-     }
-
 
      ///////////////// for sales
     getSpecials(){
@@ -294,12 +257,9 @@ openAboutUS(){
     this.router.navigateByUrl('/about-us');
 }
 
-  openHome(){
+openHome(){
     this.router.navigateByUrl('/')
   }
-  // openCart(){
-  //   this.router.navigateByUrl('/add-to-cart')
-  // }
 
 addMessage() {
     if(firebase.auth().currentUser){
@@ -309,14 +269,64 @@ addMessage() {
        name : this.message.fullname,
        email : this.message.email,
        message : this.message.message
-  
+ 
       }).then(() => {
-        //
+        this.toastController('Message Sent!')
      }).catch(err => {
               console.error(err);
      });
+
+     this.message = {
+      fullname: '',
+      email: '',
+      message:''
+   }
+
     }else{
       //this.createModalLogin();
     }
   }
+
+async toastController(message) {
+    let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
+    return toast.present();
+}
+
+ngOnInit() {
+  // this.cartItemCount = this.cartService.getCartItemCount();
+  // this.wishItemCount = this.cartService.getWishCount();
+}
+////////
+/////
+
+  addWishlist(i) {
+    //
+    if(firebase.auth().currentUser){
+    let  customerUid = firebase.auth().currentUser.uid;
+      console.log(i);
+      this.dbWishlist.add({
+        timestamp: new Date().getTime(),
+        customerUid: customerUid,
+        name : i.obj.name,
+        price: i.obj.price,
+        // size:i.obj.size,
+        productCode: i.obj.productCode,
+        quantity: i.obj.quantity,
+        percentage:i.obj.percentage,
+        totalprice:i.obj.totalprice,
+        image: i.obj.image
+       }).then(() => {
+        this.toastController('product Added to wishlist')
+      })
+        .catch(err => {
+               console.error(err);
+      });
+
+      // this.wishItemCount.next(this.wishItemCount.value + 1);
+    
+    }else{
+     // this.createModalLogin();
+    }    
+ }
+
 }
