@@ -23,6 +23,7 @@ export class ViewProductDetailsPage implements OnInit {
 
   private currentNumber: number = 1;
   Products = [];
+  proSales = [];
   sizes = [];
   MyObj = [];
   event = {
@@ -69,6 +70,7 @@ export class ViewProductDetailsPage implements OnInit {
 
   ionViewWillEnter(event) {
     this.Products.push(this.data.data)
+    this.proSales.push(this.data.data)
   }
 
   addToCart(i) {

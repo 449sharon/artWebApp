@@ -9,6 +9,8 @@ import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
 import {NavigationExtras} from '@angular/router';
 import { ProfilePage } from '../pages/profile/profile.page';
+import { ViewProductDetailsPage } from '../pages/view-product-details/view-product-details.page';
+import { ProductService } from '../services/product-service.service';
 
 @Component({
   selector: 'app-home',
@@ -50,8 +52,8 @@ export class HomePage  {
 //  validations_form: FormGroup;
 //  errorMessage: string = '';
 
-   Products = []
-   proSales = []
+   Products = [];
+   proSales = [];
    currentDiv: boolean;
    mainContentDiv
    ShowThisDiv:boolean;
@@ -62,8 +64,9 @@ export class HomePage  {
 
    Homescreen = [];
    SpecialScrin = []
+  
 
-  constructor( public toastCtrl: ToastController,private router: Router, private cartService: CartService, private render: Renderer2, public modalController: ModalController,) {
+  constructor( public toastCtrl: ToastController, private data: ProductService,private router: Router, private cartService: CartService, private render: Renderer2, public modalController: ModalController,) {
     this.adminInfo();
     this.getSpecials();
 
@@ -199,8 +202,15 @@ export class HomePage  {
     this.router.navigate(['categorylist'],navigationExtras)   
   }
 
-  Allspecials(){
-    this.router.navigateByUrl('/specials');
+  async allSpecials(event){
+    this.data.data = event
+    const modal = await this.modalController.create({
+      component:ViewProductDetailsPage,
+      cssClass: 'my-custom-modal-css'
+    
+    });
+    return await modal.present();
+    // this.router.navigateByUrl('/specials');
   }
 
      ///////////////// for sales
