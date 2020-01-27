@@ -13,8 +13,8 @@ export class AddToCartPage implements OnInit {
   private cartItemCount = new BehaviorSubject(0);
   private currentNumber = 0;
   mysize: string = '';
-sizes = [];
-​
+ sizes = [];
+​ quantity = 1;
   name;
   key;
   total = 0;
@@ -31,7 +31,7 @@ sizes = [];
   constructor(public modalController: ModalController) {
     this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
       console.log(element.data());
-      this.name = element.data().name
+     this.name = element.data().name
     })
    }
 
