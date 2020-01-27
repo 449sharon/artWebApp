@@ -11,26 +11,40 @@
 
         </div>
         <div class="form-side" >
+          <form [formGroup]="signupForm">
           <div class="title" >
             <ion-title>Sign Up</ion-title>
           </div>
           <div class="text-field" >
-            <ion-item class="first" >
-              <ion-input placeholder="Email address" > <ion-icon name="mail" color="dark"  slot="end"></ion-icon> </ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input placeholder="password" > <ion-icon name="lock" color="dark" slot="end" class="lock" ></ion-icon> </ion-input>
-            </ion-item>
-
+            
+              <ion-item class="first" >
+                <ion-input placeholder="Email address" formControlName="email" type="email" placeholder="Your email address"
+                [class.invalid]="!signupForm.controls['email'].valid && signupForm.controls['email'].touched"> <ion-icon name="mail" color="dark"  slot="end"></ion-icon> </ion-input>
+              </ion-item>
+              <ion-item lines="none" color="transparent" class="error-message" *ngIf="!signupForm.controls['email'].valid
+          && signupForm.controls['email'].touched">
+          <ion-title>Please enter a valid email.</ion-title>
+        </ion-item>
+              <ion-item>
+                <ion-input placeholder="password" formControlName="password" type="password" placeholder="Your password"
+                [class.invalid]="!signupForm.controls['password'].valid && signupForm.controls['password'].touched"> <ion-icon name="lock" color="dark" slot="end" class="lock" ></ion-icon> </ion-input>
+              </ion-item>
+              <ion-item lines="none"  color="transparent" class="error-message" *ngIf="!signupForm.controls['password'].valid  &&
+          signupForm.controls['password'].touched">
+          <ion-title>Your password needs more than 6 characters.</ion-title>
+        </ion-item>
+  
+           
+           
             <ion-label color="primary" >forget Password?</ion-label>
           </div>
           <div class="buttons" >
               <div  >
-              <ion-button color="primary" expand="block" (click)="createTrackOder()" >register </ion-button>
+              <ion-button color="primary" expand="block" (click)="signupUser(signupForm)" (click)="dismiss()" [disabled]="!signupForm.valid" >register </ion-button>
 
             </div>
                   <div  >
-              <ion-button color="primary" expand="block" fill="outline" (click)="createTrackOder()" >Login </ion-button>
+              <ion-button color="primary" expand="block" fill="outline" (click)="loginuser()"  >Login </ion-button>
 
             </div>
 
@@ -46,7 +60,7 @@
             </div>
 
           
-
+          </form>
         </div>
 
       </div>
@@ -56,10 +70,10 @@
   </div>
 
 </ion-content>
-<!-- 
 
 
-<div  class="mainContainer" >
+
+<!-- <div  class="mainContainer" >
 
 
   

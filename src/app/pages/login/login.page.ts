@@ -8,6 +8,7 @@ import { ModalController } from '@ionic/angular';
 import * as firebase from 'firebase'
   import { from } from 'rxjs';
 import { RegisterPage } from '../register/register.page';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -24,6 +25,7 @@ export class LoginPage implements OnInit {
     private navCtrl: NavController,
     private authService: AuthService,
     private formBuilder: FormBuilder,
+    private router: Router,
     public modalController: ModalController
  
   ) { }
@@ -67,6 +69,22 @@ export class LoginPage implements OnInit {
     });
     // this.loader()
    
+  }
+  googleSignin() {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().getRedirectResult().then( (result) => {
+      if (!result.user) {
+        
+        firebase.auth().signInWithRedirect(provider);
+      } else {
+        this.router.navigateByUrl('home');
+        
+      }
+  }).catch(function (error) {
+    console.log(error)
+    // ...
+  });
+    
   }
 
   // loader(){
