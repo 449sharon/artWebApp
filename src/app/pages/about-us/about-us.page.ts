@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AddToCartPage } from '../add-to-cart/add-to-cart.page';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { AddToWishListPage } from '../add-to-wish-list/add-to-wish-list.page';
 import { ProfilePage } from '../profile/profile.page';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-about-us',
@@ -12,7 +13,17 @@ import { ProfilePage } from '../profile/profile.page';
 })
 export class AboutUsPage implements OnInit {
 
-  constructor(private router: Router,  public modalController: ModalController) { }
+  dbWishlist = firebase.firestore().collection('Wishlist');
+  dbMessages = firebase.firestore().collection('Messages');
+  db = firebase.firestore();
+  message = {
+    fullname: '',
+    email: '',
+    message:''
+ }
+ myProduct = false;
+  constructor(private router: Router,  public modalController: ModalController,public toastCtrl: ToastController) { }
+
 
   ngOnInit() {
   }
@@ -50,4 +61,52 @@ export class AboutUsPage implements OnInit {
     });
     return await modal.present();
   }
+  async toastController(message) {
+    let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
+    return toast.present();
+}
+
+  addMessage() {
+    if(firebase.auth().currentUser){
+     let customerUid = firebase.auth().currentUser.uid;
+     this.dbMessages.add({
+       customerUid: customerUid,
+       name : this.message.fullname,
+       email : this.message.email,
+       message : this.message.message
+ 
+      }).then(() => {
+        this.toastController('Message Sent!')
+     }).catch(err => {
+              console.error(err);
+     });
+
+     this.message = {
+      fullname: '',
+      email: '',
+      message:''
+   }
+
+    }else{
+      //this.createModalLogin();
+    }
+  }
+
+  Info = []
+adminInfo(){
+  this.db.collection('admins').get().then(snapshot => {
+  this.Info = [];
+  if (snapshot.empty) {
+         this.myProduct = false;
+       } else {
+         this.myProduct = true;
+         snapshot.forEach(doc => {
+           this.Info.push(doc.data());
+           console.log("admin", this.Info);
+         });
+         
+       }
+   })
+}
+
 }

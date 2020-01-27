@@ -190,61 +190,7 @@
           <ion-label class="heading">Leave Us a Message</ion-label>
           <div class="messageInputs">
            
-            <!-- <form class="form" [formGroup]="validations_form"  (ngSubmit)="addMessage(validations_form)"> -->
-              <!-- <ion-item color="light">
-                <ion-input type="text"  [(ngModel)]="message.fullname"  placeholder="fullnames"></ion-input> 
-              </ion-item> -->
-              <!--
-                formControlName="name" class="form-controll"
-                <div class="validation-errors">
-                <ng-container *ngFor="let validation of validation_messages.name">
-                  <div class="error-message"
-                    *ngIf="validations_form.get('name').hasError(validation.type) && (validations_form.get('name').dirty || validations_form.get('name').touched)">
-                     <ion-label  color="danger" >{{ validation.message }}</ion-label> 
-                  </div>
-                </ng-container>
-              </div> -->
-
-              <!-- <ion-item>
-                <ion-input type="email"  [(ngModel)]="message.email"  placeholder="Email address">
-                </ion-input>
-              </ion-item> -->
-              <!--
-                formControlName="email" class="form-controll"
-                <div class="validation-errors">
-                <ng-container *ngFor="let validation of validation_messages.email">
-                  <div class="error-message"
-                    *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
-                     <ion-label  color="danger" >{{ validation.message }}</ion-label> 
-                  </div>
-                </ng-container>
-             </div> -->
-
-
-              <!-- <div>
-                <ion-list>
-                  <ion-item>
-                    <ion-textarea name=""  [(ngModel)]="message.message" id="" placeholder="message"></ion-textarea>
-                  </ion-item> -->
-                  <!--
-                    formControlName="message" class="form-controll"
-                    <div class="validation-errors">
-                    <ng-container *ngFor="let validation of validation_messages.message">
-                      <div class="error-message"
-                        *ngIf="validations_form.get('name').hasError(validation.type) && (validations_form.get('message').dirty || validations_form.get('message').touched)">
-                         <ion-label  color="danger" >{{ validation.message }}</ion-label> 
-                      </div>
-                    </ng-container>
-                 </div> -->
-                <!-- </ion-list>
-              </div>
-              <div> -->
-                <!-- <ion-button type="submit"  [disabled]="!validations_form.valid"  >Submit</ion-button> -->
-                <!-- <ion-button  (click)="addMessage()" >Submit</ion-button>
-              </div> -->
-
-             
-                <!-- <form> -->
+      
                   <ion-item color="light">
                     <ion-input type="text"   [(ngModel)]="message.fullname"  placeholder="fullnames" required></ion-input> 
                   </ion-item>
