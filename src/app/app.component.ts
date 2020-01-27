@@ -10,6 +10,7 @@ import { ProfilePage } from './pages/profile/profile.page';
 import { TrackOrderPage } from './pages/track-order/track-order.page';
 import { FaqsPage } from './pages/faqs/faqs.page';
 import { PopoverComponent } from './components/popover/popover.component';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
+    private routes: Router,
     public modalController: ModalController,
     public popoverController: PopoverController
   ) {
@@ -104,5 +106,14 @@ export class AppComponent {
     });
     return await popover.present();
     
+  }
+  getAuth() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user) {
+        this.router.navigateByUrl('/home')
+      }else {
+        this.router.navigateByUrl('/login')
+      }
+    })
   }
 }
