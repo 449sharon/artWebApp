@@ -1,9 +1,9 @@
 <div class="popover-container">
   <div class="buttons">
-      <ion-button color="primary" fill="clear" slot="end"  >Login </ion-button>
-      <ion-button  color="primary" fill="clear" slot="end"  >Register</ion-button>
-      <ion-button  fill="clear"  color="primary" fill="clear" slot="end">Profile</ion-button>
-      <ion-button color="primary" fill="clear" slot="end">Logout</ion-button>
+      <ion-button color="primary" fill="clear" slot="end" (click)="openLogin()" (click)="DismissClick() "  >Login </ion-button>
+      <ion-button  color="primary" fill="clear" slot="end" (click)="openRegister()" (click)="DismissClick() " >Register</ion-button>
+      <ion-button  fill="clear"  color="primary" fill="clear"  (click)="createProfile()" (click)="DismissClick() " slot="end">Profile</ion-button>
+      <ion-button color="primary" fill="clear" slot="end" (click)="logOut()" (click)="DismissClick() " >Logout</ion-button>
   </div>
 </div>
 
