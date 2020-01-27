@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Platform, ModalController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { AddToWishListPage } from './pages/add-to-wish-list/add-to-wish-list.page';
 import { AddToCartPage } from './pages/add-to-cart/add-to-cart.page';
 import { ProfilePage } from './pages/profile/profile.page';
@@ -31,6 +31,16 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  categorylist(i){
+    
+    let navigationExtras: NavigationExtras = {
+      state: {
+        parms: i
+      }
+    }
+    this.router.navigate(['categorylist'],navigationExtras)   
   }
   
   Allspecials(){
