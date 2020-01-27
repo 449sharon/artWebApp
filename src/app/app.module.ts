@@ -15,6 +15,9 @@ import { AddToWishListPageModule } from './pages/add-to-wish-list/add-to-wish-li
 import { ProfilePageModule } from './pages/profile/profile.module';
 import { TrackOrderPageModule } from './pages/track-order/track-order.module';
 import { FaqsPageModule } from './pages/faqs/faqs.module';
+import { PopoverComponent } from './components/popover/popover.component';
+import { LoginPageModule } from './pages/login/login.module';
+import { RegisterPageModule } from './pages/register/register.module';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCEdqt_gOew6SACcVm3xMXETdQxxbdbLJE",
@@ -29,11 +32,11 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent,PopoverComponent],
+  entryComponents: [PopoverComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule, ReactiveFormsModule,ViewProductDetailsPageModule,
     AddToCartPageModule,
-    AddToWishListPageModule,ProfilePageModule,TrackOrderPageModule,FaqsPageModule],
+    AddToWishListPageModule,ProfilePageModule,TrackOrderPageModule,FaqsPageModule,RegisterPageModule,LoginPageModule],
   providers: [
     StatusBar,
     SplashScreen,

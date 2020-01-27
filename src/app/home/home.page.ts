@@ -339,5 +339,15 @@ ngOnInit() {
      // this.createModalLogin();
     }    
  }
+//  async presentPopover(ev) {
+//   const popover = await this.popoverController.create({
+//     component:PopoverComponent,
+//     event: ev,
+//     cssClass: 'pop-over-style',
+//     translucent: true,
+//   });
+//   return await popover.present();
+  
+// }
 
 }

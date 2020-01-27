@@ -1,3 +1,16 @@
-<p>
-  popover works!
-</p>
+<div class="popover-container">
+  <div class="buttons">
+      <ion-button color="primary" fill="clear" slot="end" (click)="openLogin()" (click)="DismissClick() "  >Login </ion-button>
+      <ion-button  color="primary" fill="clear" slot="end" (click)="openRegister()" (click)="DismissClick() " >Register</ion-button>
+      <ion-button  fill="clear"  color="primary" fill="clear"  (click)="createProfile()" (click)="DismissClick() " slot="end">Profile</ion-button>
+      <ion-button color="primary" fill="clear" slot="end" (click)="logOut()" (click)="DismissClick() " >Logout</ion-button>
+  </div>
+</div>
+
+
+<!--  (click)="showLogin()" (click)="DismissClick() " *ngIf="!checkUser"
+  (click)="goRegister()" (click)="DismissClick() " *ngIf="!checkUser" 
+   (click)="openProfile()" (click)="DismissClick() "    *ngIf="checkUser" 
+   (click)="logOut()" (click)="DismissClick() " *ngIf="checkUser"
+
+-->
