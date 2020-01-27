@@ -52,39 +52,39 @@
           <div class="landing" >
             <div class="category-Container">
 
-              <div class="First-Category-Block" (click)="categorylist()" (click)="getProducts('Photo Frame')"  *ngFor="let all of Homescreen.slice(2, 3)">
+              <div class="First-Category-Block" (click)="categorylist('Deco')"   *ngFor="let all of Homescreen.slice(2, 3)">
 
                 <img  src="{{all.obj.image}}" alt="">
                 <ion-label class="category-label"><span>Deco</span></ion-label> <br>
-                <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
+                <ion-label class="category-button" (click)="categorylist('Deco')"><span>SHOP NOW <ion-icon
                       name="arrow-forward"></ion-icon></span>
                 </ion-label>
 
               </div>
 
-              <div class="Second-Category-Block" (click)="categorylist()" (click)="getProducts('Cups')" *ngFor="let all of Homescreen.slice(0, 1)" >
+              <div class="Second-Category-Block" (click)="categorylist('Pottery')"  *ngFor="let all of Homescreen.slice(0, 1)" >
                 <div class="firstSecond-block">
                   <!-- <img src="../../assets/Pottery.jpg" alt=""> -->
                   <img  src="{{all.obj.image}}" alt="">
                   <ion-label class="category-label"><span>Pottery</span></ion-label> <br>
-                  <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
+                  <ion-label class="category-button" (click)="categorylist('Pottery')"><span>SHOP NOW <ion-icon
                         name="arrow-forward"></ion-icon></span>
                   </ion-label>
                 </div>
                 <div class="container-bottom2">
-                  <div class="seconSecond-block" (click)="categorylist()" (click)="getProducts('Lamps')" *ngFor="let all of Homescreen.slice(1, 2)">
+                  <div class="seconSecond-block" (click)="categorylist('Lamps')"  *ngFor="let all of Homescreen.slice(1, 2)">
                     <!-- <img src="../../assets/lamp.png" alt=""> -->
                     <img  src="{{all.obj.image}}" alt="">
                     <ion-label class="category-label"><span>Lamps</span></ion-label> <br>
-                    <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
+                    <ion-label class="category-button" (click)="categorylist('Lamps')"><span>SHOP NOW <ion-icon
                           name="arrow-forward"></ion-icon></span>
                     </ion-label>
 
                   </div>
-                  <div class="thirdSecond-block" (click)="categorylist()"  (click)="getProducts('Vase')" *ngFor="let all of Homescreen.slice(3, 4)">
+                  <div class="thirdSecond-block" (click)="categorylist('Vase')"  *ngFor="let all of Homescreen.slice(3, 4)">
                     <img  src="{{all.obj.image}}" alt="">
                     <ion-label class="category-label"><span>Vases</span></ion-label> <br>
-                    <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
+                    <ion-label class="category-button" (click)="categorylist('Vase')"><span>SHOP NOW <ion-icon
                           name="arrow-forward"></ion-icon></span>
                     </ion-label>
                   </div>
