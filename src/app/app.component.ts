@@ -18,6 +18,7 @@ import * as firebase from 'firebase';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  loader: boolean = true;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -48,6 +49,11 @@ export class AppComponent {
     
     });
     return await modal.present();
+  }
+  ionViewWillEnter() {
+    setTimeout(() => {
+      this.loader = false;
+    }, 2000);
   }
 
   async createAddToCart() {
@@ -111,9 +117,12 @@ export class AppComponent {
     firebase.auth().onAuthStateChanged((user) => {
       if(user) {
         this.router.navigateByUrl('/home')
+        //  this.loader
       }else {
         this.router.navigateByUrl('/login')
       }
+     
+      
     })
   }
 }

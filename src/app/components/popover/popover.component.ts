@@ -12,13 +12,25 @@ import * as firebase from 'firebase';
   styleUrls: ['./popover.component.scss'],
 })
 export class PopoverComponent implements OnInit {
-
+  checkUser: boolean;
   constructor(
     public modalController: ModalController,  
     public popoverController: PopoverController,
     private router: Router,) { }
 
-  ngOnInit() {}
+    ngOnInit() {
+      // this.loginBtn = false;
+      // this.registerBtn =  false;
+      // this.logoutBtn = false;
+      // this.profileBtn = false;
+      firebase.auth().onAuthStateChanged((user) => {
+        if(user) {
+          this.checkUser = true;
+        }else {
+          this.checkUser = false;
+        }
+      })
+    }
 
   async createProfile() {
     const modal = await this.modalController.create({
