@@ -7,6 +7,7 @@ import { ProductService } from 'src/app/services/product-service.service';
 import { CartService } from 'src/app/cart.service';
 import { CartServiceService } from 'src/app/services/cart-service.service';
 
+
 @Component({
   selector: 'app-view-product-details',
   templateUrl: './view-product-details.page.html',
@@ -53,6 +54,8 @@ export class ViewProductDetailsPage implements OnInit {
 
   ngOnInit() {
     this.wishItemCount = this.cartService.getWishCount();
+    console.log(this.data.data.image);
+    
   }
 
   private increment (p) {
@@ -74,9 +77,6 @@ export class ViewProductDetailsPage implements OnInit {
   }
 
   addToCart(i) {
-    // if(firebase.auth().currentUser){
-    //  let customerUid = firebase.auth().currentUser.uid;
-    
      console.log(i);
      this.dbCart.add({
        timestamp: new Date().getTime(),

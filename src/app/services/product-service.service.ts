@@ -8,6 +8,19 @@ import * as firebase from 'firebase';
 })
 export class ProductService {
 
+
+   data = {   id: '',
+   image: '',
+   categories:'',
+   name:'',
+   price:null,
+   productno:'',
+   desc: null,
+   items:'',
+   small:'',
+   medium:'',
+   large: ''}
+
   db = firebase.firestore();
   firestore
   
@@ -28,10 +41,9 @@ export class ProductService {
   cart = [];
   Products = [];
   myArray = [];
-proSales=[];
+
   constructor(public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     this.getProductList();
-    this.getProductSales();
   }
 ​
 /// adding
@@ -68,20 +80,7 @@ proSales=[];
         return this.Products;
         
       });
-      
     }
-    getProductSales() {
-      this.db.collection('Sales').get().then(snapshot => {
-        // this.Products = [];
-        snapshot.forEach(doc => {
-          this.proSales.push(doc.data());
-         console.log("herererer", this.proSales);
-        });
-        return this.proSales;
-        
-      });
-    }
-
 
   //////updating
   updateProduct(event) {

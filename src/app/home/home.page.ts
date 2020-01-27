@@ -203,7 +203,11 @@ export class HomePage  {
   }
 
   async allSpecials(event){
-    this.data.data = event
+
+    console.log('SFDSDFSDF', this.data.data.image = event.obj.image);
+    console.log('Image in the service ', this.data.data.image);
+    
+    // this.data.data = event
     const modal = await this.modalController.create({
       component:ViewProductDetailsPage,
       cssClass: 'my-custom-modal-css'
