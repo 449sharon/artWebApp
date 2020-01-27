@@ -4,6 +4,7 @@ import { ProfilePage } from 'src/app/pages/profile/profile.page';
 import { Router } from '@angular/router';
 import { LoginPage } from 'src/app/pages/login/login.page';
 import { RegisterPage } from 'src/app/pages/register/register.page';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-popover',
@@ -35,7 +36,7 @@ export class PopoverComponent implements OnInit {
       async openLogin(){
     const modal = await this.modalController.create({
       component:LoginPage,
-      // cssClass: 'my-add-to-cart',
+      cssClass: 'login-register',
       
     
     });
@@ -46,7 +47,7 @@ async openRegister(){
 
   const modal = await this.modalController.create({
     component:RegisterPage,
-    // cssClass: 'my-add-to-cart',
+    cssClass: 'login-register'
     
   
   });
@@ -56,9 +57,19 @@ async openRegister(){
 
 
 }
+logOut(){
 
-// logOut(){
-//   this.router.navigateByUrl('/');
-// }
+  firebase.auth().signOut().then(()=> {
+     // this.loginBtn = false;
+     // this.registerBtn =  false;
+     // this. logoutBtn = true;
+     // // this.orderBtn = true;
+     // this.profileBtn = true;
+     this.router.navigateByUrl('/');
+    //  this.logoutAlert()
+   }).catch((error)=> {
+   console.log(error);
+   });
+ }
 
 }

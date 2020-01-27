@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
 import * as moment from 'moment'
+import { ConfirmationPage } from '../confirmation/confirmation.page';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -117,5 +118,15 @@ export class AddToCartPage implements OnInit {
          this.dismiss();
       }
       
+
+      async createConfirmation() {
+        const modal = await this.modalController.create({
+          component:ConfirmationPage,
+          cssClass: 'confirmation',
+          
+        
+        });
+        return await modal.present();
+      }
      
 }

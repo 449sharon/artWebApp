@@ -41,10 +41,21 @@
   height: 100%;
   --width: 500px;
 }
+.login-register{
+
+  --width: 50%;
+  --height: 60%;
+
+}
 .track-order .modal-wrapper{
   --width: 808px;
   --height:760px;
 
+}
+.confirmation .modal-wrapper {
+  --width: 25%;
+  --height: 80%;
+  border-radius: 10px;
 }
 
 
@@ -141,6 +152,8 @@
       -webkit-transform: rotate(360deg);
       transform: rotate(360deg);
     }
+
+    
   }
 
 
