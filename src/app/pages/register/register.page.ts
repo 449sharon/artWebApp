@@ -87,6 +87,9 @@ export class RegisterPage implements OnInit {
   loginuser() {
     this.router.navigateByUrl('/login');
   }
+  openRegister(){
+    
+  }
 
 async createModalRegister() {
   const modal = await this.modalController.create({

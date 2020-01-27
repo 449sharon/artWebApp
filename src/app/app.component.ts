@@ -79,15 +79,15 @@ export class AppComponent {
     });
     return await modal.present();
   }
-  async creatLogin() {
-    const modal = await this.modalController.create({
-      component:FaqsPage,
-      // cssClass: 'my-add-to-cart',
+  // async creatLogin() {
+  //   const modal = await this.modalController.create({
+  //     component:FaqsPage,
+  //     cssClass: 'my-add-to-cart',
       
     
-    });
-    return await modal.present();
-  }
+  //   });
+  //   return await modal.present();
+  // }
   
   openAboutUS(){
     this.router.navigateByUrl('/about-us');
