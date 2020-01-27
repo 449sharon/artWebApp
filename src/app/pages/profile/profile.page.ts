@@ -13,142 +13,190 @@ import { TrackOrderPage } from '../track-order/track-order.page';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
-  @ViewChild('cart', {static: false, read: ElementRef})fab: ElementRef;
-  cartItemCount: BehaviorSubject<number>;
   db = firebase.firestore();
   storage = firebase.storage().ref();
+  @ViewChild('cart', {static: false, read: ElementRef})fab: ElementRef;
+  cartItemCount: BehaviorSubject<number>;
   uid
-  
   profile = {
     image: '',
     name: '',
-    number:'',
     address: '',
-  
-    email: firebase.auth().currentUser.email,
-   
     uid: '',
-    
+    number: '',
+    email: firebase.auth().currentUser.email,
   }
+
+
+  ///////
+  email
+  name
+  number
+  address
+  image
+  /////////
+  Allorders = [];
+  cart = [];
   uploadprogress = 0;
   errtext = '';
   isuploading = false;
   isuploaded = false;
-
   isprofile = false;
-
-  admin = {
+  Users = {
     uid: '',
-    email:''
+    email: '',
   }
-  
-  constructor(public alertCtrl: AlertController,
-    private router: Router,
-   ) { 
-    this.uid = firebase.auth().currentUser.uid;
-    
-  }
- 
+
+/////////
+
+  customerUid = firebase.auth().currentUser.uid;
+  dbOrder = firebase.firestore().collection('Order');
+
+////////
+  public item =[];
+  conArray = []
+  Orders =[]
+  public display;
+  public postSort='recent';
+  public userID;
+  public userTransact: any;
+  users = [];
+  myArray =[]
+  constructor(public modalController: ModalController,
+    public router: Router,
+    public alertCtrl: AlertController,
+    public popoverController: PopoverController,
+    // public data: ProductService,
+    // public transact: TransactionService,
+    // private cartService: CartService
+    ) { 
+      this.uid = firebase.auth().currentUser.uid;
+    }
+
   ngOnInit() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        console.log('Got admin', user);
-        this.admin.uid = user.uid
-        this.admin.email = user.email
-      this.getProfile();
+    firebase.auth().onAuthStateChanged(Users => {
+      if (Users) {
+        this.Users.uid = Users.uid
+        this.Users.email =Users.email
+      this.getProfile(); 
+       this.GetOrders();
       } else {
-        console.log('no admin');
+        console.log('no user');
         
       }
     })
+    // this.cart = this.cartService.getCart();
+    // this.cartItemCount = this.cartService.getCartItemCount();
   }
-  async getImage(image){
-    let imagetosend = image.item(0);
-    if (!imagetosend) {
+
+  changeListener(event): void {
+    const i = event.target.files[0];
+    console.log(i);
+    const upload = this.storage.child(i.name).put(i);
+    upload.on('state_changed', snapshot => {
+      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log('upload is: ', progress , '% done.');
+    }, err => {
+    }, () => {
+      upload.snapshot.ref.getDownloadURL().then(dwnURL => {
+        console.log('File avail at: ', dwnURL);
+        this.image = dwnURL;
+      });
+    });
+  }
+
+
+async getImage(image){
+  let imagetosend = image.item(0);
+  if (!imagetosend) {
+    const imgalert = await this.alertCtrl.create({
+      message: 'Select image to upload',
+      buttons: [{
+        text: 'Okay',
+        role: 'cancel'
+      }]
+    });
+    imgalert.present();
+  } else {
+    if (imagetosend.type.split('/')[0] !== 'image') {
       const imgalert = await this.alertCtrl.create({
-        message: 'Select image to upload',
+        message: 'Unsupported file type.',
         buttons: [{
           text: 'Okay',
           role: 'cancel'
         }]
       });
       imgalert.present();
-    } else {
-      if (imagetosend.type.split('/')[0] !== 'image') {
-        const imgalert = await this.alertCtrl.create({
-          message: 'Unsupported file type.',
-          buttons: [{
-            text: 'Okay',
-            role: 'cancel'
-          }]
+      imagetosend = '';
+      return;
+     } else {
+      const upload = this.storage.child(image.item(0).name).put(imagetosend);
+      upload.on('state_changed', snapshot => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        this.uploadprogress = progress;
+        this.isuploading = true;
+        if (progress==100){
+          this.isuploading = false;
+        } 
+      }, error => {
+      }, () => {
+        upload.snapshot.ref.getDownloadURL().then(downUrl => {this.ngOnInit
+          this.image = downUrl;
+          this.uploadprogress = 0;
+          this.isuploaded = true;
         });
-        imgalert.present();
-        imagetosend = '';
-        return;
-       } else {
-        const upload = this.storage.child(image.item(0).name).put(imagetosend);
-
-        upload.on('state_changed', snapshot => {
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          this.uploadprogress = progress;
-          this.isuploading = true;
-          if (progress==100){
-            this.isuploading = false;
-          } 
-        }, error => {
-
-        }, () => {
-          upload.snapshot.ref.getDownloadURL().then(downUrl => {this.ngOnInit
-            this.profile.image = downUrl;
-            this.uploadprogress = 0;
-            this.isuploaded = true;
-          });
-        });
-       }
-    }
+      });
+     }
   }
+}
+
   createAccount(){
-    if (!this.profile.address||!this.profile.name||!this.profile. number){
+// firebase.firestore().collection("UserProfile").doc(firebase.auth().currentUser.uid).update({
+//       name : this.profile.name,
+//       image : this.image, 
+//       number : this.profile.number,
+//       address : this.profile.address,
+//       email : firebase.auth().currentUser.email
+//     })
+    
+    if (!this.address||!this.name||!this.number){
+
       this.errtext = 'Fields should not be empty'
     } else {
-      if (!this.profile.image){
+      if (!this.image){
         this.errtext = 'Profile image still uploading or not selected';
       } else {
-        this.profile.uid =  this.admin.uid;
+        this.profile.uid =  this.Users.uid;
+
         this.db.collection('UserProfile').doc(firebase.auth().currentUser.uid).set(this.profile).then(res => {
-          console.log('Profile created');
           this.getProfile();
         }).catch(error => {
           console.log('Error');
         });
+
       }
     }
   }
-   getProfile(){
-    this.db.collection('UserProfile').where('uid', '==', this.admin.uid).get().then(snapshot => {
+  edit() {
+    this.isprofile = false;
+  }
+
+  getProfile(){
+    this.db.collection('UserProfile').where('uid', '==', this.Users.uid).get().then(snapshot => {
       if (snapshot.empty) {
         this.isprofile = false;
       } else {
         this.isprofile = true;
+
         snapshot.forEach(doc => {
-          this.profile.address = doc.data().address;
-          this.profile.image= doc.data().image
-          this.profile.name=doc.data().name
-        
-          this.profile.number=doc.data().number
-          this.profile.email=doc.data().email
-          
+          this.email = doc.data().email
+          this.profile.number = doc.data().number
+          this.profile.address = doc.data().address
+          this.profile.name = doc.data().name
+          this.profile.image = doc.data().image
         })
       }
     })
-    ////
-
-
-    //////
-  }
-  edit() {
-    this.isprofile = false;
   }
 
      ////////////////////////////////// 
