@@ -20,20 +20,23 @@
       </div>
       <div class="profile-details" >
         <div class="name" >
-          <ion-label>Pitseng Arts</ion-label>
-          
+          <!-- <ion-label>Pitseng Arts</ion-label> -->
+          <ion-input [(ngModel)]='name' ></ion-input>
         </div>
         <div class="email" >
-          <ion-label>arts@pitseng.com</ion-label>
+          <!-- <ion-label>arts@pitseng.com</ion-label> -->
+          <ion-input  [(ngModel)]='email' disabled></ion-input>
         </div>
         <div class="address" >
           <ion-label>4877 uGago Street
             Protea Glen Ext 3
             Johannesburg
             1819</ion-label>
+            <ion-input [(ngModel)]='address'></ion-input>
         </div>
         <div class="contacts" >
-          <ion-label>071 234 4567 </ion-label>
+          <!-- <ion-label>071 234 4567 </ion-label> -->
+          <ion-input type="number" min="0" max="10" [(ngModel)]='number'></ion-input> 
         </div>
 
       </div>
@@ -57,22 +60,23 @@
               <input type="checkbox" id="chck1">
               <label class="tab-label" for="chck1">Pending Orders</label>
               <div class="tab-content">
-                <div class="pedding-oders" >
+                <div class="pedding-oders" *ngFor="let li of Allorders">
                   <div class="image" >
                      <img src="../../../assets/Frame.jpg" alt="">
                   </div>
                   <div class="details" >
                     <div class="invoice" >
-                      <ion-label>KHJ456237857</ion-label>
+                      <!-- <ion-label>KHJ456237857</ion-label> -->
+                      <ion-label>Refference : {{li.ref}}</ion-label>
                     </div>
                     <div class="purchase-date" >
-                      <ion-label >purchased date: </ion-label><ion-label padding >23/01/2020</ion-label>
+                      <ion-label >purchased date: </ion-label><ion-label padding >{{li.info.date }}</ion-label>
                     </div>
                     <div class="expected-date" >
                       <ion-label >expected date:</ion-label> <ion-label padding >30/01/2020</ion-label>
                     </div>
                       <div class="track-button" >
-                      <ion-button color="primary" expand="block" >Track </ion-button>
+                      <ion-button color="primary" expand="block" (click)="createTrackOder()" >Track </ion-button>
 
                     </div>
                   </div>
@@ -93,7 +97,7 @@
                       <ion-label >expected date:</ion-label> <ion-label padding >30/01/2020</ion-label>
                     </div>
                       <div class="track-button" >
-                      <ion-button color="primary" expand="block" >Track </ion-button>
+                      <ion-button color="primary" expand="block"  (click)="createTrackOder()" >Track </ion-button>
 
                     </div>
                   </div>
@@ -114,7 +118,7 @@
                       <ion-label >expected date:</ion-label> <ion-label padding >30/01/2020</ion-label>
                     </div>
                       <div class="track-button" >
-                      <ion-button color="primary" expand="block" >Track </ion-button>
+                      <ion-button color="primary" expand="block"  (click)="createTrackOder()" >Track </ion-button>
 
                     </div>
                   </div>
@@ -135,30 +139,13 @@
                       <ion-label >expected date:</ion-label> <ion-label padding >30/01/2020</ion-label>
                     </div>
                       <div class="track-button" >
-                      <ion-button color="primary" expand="block" >Track </ion-button>
+                      <ion-button color="primary" expand="block"  (click)="createTrackOder()" >Track </ion-button>
 
                     </div>
                   </div>
                 
                 </div>
               
-             <!-- <div  class="pedding-oders">
-               <div class="order-pitcture" >
-             
-
-               </div>
-               <div class="oder-details" >
-                 <div class="invoice" >
-
-                 </div>
-                 <div class="purchase-date" >
-
-                 </div>
-                 <div class="expected-delivery" >
-
-                 </div>
-               </div>
-              </div  > -->
               </div>
             </div>
             <div class="tab">

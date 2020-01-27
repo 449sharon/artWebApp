@@ -17,7 +17,7 @@ import { ProfilePage } from '../pages/profile/profile.page';
 })
 export class HomePage  {
   cartItemCount: BehaviorSubject<number>;
-  wishItemCount: BehaviorSubject<number>;
+  // wishItemCount: BehaviorSubject<number>;
   @ViewChild('cart', {static: false, read: ElementRef})fab: ElementRef;
   dbWishlist = firebase.firestore().collection('Wishlist');
   dbMessages = firebase.firestore().collection('Messages');
@@ -302,5 +302,42 @@ async toastController(message) {
     let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
     return toast.present();
 }
+
+ngOnInit() {
+  // this.cartItemCount = this.cartService.getCartItemCount();
+  // this.wishItemCount = this.cartService.getWishCount();
+}
+////////
+/////
+
+  addWishlist(i) {
+    //
+    if(firebase.auth().currentUser){
+    let  customerUid = firebase.auth().currentUser.uid;
+      console.log(i);
+      this.dbWishlist.add({
+        timestamp: new Date().getTime(),
+        customerUid: customerUid,
+        name : i.obj.name,
+        price: i.obj.price,
+        // size:i.obj.size,
+        productCode: i.obj.productCode,
+        quantity: i.obj.quantity,
+        percentage:i.obj.percentage,
+        totalprice:i.obj.totalprice,
+        image: i.obj.image
+       }).then(() => {
+        this.toastController('product Added to wishlist')
+      })
+        .catch(err => {
+               console.error(err);
+      });
+
+      // this.wishItemCount.next(this.wishItemCount.value + 1);
+    
+    }else{
+     // this.createModalLogin();
+    }    
+ }
 
 }
