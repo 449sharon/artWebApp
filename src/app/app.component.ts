@@ -32,7 +32,10 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
-
+  
+  Allspecials(){
+    this.router.navigateByUrl('/specials');
+  }
   async createAddToWishList() {
     const modal = await this.modalController.create({
       component:AddToWishListPage,
