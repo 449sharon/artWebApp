@@ -35,7 +35,7 @@ export class PopoverComponent implements OnInit {
       async openLogin(){
     const modal = await this.modalController.create({
       component:LoginPage,
-      // cssClass: 'my-add-to-cart',
+      cssClass: 'login-register',
       
     
     });
@@ -46,7 +46,7 @@ async openRegister(){
 
   const modal = await this.modalController.create({
     component:RegisterPage,
-    // cssClass: 'my-add-to-cart',
+    cssClass: 'login-register'
     
   
   });

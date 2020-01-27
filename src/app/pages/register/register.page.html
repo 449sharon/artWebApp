@@ -1,9 +1,58 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <div class="main-content">
+    <div class="content">
+      <div class=" left-side">
+
+      </div>
+      <div class="top-side" >
+        <div class="logo-side" >
+          <img src="../../../assets/pitseng Logo.png" alt="">
+
+
+        </div>
+        <div class="form-side" >
+          <div class="title" >
+            <ion-title>Sign Up</ion-title>
+          </div>
+          <div class="text-field" >
+            <ion-item class="first" >
+              <ion-input placeholder="Email address" > <ion-icon name="mail" color="dark"  slot="end"></ion-icon> </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input placeholder="password" > <ion-icon name="lock" color="dark" slot="end" class="lock" ></ion-icon> </ion-input>
+            </ion-item>
+
+            <ion-label color="primary" >forget Password?</ion-label>
+          </div>
+          <div class="buttons" >
+              <div  >
+              <ion-button color="primary" expand="block" (click)="createTrackOder()" >register </ion-button>
+
+            </div>
+                  <div  >
+              <ion-button color="primary" expand="block" fill="outline" (click)="createTrackOder()" >Login </ion-button>
+
+            </div>
+
+          </div>  <div class="social-section" >
+
+              <div> <ion-title>or</ion-title> </div>
+              <div class="social" >
+                <div> <img src="../../../assets/icons8-facebook-96.png" alt=""></div>
+                <div><img src="../../../assets/icons8-google-96.png" alt=""></div>
+
+
+              </div>
+            </div>
+
+          
+
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
 
 </ion-content>

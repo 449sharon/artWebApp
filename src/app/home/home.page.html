@@ -113,8 +113,8 @@
               <div class="cards-container"  >
 
                       <!-- Fetching all products on special -->
-                <div  *ngFor="let lis of proSales.slice(0, 5);">
-                <div class="cards" >
+                <div class="cards-ng-if"  *ngFor="let lis of proSales.slice(0, 5);">
+                <div  class="cards" >
                   <img class="animated fadeInDown 2s" src="{{lis.obj.image}}" alt="">
                   <ion-label class="price"> R{{lis.obj.price}}</ion-label>
                   <ion-label class="name">  {{lis.obj.name}} </ion-label>

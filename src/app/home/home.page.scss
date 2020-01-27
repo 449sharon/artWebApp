@@ -399,6 +399,17 @@ ion-label {
   justify-content: center;
   flex-wrap: wrap;
 }
+.cards-ng-if{
+  // width: 100%;
+  // display: flex;
+  // justify-content: space-evenly;
+  // justify-content: space-around;
+  // justify-content: center;
+  // flex-wrap: wrap;
+  // display: flex;
+  // margin: 0 auto;
+  // flex-direction: row;
+}
 .cards {
   width: 234px;
   height: 367px;
@@ -446,11 +457,13 @@ ion-label {
   border-radius: 10px;
   text-align: center;
   margin: auto;
+  margin-top: 20px;
 //   box-shadow: 6px 10px rgba(0, 0, 0, 0.041) ;
 }
 .specials > img{
     width: 100%;
     height: 100%;
+    object-fit: cover;
     
 }
 .specials > ion-title{
@@ -461,8 +474,21 @@ ion-label {
     position: relative;
     z-index: 99999999999999999999;
     bottom: 250px;
+  
     padding-left: 16px;
     left: 0%;
+    text-shadow: 0 1px 0 #ccc,
+    0 2px 0 #c9c9c9,
+    0 3px 0 #bbb,
+    0 4px 0 #b9b9b9,
+    0 5px 0 #aaa,
+    0 6px 1px rgba(0,0,0,.1),
+    0 0 5px rgba(0,0,0,.1),
+    0 1px 3px rgba(0,0,0,.3),
+    0 3px 5px rgba(0,0,0,.2),
+    0 5px 10px rgba(0,0,0,.25),
+    0 10px 10px rgba(0,0,0,.2),
+    0 20px 20px rgba(0,0,0,.15); ;
 }
 .contactUs-section{
    width: 100%;
