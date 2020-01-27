@@ -1,4 +1,6 @@
-<div  class="heading" >
+<div class="loader-container" *ngIf="loader">
+    <div class="loader">Loading...</div>
+  </div><div  class="heading" >
   <ion-fab vertical="top" horizontal="end" slot="fixed">
    
       <ion-icon (click)="dismiss()" color="dark" name="close"></ion-icon>
@@ -7,44 +9,56 @@
   <hr>
 </div>
 <ion-content>
+  
 <div class="main-content" >
   <div class="cartTitle" >
     <ion-title>Profile</ion-title>
   </div>
   <div  class="content-cover">
-    <div *ngIf="!isprofile" class="profile-section" >
-      <div class="profile-picture" >
+
+    <!-- create profile -->
+    <div *ngIf="!isprofile" class="profile-section-edit" >
+      <div class="profile-picture-edit" >
         <ion-input type="file" placeholder="upload image" accept="image/*" multiple="false"
         (change)="getImage($event.target.files)"></ion-input>
    
       </div>
       <div class="profile-details" >
-        <div class="name" >
-          <ion-label color="medium" position="floating">Name</ion-label>
-          <ion-input type="text" [(ngModel)]="profile.name"></ion-input>
+        <ion-list>
+        <div class="edit-names" >
+            <ion-item>
+                   <ion-input placeholder="full Names" type="text" [(ngModel)]="profile.name"></ion-input>
+            </ion-item>
         </div>
-        <div class="email" >
-          <!-- <ion-label>arts@pitseng.com</ion-label> -->
-          <ion-input  [(ngModel)]='email' disabled></ion-input>
+        <!-- <div class="" >
+            <ion-item>
+              <ion-input placeholder="email address"  [(ngModel)]='email.address' ></ion-input>
+            </ion-item>
+        </div> -->
+        <div class="" >
+            <ion-item>
+               <ion-input type="text" placeholder="address" [(ngModel)]="profile.address"></ion-input>
+            </ion-item>
         </div>
-        <div class="address" >
-          <ion-label color="medium" position="floating">Address</ion-label>
-          <ion-input type="text" [(ngModel)]="profile.address"></ion-input>
+        <div class="edit-number" >
+            <ion-item>
+               <ion-input placeholder="contact Number" type="number" min="0" max="10" [(ngModel)]="profile.number"></ion-input>
+            </ion-item>
         </div>
-        <div class="contacts" >
-          <ion-label position="floating" color="medium">Contact Number</ion-label>
-          <ion-input type="number" min="0" max="10" [(ngModel)]="profile.number"></ion-input>
-        </div>
-
+      </ion-list>
       </div>
-      <div class="edit" >
+      <div class="edit-button" >
         <div>
-          <ion-button class="button" color="warning"  expand="full" shape="full"
+          <ion-button  color="primary"  expand="full" shape="full"
             (click)="createAccount()">Done</ion-button>
         </div>
       </div>
+  
 
     </div>
+
+
+    <!-- display profile -->
     <div *ngIf="isprofile" class="profile-section" >
       <div class="profile-picture" >
         <ion-avatar>
@@ -54,28 +68,21 @@
       <div class="profile-details" >
         <div class="name" >
            <ion-label>{{profile.name}}</ion-label> 
-          <!-- <ion-input [(ngModel)]='name' ></ion-input> -->
         </div>
         <div class="email" >
            <ion-label>{{profile.email}}</ion-label> 
-          <!-- <ion-input  [(ngModel)]='email' disabled></ion-input> -->
         </div>
         <div class="address" >
           <ion-label>{{profile.address}}</ion-label>
-            <!-- <ion-input [(ngModel)]='address'></ion-input> -->
         </div>
         <div class="contacts" >
            <ion-label>{{profile.number}} </ion-label> 
-          <!-- <ion-input type="number" min="0" max="10" [(ngModel)]='number'></ion-input>  -->
         </div>
 
       </div>
       <div class="edit" >
-        <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed"> -->
-   
+        
           <ion-icon color="dark" name="create" (click)="edit()"></ion-icon>
-     
-      <!-- </ion-fab> -->
       </div>
 
     </div>

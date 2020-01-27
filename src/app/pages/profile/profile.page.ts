@@ -19,7 +19,8 @@ export class ProfilePage implements OnInit {
   db = firebase.firestore();
   storage = firebase.storage().ref();
   uid
-  
+  customerUid = firebase.auth().currentUser.uid;
+  dbOrder = firebase.firestore().collection('Order');
   profile = {
     image: '',
     name: '',
@@ -31,6 +32,8 @@ export class ProfilePage implements OnInit {
     uid: '',
     
   }
+  Allorders = [];
+  loader: boolean = true;
   uploadprogress = 0;
   errtext = '';
   isuploading = false;
@@ -45,9 +48,15 @@ export class ProfilePage implements OnInit {
   
   constructor(public alertCtrl: AlertController,
     private router: Router,
+    public modalController: ModalController
    ) { 
     this.uid = firebase.auth().currentUser.uid;
     
+  }
+  ionViewWillEnter() {
+    setTimeout(() => {
+      this.loader = false;
+    }, 2000);
   }
  
   ngOnInit() {
@@ -56,6 +65,7 @@ export class ProfilePage implements OnInit {
         console.log('Got admin', user);
         this.admin.uid = user.uid
         this.admin.email = user.email
+        this.GetOrders();
       this.getProfile();
       } else {
         console.log('no admin');
@@ -105,6 +115,7 @@ export class ProfilePage implements OnInit {
             this.isuploaded = true;
           });
         });
+        this.loader
        }
     }
   }
