@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { ViewProductDetailsPage } from '../view-product-details/view-product-details.page';
 import * as firebase from 'firebase';
 import { AddToCartPage } from '../add-to-cart/add-to-cart.page';
+import { AddToWishListPage } from '../add-to-wish-list/add-to-wish-list.page';
 
 @Component({
   selector: 'app-categorylist',
@@ -51,7 +52,7 @@ export class CategorylistPage implements OnInit {
   }
   async createAddToWishList() {
     const modal = await this.modalController.create({
-      component:AddToCartPage,
+      component:AddToWishListPage,
       cssClass: 'my-add-to-cart',
       
     
