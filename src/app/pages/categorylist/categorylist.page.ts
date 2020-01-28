@@ -14,6 +14,7 @@ import { ProfilePage } from '../profile/profile.page';
   styleUrls: ['./categorylist.page.scss'],
 })
 export class CategorylistPage implements OnInit {
+  active: boolean;
   db = firebase.firestore();
  value
  Sales = [];
@@ -97,4 +98,10 @@ export class CategorylistPage implements OnInit {
   // openCart(){
   //   this.router.navigateByUrl('/add-to-cart')
   // }
+
+  showList(i) {
+    this.active = i;
+   
+    
+  }
 }

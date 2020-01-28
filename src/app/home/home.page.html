@@ -69,8 +69,8 @@
               <div class="cards-container"  >
       
                       <!-- Fetching all products on special -->
-                <div  *ngFor="let event of proSales.slice(0, 5);" (click)="allSpecials(event)">
-                <div class="cards" >
+                <div   class="products-section" *ngFor="let event of proSales.slice(0, 5); let i=index;" (click)="allSpecials(event)">
+                <div class="cards"  [ngClass]="{'active': active==i}" (click)="showList(i)" >
                   <img class="animated fadeInDown 2s" src="{{event.obj.image}}" alt="">
                   <ion-label class="price"> R{{event.obj.price}}</ion-label>
                   <ion-label class="name">  {{event.obj.name}} </ion-label>

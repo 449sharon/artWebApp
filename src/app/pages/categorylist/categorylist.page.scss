@@ -277,15 +277,22 @@ ion-content{
     border-radius: 10px;
     border: 0.5px solid #70707042;
     // max-width: 200px;
-    &:hover,
-    &:focus {
-      transform: scale3d(1.006, 1.006, 1);
+    // &:hover{
+    //   transform: scale3d(1.006, 1.006, 1);
   
-      &::after {
-        opacity: 1;
-      }
+    //   &::after {
+    //     opacity: 1;
+    //   }
+    // }
+
+    &:hover {
+      animation-name:pulse;
+      animation-duration: 0.5s;
+      animation-timing-function: ease-out;
+      animation-iteration-count:infinite;
+      animation-direction:reverse;
     }
-  }
+}
   .cards > img {
     width: 222px;
     height: 268px;
@@ -328,4 +335,9 @@ ion-content{
       justify-content: space-around;
       margin-bottom: 3%;
     }
+    
+    .active {
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+      color: #fff;
+  }
    

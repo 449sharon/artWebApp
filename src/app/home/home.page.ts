@@ -20,6 +20,7 @@ import { ProductService } from '../services/product-service.service';
 export class HomePage  {
   cartItemCount: BehaviorSubject<number>;
   // wishItemCount: BehaviorSubject<number>;
+  // active: any;
   @ViewChild('cart', {static: false, read: ElementRef})fab: ElementRef;
   dbWishlist = firebase.firestore().collection('Wishlist');
   dbMessages = firebase.firestore().collection('Messages');
@@ -49,6 +50,7 @@ export class HomePage  {
     message:''
  }
 
+
 //  validations_form: FormGroup;
 //  errorMessage: string = '';
 
@@ -74,6 +76,7 @@ export class HomePage  {
     //////
     this.getPictures();
 
+ 
 
     ///////
     // this.validations_form = this.formBuilder.group({
@@ -363,4 +366,9 @@ ngOnInit() {
   
 // }
 
+showList(i) {
+  this.active = i;
+ 
+  
+}
 }

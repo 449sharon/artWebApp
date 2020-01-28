@@ -21,6 +21,7 @@ import { SpecialsPage } from './pages/specials/specials.page';
 export class AppComponent {
   loader: boolean = true;
   popoverController: any;
+  
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
