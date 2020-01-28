@@ -12,7 +12,7 @@
     <div class="main-content" >
       <div class="itemList">
         <div class="scroll" > 
-            <div class="pedding-oders"   >
+            <div class="pedding-oders" *ngFor="let item of ['khuty', 'snazo', 'shaz']; let i=index;" [ngClass]="{'active': active==i}" (click)="showList(i)">
           <div class="image" >
              <img src="../../../assets/Frame.jpg" alt="">
           </div>
@@ -36,150 +36,9 @@
           </div>
         
         </div>
-        <div class="pedding-oders" >
-          <div class="image" >
-             <img src="../../../assets/Frame.jpg" alt="">
-          </div>
-          <div class="details" >
-            <div class="invoice" >
-              <ion-label>product name</ion-label>
-            </div>
-            <div class="purchase-date" >
-              <ion-label >code</ion-label><ion-label padding >23/01/2020</ion-label>
-            </div>
-            <div class="expected-date" >
-              <ion-label >Size:</ion-label><ion-label >M, L</ion-label> 
-            </div>
-            <div class="expected-date" >
-              <ion-label >quantity: </ion-label> <ion-label>4</ion-label>
-            </div>
-              <!-- <div class="track-button" >
-              <ion-button color="primary" expand="block" (click)="createTrackOder()" >Track </ion-button>
-
-            </div> -->
-          </div>
+      
+     
         
-        </div>
-        <div class="pedding-oders" >
-          <div class="image" >
-             <img src="../../../assets/Frame.jpg" alt="">
-          </div>
-          <div class="details" >
-            <div class="invoice" >
-              <ion-label>Crime Vase</ion-label>
-            </div>
-            <div class="purchase-date" >
-              <ion-label >code:</ion-label><ion-label padding >JDH354467543</ion-label>
-            </div>
-            <div class="expected-date" >
-              <ion-label >Size:</ion-label><ion-label >M, L</ion-label> 
-            </div>
-            <div class="expected-date" >
-              <ion-label >quantity: </ion-label> <ion-label>4</ion-label>
-            </div>
-              <!-- <div class="track-button" >
-              <ion-button color="primary" expand="block" (click)="createTrackOder()" >Track </ion-button>
-
-            </div> -->
-          </div>
-        
-        </div>
-        <div class="pedding-oders" (click)="showList()" >
-          <div class="image" >
-             <img src="../../../assets/Frame.jpg" alt="">
-          </div>
-          <div class="details" >
-            <div class="invoice" >
-              <ion-label>product name</ion-label>
-            </div>
-            <div class="purchase-date" >
-              <ion-label >code</ion-label><ion-label padding >23/01/2020</ion-label>
-            </div>
-            <div class="expected-date" >
-              <ion-label >Size:</ion-label><ion-label >M, L</ion-label> 
-            </div>
-            <div class="expected-date" >
-              <ion-label >quantity: </ion-label> <ion-label>4</ion-label>
-            </div>
-              <!-- <div class="track-button" >
-              <ion-button color="primary" expand="block" (click)="createTrackOder()" >Track </ion-button>
-
-            </div> -->
-          </div>
-        
-        </div>
-        <div class="pedding-oders" >
-          <div class="image" >
-             <img src="../../../assets/Frame.jpg" alt="">
-          </div>
-          <div class="details" >
-            <div class="invoice" >
-              <ion-label>product name</ion-label>
-            </div>
-            <div class="purchase-date" >
-              <ion-label >code</ion-label><ion-label padding >23/01/2020</ion-label>
-            </div>
-            <div class="expected-date" >
-              <ion-label >Size:</ion-label><ion-label >M, L</ion-label> 
-            </div>
-            <div class="expected-date" >
-              <ion-label >quantity: </ion-label> <ion-label>4</ion-label>
-            </div>
-              <!-- <div class="track-button" >
-              <ion-button color="primary" expand="block" (click)="createTrackOder()" >Track </ion-button>
-
-            </div> -->
-          </div>
-        
-        </div>
-        <div class="pedding-oders" >
-          <div class="image" >
-             <img src="../../../assets/Frame.jpg" alt="">
-          </div>
-          <div class="details" >
-            <div class="invoice" >
-              <ion-label>product name</ion-label>
-            </div>
-            <div class="purchase-date" >
-              <ion-label >code</ion-label><ion-label padding >23/01/2020</ion-label>
-            </div>
-            <div class="expected-date" >
-              <ion-label >Size:</ion-label><ion-label >M, L</ion-label> 
-            </div>
-            <div class="expected-date" >
-              <ion-label >quantity: </ion-label> <ion-label>4</ion-label>
-            </div>
-              <!-- <div class="track-button" >
-              <ion-button color="primary" expand="block" (click)="createTrackOder()" >Track </ion-button>
-
-            </div> -->
-          </div>
-        
-        </div>
-        <div class="pedding-oders" >
-          <div class="image" >
-             <img src="../../../assets/Frame.jpg" alt="">
-          </div>
-          <div class="details" >
-            <div class="invoice" >
-              <ion-label>product name</ion-label>
-            </div>
-            <div class="purchase-date" >
-              <ion-label >code</ion-label><ion-label padding >23/01/2020</ion-label>
-            </div>
-            <div class="expected-date" >
-              <ion-label >size</ion-label> 
-            </div>
-            <div class="expected-date" >
-              <ion-label >quantity</ion-label> 
-            </div>
-              <!-- <div class="track-button" >
-              <ion-button color="primary" expand="block" (click)="createTrackOder()" >Track </ion-button>
-
-            </div> -->
-          </div>
-        
-        </div>
 
       </div>
 
