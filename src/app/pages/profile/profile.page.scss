@@ -10,12 +10,12 @@ ion-content{
 overflow: hidden;
 }
 .main-content{
-  // border: solid red;
-  width: 100%;
-  height: 100%;
-  // display: flex;
-  // justify-content: center;
-  margin: 0 auto;
+    // border: solid red;
+    width: 100%;
+    height: 100%;
+    // display: flex;
+    // justify-content: center;
+    margin: 0 auto;
 }
 .content-cover{
   // border: solid blue;
@@ -33,78 +33,86 @@ overflow: hidden;
   padding-bottom: 30px;
 }
 .profile-section{
-  border-bottom: 0.5px solid rgb(217, 219, 216);
-  width: 90%;
-  // height: 190px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  justify-content: space-between;
-  justify-content: space-around;
-  margin-bottom: 16px;
-  margin-left: 18px;
-  padding-bottom: 16px;
+    border-bottom: 0.5px solid rgb(217, 219, 216);
+    width: 90%;
+    // height: 190px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-between;
+    justify-content: space-around;
+    margin-bottom: 16px;
+    margin-left: 18px;
+    padding-bottom: 16px;
 }
 .profile-section-edit{
-width: 80%;
-margin: 0 auto;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-}
-.profile-section-edit > div {
-margin: 0 auto;
-width: 100%;
-}
-.profile-section-edit > div > ion-list {
-margin-bottom: 76px;
-margin-top: 76px;
-}
-.profile-section-edit{
-margin-bottom: 20px;
-}
-.edit-number{
-margin-bottom: 30px;
-}
-.edit-button{
-width: 50%;
-margin:  0 auto;
-}
-.profile-picture{
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+  width: 80%;
   margin: 0 auto;
-}
-.profile-picture > ion-avatar {
-  width: 169px;
-  height: 169px;
-  border-radius: 100px;
-  margin: 0 auto;
-  justify-content: center;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  
-}.profile-picture > ion-avtar > img {
-border-radius: 50px;
-width: 100%;
-height: 100%;
-object-fit: cover;
-// border: solid red ;
-}
-.edit-names{
-margin-top: 30px;
-}
-.profile-details{
-  width: 50%;
-  height: 169px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
+.profile-section-edit > div {
+  margin: 0 auto;
+  width: 100%;
+}
+.profile-section-edit > div > ion-list {
+  margin-bottom: 76px;
+  margin-top: 76px;
+
+}
+.profile-section-edit{
+  margin-bottom: 20px;
+
+}
+.edit-number{
+  margin-bottom: 30px;
+}
+.edit-button{
+  width: 50%;
+  margin:  0 auto;
+}
+.profile-picture{
+
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+
+}
+.profile-picture > ion-avatar {
+    width: 169px;
+    height: 169px;
+    border-radius: 100px;
+    margin: 0 auto;
+    justify-content: center;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    
+}.profile-picture > ion-avtar > img {
+  border-radius: 50px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  // border: solid red ;
+
+}
+.edit-names{
+  margin-top: 30px;
+}
+.profile-details{
+    width: 50%;
+    height: 169px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
 .edit{
-  margin-top: 30%;
+    margin-top: 30%;
 }
 .edit > ion-icon {
   font-size: x-large;

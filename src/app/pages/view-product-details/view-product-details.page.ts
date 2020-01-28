@@ -7,6 +7,7 @@ import { ProductService } from 'src/app/services/product-service.service';
 import { CartService } from 'src/app/cart.service';
 import { CartServiceService } from 'src/app/services/cart-service.service';
 
+
 @Component({
   selector: 'app-view-product-details',
   templateUrl: './view-product-details.page.html',
@@ -23,6 +24,7 @@ export class ViewProductDetailsPage implements OnInit {
 
   private currentNumber: number = 1;
   Products = [];
+  proSales = [];
   sizes = [];
   MyObj = [];
   event = {
@@ -52,6 +54,8 @@ export class ViewProductDetailsPage implements OnInit {
 
   ngOnInit() {
     this.wishItemCount = this.cartService.getWishCount();
+    // console.log(this.data.data.image);
+    
   }
 
   private increment (p) {
@@ -69,6 +73,7 @@ export class ViewProductDetailsPage implements OnInit {
 
   ionViewWillEnter(event) {
     this.Products.push(this.data.data)
+    this.proSales.push(this.data.data)
   }
 
   addToCart(i) {
@@ -85,16 +90,6 @@ export class ViewProductDetailsPage implements OnInit {
        quantity: this.event.quantity,
        image: i.image,
        amount : i.price * this.event.quantity
-    //   }).then(() => {
-    //    this.toastController(' product Added to cart')
-    //    this.dismiss();
-    //  })
-    //    .catch(err => {
-    //           console.error(err);
-    //  });
-    //  this.cartItemCount.next(this.cartItemCount.value + 1);
-    // }else{
-    //   this.createModalLogin();
      })
      this.dismiss();
     }

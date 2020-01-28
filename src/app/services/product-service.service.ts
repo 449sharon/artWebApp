@@ -8,6 +8,19 @@ import * as firebase from 'firebase';
 })
 export class ProductService {
 
+
+   data = {   id: '',
+   image: '',
+   categories:'',
+   name:'',
+   price:null,
+   productno:'',
+   desc: null,
+   items:'',
+   small:'',
+   medium:'',
+   large: ''}
+
   db = firebase.firestore();
   firestore
   
@@ -81,6 +94,6 @@ export class ProductService {
 });
 }
 
-data = {};
+
 
 }

@@ -537,21 +537,21 @@ ion-label {
     padding-top: 25px;
     
 }
-.messageInputs > form > ion-item { 
+.messageInputs > ion-item { 
     height: 40px;
     border-radius: 10px;
     margin-bottom: 20px;
 }
-.messageInputs > form > ion-item > ion-input {
+.messageInputs > ion-item > ion-input {
 text-align: left;
 }
-.messageInputs  > form > div > ion-list > ion-item > ion-textarea {
+.messageInputs  >  div > ion-list > ion-item > ion-textarea {
     text-align: left;
     height: 100px;
     margin-bottom: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    .messageInputs  > form > div > ion-button {
+    .messageInputs  > div > ion-button {
         margin-top: 20px;
     }
     .callUs-labels {

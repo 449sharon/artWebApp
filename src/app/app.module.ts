@@ -1,3 +1,4 @@
+import { SpecialsPageModule } from './pages/specials/specials.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -20,6 +21,7 @@ import { LoginPageModule } from './pages/login/login.module';
 import { RegisterPageModule } from './pages/register/register.module';
 import { ConfirmationPageModule } from './pages/confirmation/confirmation.module';
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyCEdqt_gOew6SACcVm3xMXETdQxxbdbLJE",
   authDomain: "pitsengproject.firebaseapp.com",
@@ -37,7 +39,10 @@ firebase.initializeApp(firebaseConfig);
   entryComponents: [PopoverComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule, ReactiveFormsModule,ViewProductDetailsPageModule,
     AddToCartPageModule,
-    AddToWishListPageModule,ProfilePageModule,TrackOrderPageModule,FaqsPageModule,RegisterPageModule,LoginPageModule,ConfirmationPageModule],
+    AddToWishListPageModule,ProfilePageModule,
+    TrackOrderPageModule,FaqsPageModule,
+    RegisterPageModule,LoginPageModule,SpecialsPageModule,
+    ConfirmationPageModule,],
   providers: [
     StatusBar,
     SplashScreen,

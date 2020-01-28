@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 
-import { Platform, ModalController, PopoverController } from '@ionic/angular';
+import { Platform, ModalController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { AddToWishListPage } from './pages/add-to-wish-list/add-to-wish-list.page';
 import { AddToCartPage } from './pages/add-to-cart/add-to-cart.page';
 import { ProfilePage } from './pages/profile/profile.page';
 import { TrackOrderPage } from './pages/track-order/track-order.page';
 import { FaqsPage } from './pages/faqs/faqs.page';
-import { PopoverComponent } from './components/popover/popover.component';
 import * as firebase from 'firebase';
+import { PopoverComponent } from './components/popover/popover.component';
+import { SpecialsPage } from './pages/specials/specials.page';
 
 @Component({
   selector: 'app-root',
@@ -18,14 +19,14 @@ import * as firebase from 'firebase';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  loader: boolean = true;
+  popoverController: any;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
-    private routes: Router,
-    public modalController: ModalController,
-    public popoverController: PopoverController
+    public modalController: ModalController
   ) {
     this.initializeApp();
   }
@@ -36,10 +37,17 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
-  
+
   Allspecials(){
     this.router.navigateByUrl('/specials');
+    // let navigationExtras: NavigationExtras = {
+    //   state: {
+    //     parms: i
+    //   }
+    // }
+    // this.router.navigate(['categorylist'],navigationExtras)   
   }
+  
   async createAddToWishList() {
     const modal = await this.modalController.create({
       component:AddToWishListPage,
@@ -48,6 +56,11 @@ export class AppComponent {
     
     });
     return await modal.present();
+  }
+  ionViewWillEnter() {
+    setTimeout(() => {
+      this.loader = false;
+    }, 2000);
   }
 
   async createAddToCart() {
@@ -79,16 +92,6 @@ export class AppComponent {
     });
     return await modal.present();
   }
-  // async creatLogin() {
-  //   const modal = await this.modalController.create({
-  //     component:FaqsPage,
-  //     cssClass: 'my-add-to-cart',
-      
-    
-  //   });
-  //   return await modal.present();
-  // }
-  
   openAboutUS(){
     this.router.navigateByUrl('/about-us');
 }
@@ -111,9 +114,12 @@ export class AppComponent {
     firebase.auth().onAuthStateChanged((user) => {
       if(user) {
         this.router.navigateByUrl('/home')
+        //  this.loader
       }else {
         this.router.navigateByUrl('/login')
       }
+     
+      
     })
   }
 }

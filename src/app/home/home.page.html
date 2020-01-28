@@ -1,45 +1,4 @@
 
-<!-- (click)="showList()" *ngIf="!list" -->
-<!-- <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>
-      <div class="title">
-        <div class="text" padding>Special Up to 75%</div>
-        <div padding>
-          <ion-button fill="outline" color="light" (click)="Allspecials()"> Shop Now </ion-button>
-        </div>
-      </div>
-    </ion-title>
-  </ion-toolbar> 
-       <div class="navigation-bar">
-        <nav>
-          <ul class="menu">
-            <li class="logo"><img src="../../assets/Group 60.png" alt=""></li>         
-            <ion-button class="item" color="medium"  fill="clear" (click)="openHome()" slot="end">Home</ion-button>
-            <ion-button class="item" color="medium"  fill="clear" (click)="openAboutUS()" slot="end">About Us</ion-button>
-            <ion-button class="item" color="medium"  fill="clear" (click)="ContactUs()" slot="end">Contact Us </ion-button>
-            <ion-button class="item" color="medium"  fill="clear"  slot="end">FARQ's</ion-button>
-            <ion-button class="item" color="medium"  fill="clear" slot="end"  (click)= "createProfile()"> 
-               <ion-icon name="person"></ion-icon>
-              </ion-button>
-
-               <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="createAddToCart()" >
-                 <ion-label>{{cartItemCount | async }}</ion-label> 
-                <ion-icon name="cart"></ion-icon>
-               </ion-button>
-
-               <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="createAddToWishList()">
-                <ion-label  color="warning" class="wishlist-length">{{ wishItemCount | async }}</ion-label>
-                <ion-icon name="heart"></ion-icon>
-              </ion-button>
-
-            <li class="toggle"><a href="#">
-                <ion-icon name="close"></ion-icon>
-              </a></li>
-          </ul>
-        </nav>
-      </div>
-</ion-header>  -->
 <ion-content scroll="true">
   <div class="loader-container" *ngIf="loader">
     <div class="loader">Loading...</div>
@@ -52,31 +11,30 @@
           <div class="landing" >
             <div class="category-Container">
 
-              <div class="First-Category-Block" (click)="categorylist('Deco')"   *ngFor="let all of Homescreen.slice(2, 3)">
+              <div class="First-Category-Block" (click)="categorylist('Deco')"  *ngFor="let all of Homescreen.slice(2, 3)">
 
                 <img  src="{{all.obj.image}}" alt="">
                 <ion-label class="category-label"><span>Deco</span></ion-label> <br>
-                <ion-label class="category-button" (click)="categorylist('Deco')"><span>SHOP NOW <ion-icon
+                <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
                       name="arrow-forward"></ion-icon></span>
                 </ion-label>
 
               </div>
 
-              <div class="Second-Category-Block" (click)="categorylist('Pottery')"  *ngFor="let all of Homescreen.slice(0, 1)" >
+              <div class="Second-Category-Block" (click)="categorylist('Pottery')" *ngFor="let all of Homescreen.slice(0, 1)" >
                 <div class="firstSecond-block">
                   <!-- <img src="../../assets/Pottery.jpg" alt=""> -->
                   <img  src="{{all.obj.image}}" alt="">
                   <ion-label class="category-label"><span>Pottery</span></ion-label> <br>
-                  <ion-label class="category-button" (click)="categorylist('Pottery')"><span>SHOP NOW <ion-icon
+                  <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
                         name="arrow-forward"></ion-icon></span>
                   </ion-label>
                 </div>
                 <div class="container-bottom2">
                   <div class="seconSecond-block" (click)="categorylist('Lamps')"  *ngFor="let all of Homescreen.slice(1, 2)">
-                    <!-- <img src="../../assets/lamp.png" alt=""> -->
                     <img  src="{{all.obj.image}}" alt="">
                     <ion-label class="category-label"><span>Lamps</span></ion-label> <br>
-                    <ion-label class="category-button" (click)="categorylist('Lamps')"><span>SHOP NOW <ion-icon
+                    <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
                           name="arrow-forward"></ion-icon></span>
                     </ion-label>
 
@@ -84,7 +42,7 @@
                   <div class="thirdSecond-block" (click)="categorylist('Vase')"  *ngFor="let all of Homescreen.slice(3, 4)">
                     <img  src="{{all.obj.image}}" alt="">
                     <ion-label class="category-label"><span>Vases</span></ion-label> <br>
-                    <ion-label class="category-button" (click)="categorylist('Vase')"><span>SHOP NOW <ion-icon
+                    <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
                           name="arrow-forward"></ion-icon></span>
                     </ion-label>
                   </div>
@@ -108,16 +66,14 @@
               <div>
                 <ion-title padding class="specials-title">Specials</ion-title>
               </div>
-
-
               <div class="cards-container"  >
-
+      
                       <!-- Fetching all products on special -->
-                <div class="cards-ng-if"  *ngFor="let lis of proSales.slice(0, 5);">
-                <div  class="cards" >
-                  <img class="animated fadeInDown 2s" src="{{lis.obj.image}}" alt="">
-                  <ion-label class="price"> R{{lis.obj.price}}</ion-label>
-                  <ion-label class="name">  {{lis.obj.name}} </ion-label>
+                <div  *ngFor="let event of proSales.slice(0, 5);" (click)="allSpecials(event)">
+                <div class="cards" >
+                  <img class="animated fadeInDown 2s" src="{{event.obj.image}}" alt="">
+                  <ion-label class="price"> R{{event.obj.price}}</ion-label>
+                  <ion-label class="name">  {{event.obj.name}} </ion-label>
                   <div class="stars">
                     <ion-icon name="star" color="warning"></ion-icon>
                     <ion-icon name="star" color="warning"></ion-icon>
@@ -129,7 +85,7 @@
               </div>
               </div>
 
-              <div class="special-section"  (click)="Allspecials()">
+              <div class="special-section"  (click)="allSpecials(event)">
                 <div *ngFor="let me of SpecialScrin.slice(0, 1);" >
                 <div class="specials">
                   <img src="{{me.obj.image}}" alt="">
@@ -143,14 +99,9 @@
           </div>
         </div>
       </div>
-
-
-
-
-
     </div>
   </div>
-  <div class="contactUs-section">
+   <div id="IDofYourDivYouWantToGoTo" class="contactUs-section">
     <div>
       <ion-title>Contact Us</ion-title>
     </div>
@@ -189,8 +140,6 @@
         <div>
           <ion-label class="heading">Leave Us a Message</ion-label>
           <div class="messageInputs">
-           
-      
                   <ion-item color="light">
                     <ion-input type="text"   [(ngModel)]="message.fullname"  placeholder="fullnames" required></ion-input> 
                   </ion-item>
@@ -208,11 +157,11 @@
                   <div>
                     <ion-button  (click)="addMessage()">Submit</ion-button>
                   </div>
-                <!-- </form> -->
+               
               </div>
               <div>
               
-            <!-- </form> -->
+          
           </div>
         </div>
       </div>
@@ -225,5 +174,5 @@
         </div>
       </div>
     </ion-toolbar>
-  </div>
+  </div> 
 </ion-content>
