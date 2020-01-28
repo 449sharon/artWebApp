@@ -87,16 +87,6 @@ export class ViewProductDetailsPage implements OnInit {
        quantity: this.event.quantity,
        image: i.image,
        amount : i.price * this.event.quantity
-    //   }).then(() => {
-    //    this.toastController(' product Added to cart')
-    //    this.dismiss();
-    //  })
-    //    .catch(err => {
-    //           console.error(err);
-    //  });
-    //  this.cartItemCount.next(this.cartItemCount.value + 1);
-    // }else{
-    //   this.createModalLogin();
      })
      this.dismiss();
     }

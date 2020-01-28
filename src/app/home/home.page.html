@@ -11,7 +11,7 @@
           <div class="landing" >
             <div class="category-Container">
 
-              <div class="First-Category-Block" (click)="categorylist('Photo Frame')"  *ngFor="let all of Homescreen.slice(2, 3)">
+              <div class="First-Category-Block" (click)="categorylist('Deco')"  *ngFor="let all of Homescreen.slice(2, 3)">
 
                 <img  src="{{all.obj.image}}" alt="">
                 <ion-label class="category-label"><span>Deco</span></ion-label> <br>
@@ -21,7 +21,7 @@
 
               </div>
 
-              <div class="Second-Category-Block" (click)="categorylist('Cups')" *ngFor="let all of Homescreen.slice(0, 1)" >
+              <div class="Second-Category-Block" (click)="categorylist('Pottery')" *ngFor="let all of Homescreen.slice(0, 1)" >
                 <div class="firstSecond-block">
                   <!-- <img src="../../assets/Pottery.jpg" alt=""> -->
                   <img  src="{{all.obj.image}}" alt="">
@@ -32,7 +32,6 @@
                 </div>
                 <div class="container-bottom2">
                   <div class="seconSecond-block" (click)="categorylist('Lamps')"  *ngFor="let all of Homescreen.slice(1, 2)">
-                    <!-- <img src="../../assets/lamp.png" alt=""> -->
                     <img  src="{{all.obj.image}}" alt="">
                     <ion-label class="category-label"><span>Lamps</span></ion-label> <br>
                     <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
@@ -102,7 +101,7 @@
       </div>
     </div>
   </div>
-  <!-- <div id="IDofYourDivYouWantToGoTo" class="contactUs-section">
+  <div id="IDofYourDivYouWantToGoTo" class="contactUs-section">
     <div>
       <ion-title>Contact Us</ion-title>
     </div>
@@ -175,5 +174,5 @@
         </div>
       </div>
     </ion-toolbar>
-  </div> -->
+  </div>
 </ion-content>

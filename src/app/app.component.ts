@@ -11,6 +11,7 @@ import { TrackOrderPage } from './pages/track-order/track-order.page';
 import { FaqsPage } from './pages/faqs/faqs.page';
 import * as firebase from 'firebase';
 import { PopoverComponent } from './components/popover/popover.component';
+import { SpecialsPage } from './pages/specials/specials.page';
 
 @Component({
   selector: 'app-root',
@@ -37,19 +38,16 @@ export class AppComponent {
     });
   }
 
-  categorylist(i){
-    
-    let navigationExtras: NavigationExtras = {
-      state: {
-        parms: i
-      }
-    }
-    this.router.navigate(['categorylist'],navigationExtras)   
-  }
-  
   Allspecials(){
     this.router.navigateByUrl('/specials');
+    // let navigationExtras: NavigationExtras = {
+    //   state: {
+    //     parms: i
+    //   }
+    // }
+    // this.router.navigate(['categorylist'],navigationExtras)   
   }
+  
   async createAddToWishList() {
     const modal = await this.modalController.create({
       component:AddToWishListPage,

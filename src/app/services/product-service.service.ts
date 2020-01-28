@@ -94,6 +94,6 @@ export class ProductService {
 });
 }
 
-data = {};
+
 
 }

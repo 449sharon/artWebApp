@@ -204,8 +204,8 @@ export class HomePage  {
 
   async allSpecials(event){
 
-    console.log('SFDSDFSDF', this.data.data.image = event.obj.image);
-    console.log('Image in the service ', this.data.data.image);
+     console.log('SFDSDFSDF', this.data.data.image = event.obj.image);
+     console.log('Image in the service ', this.data.data.image);
     
     // this.data.data = event
     const modal = await this.modalController.create({
@@ -214,7 +214,6 @@ export class HomePage  {
     
     });
     return await modal.present();
-    // this.router.navigateByUrl('/specials');
   }
 
      ///////////////// for sales
