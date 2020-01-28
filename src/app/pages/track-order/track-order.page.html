@@ -9,16 +9,40 @@
 
 <ion-content>
   <div class="main-container">
-    <div class="main-content" >
-      <div class="itemList">
+    <div  class="main-content" >
+      <div  class="itemList">
         <div class="scroll" > 
-            <div class="pedding-oders" *ngFor="let item of ['khuty', 'snazo', 'shaz']; let i=index;" [ngClass]="{'active': active==i}" (click)="showList(i)">
+            <!-- <div class="pedding-oders"   >
           <div class="image" >
-             <img src="../../../assets/Frame.jpg" alt="">
+               <img src="{{profileorder.orderdata.}}" alt=""> 
           </div>
           <div class="details" >
             <div class="invoice" >
-              <ion-label>product name</ion-label>
+              <ion-label>{{profileorder.orderdata.ref}}</ion-label>
+            </div>
+            <div class="purchase-date" >
+              <ion-label >{{profileorder.orderdata.ref}}</ion-label><ion-label padding >{{profileorder.orderdata.info.date}}</ion-label>
+            </div>
+            <div class="expected-date" >
+              <ion-label >Size:</ion-label><ion-label >M, L</ion-label> 
+            </div>
+            <div class="expected-date" >
+              <ion-label >quantity: </ion-label> <ion-label>4</ion-label>
+            </div>
+               <div class="track-button" >
+              <ion-button color="primary" expand="block" (click)="createTrackOder()" >Track </ion-button>
+
+            </div>
+          </div>
+        
+        </div> -->
+        <div class="pedding-oders" *ngFor="let p of arr; let i=index;" [ngClass]="{'active': active==i}" (click)="showList(i)">
+          <div class="image" >
+             <img src="{{p.prod.image}}" alt="">
+          </div>
+          <div class="details" >
+            <div class="invoice" >
+              <ion-label>{{p.prod.name}}</ion-label>
             </div>
             <div class="purchase-date" >
               <ion-label >code</ion-label><ion-label padding >23/01/2020</ion-label>
@@ -27,18 +51,18 @@
               <ion-label >Size:</ion-label><ion-label >M, L</ion-label> 
             </div>
             <div class="expected-date" >
-              <ion-label >quantity: </ion-label> <ion-label>4</ion-label>
+              <ion-label >quantity: </ion-label> <ion-label>{{p.prod.quantity}}</ion-label>
             </div>
-              <!-- <div class="track-button" >
+               <!-- <div class="track-button" >
               <ion-button color="primary" expand="block" (click)="createTrackOder()" >Track </ion-button>
 
-            </div> -->
+            </div>  -->
           </div>
         
         </div>
-      
-     
         
+        
+       
 
       </div>
 
@@ -83,16 +107,16 @@
             <div class="image-container"> 
                    
              
-              <img src="../../../assets/2e2fac9d4a392456e511345021592dd2 (1).jpg" width="100%" height="100%" alt="">
+              <img src="{{image}}" width="100%" height="100%" alt="">
             </div>
           </div>
           <div class="product-details">
             <div class="firstItems">
               <div  class="product-name">
-                <ion-label>Product Name</ion-label>
+                <ion-label>Product Name: {{name}}</ion-label>
               </div>
               <div class="product-price">
-                <ion-label>R 599.90</ion-label>
+                <ion-label>{{price | currency:'R'}}</ion-label>
     
               </div>
     
@@ -101,10 +125,10 @@
               <ion-label>Product Code: JKH74893234895</ion-label>
             </div>
             <div  class="productDescription">
-              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+               <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
                  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
                 At vero eos et accusam et justo duo dolores et ea rebum.
-                 Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit </p>
+                 Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit </p> 
             </div>
 <!--     
             <div class="Productselection">

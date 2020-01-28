@@ -54,7 +54,7 @@ export class ViewProductDetailsPage implements OnInit {
 
   ngOnInit() {
     this.wishItemCount = this.cartService.getWishCount();
-    console.log(this.data.data.image);
+    // console.log(this.data.data.image);
     
     
   }
@@ -78,10 +78,13 @@ export class ViewProductDetailsPage implements OnInit {
   }
 
   addToCart(i) {
+    
+     let customerUid = firebase.auth().currentUser.uid;
+    
      console.log(i);
      this.dbCart.add({
        timestamp: new Date().getTime(),
-      //  customerUid: customerUid,
+       customerUid: customerUid,
        product_name : i.name,
        size : this.sizes,
        price: i.price,
@@ -119,7 +122,7 @@ export class ViewProductDetailsPage implements OnInit {
       console.log(i);
       this.dbWishlist.add({
         timestamp: new Date().getTime(),
-        customerUid: customerUid,
+         customerUid: customerUid,
         name : i.obj.name,
         price: i.obj.price,
         // size:i.obj.size,

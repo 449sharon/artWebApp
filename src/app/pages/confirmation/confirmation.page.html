@@ -6,10 +6,12 @@
       <p></p>
     </div>
     <h1>Your Order</h1>
-    <div class="line">
+
+  
+    <div *ngFor="let b of conArray" class="line">
 
       <div class="content">
-        <div class="oderDetails">
+        <div *ngFor="let li of b.product; let u=index" class="oderDetails">
           <div class="items">
             <!-- <ion-title>item</ion-title>*ngFor="let b of conArray"  *ngFor="let li of b.product" -->
             <div>
@@ -19,14 +21,14 @@
 
               <div class="itemName">
                 <div>
-                  <ion-label class="ionLabel"> crime Vase</ion-label>
+                  <ion-label class="ionLabel">{{li.prod.product_name}}</ion-label>
                 </div>
-                <div>
+                <!-- <div>
                   <ion-label class="ionLabel"> Mug hugo</ion-label>
                 </div>
                 <div>
                   <ion-label class="ionLabel"> lamp</ion-label>
-                </div>
+                </div> -->
 
 
 
@@ -39,14 +41,14 @@
             </div>
             <div class="qtyNo">
               <div>
-                <ion-label class="ionLabel"> 2</ion-label>
+                <ion-label class="ionLabel">{{li.prod.quantity}}</ion-label>
               </div>
-              <div>
+              <!-- <div>
                 <ion-label class="ionLabel"> 5</ion-label>
               </div>
               <div>
                 <ion-label class="ionLabel"> 1</ion-label>
-              </div>
+              </div> -->
 
 
 
@@ -60,14 +62,14 @@
             </div>
             <div class="priceNo">
               <div>
-                <ion-label class="ionLabel">R &nbsp; 234</ion-label>
+                <ion-label class="ionLabel">R &nbsp; {{li.prod.price}}</ion-label>
               </div>
-              <div>
+              <!-- <div>
                 <ion-label class="ionLabel">R &nbsp; 174</ion-label>
               </div>
               <div>
                 <ion-label class="ionLabel">R &nbsp; 243</ion-label>
-              </div>
+              </div> -->
 
 
 
@@ -78,10 +80,10 @@
               <ion-label class="ionLabels"> Amount </ion-label>
             </div>
             <div class="amountNo">
-              <div><ion-label class="ionLabel">R &nbsp; 5 965</ion-label></div>
-              <div><ion-label class="ionLabel">R &nbsp; 5 965</ion-label></div>
-              <div><ion-label class="ionLabel">R &nbsp; 5 965</ion-label></div>
-              
+              <div><ion-label class="ionLabel">R &nbsp; {{li.prod.amount}}</ion-label></div>
+              <!-- <div><ion-label class="ionLabel">R &nbsp; 5 965</ion-label></div>
+              <div><ion-label class="ionLabel">R &nbsp; 5 965</ion-label></div> -->
+        
             </div>
           </div>
         </div>
@@ -92,12 +94,12 @@
     </div>
     <div class="total-amount">
       <div>
-        <ion-label>total : R2 034 .99</ion-label>
+        <ion-label>Total{{total| currency: '&#82;'}}</ion-label>
       </div>
     </div>
     <div class="businessInfor">
       <div class="reference">
-        <p>your reference number: <strong>INV23285</strong>  please use it for
+        <p>your reference number: <strong>{{'Pitseng'+key}}</strong>  please use it for
           paying the amount due.
 
         </p>
@@ -112,7 +114,7 @@
     </div>
     <div class="buttonDismiss">
       <div class="cartButton" >
-        <ion-button color="primary" expand="block"  >done</ion-button>
+        <ion-button color="primary" expand="block"  (click)="logoutAlert()" >done</ion-button>
       </div>
   
     </div>
