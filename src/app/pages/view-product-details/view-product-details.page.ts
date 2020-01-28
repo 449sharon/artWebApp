@@ -56,6 +56,7 @@ export class ViewProductDetailsPage implements OnInit {
     this.wishItemCount = this.cartService.getWishCount();
     console.log(this.data.data.image);
     
+    
   }
 
   private increment (p) {

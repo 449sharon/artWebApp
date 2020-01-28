@@ -35,6 +35,7 @@ export class CartService {
   ];
  
   private cart = [];
+  cartItemCount: any;
 
   constructor() { }
 
@@ -48,5 +49,8 @@ export class CartService {
  
   addProduct(product) {
     this.cart.push(product);
+  }
+  getCartItemCount() {
+    return this.cartItemCount;
   }
 }
