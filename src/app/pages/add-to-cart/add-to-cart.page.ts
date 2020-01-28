@@ -12,7 +12,7 @@ import { ConfirmationPage } from '../confirmation/confirmation.page';
 })
 export class AddToCartPage implements OnInit {
   private cartItemCount = new BehaviorSubject(0);
-  private currentNumber = 0;
+  private currentNumber: number = 1;
   mysize: string = '';
  sizes = [];
 ​ quantity = 1;
@@ -61,12 +61,17 @@ export class AddToCartPage implements OnInit {
       'dismissed':true
     });
   }
-  private increment () {
-    this.currentNumber++;
+  private increment (p) {
+    this.currentNumber = this.currentNumber + 1;
+    this.cartProduct[p].quantity = this.currentNumber
   }
   
-  private decrement () {
-    this.currentNumber--;
+  private decrement (p) {
+    if (this.currentNumber > 1) {
+      this.currentNumber = this.currentNumber - 1;
+      this.cartProduct[p].quantity = this.currentNumber;
+    }
+    return this.currentNumber;
   }
   decreaseCartItem(p) {
     this.cartProduct[p].prod.quantity--;
@@ -97,7 +102,7 @@ export class AddToCartPage implements OnInit {
         this.orderProd.push(this.cartProduct[j]);
        }
        this.dbOrder.doc('Pitseng'+ key).set({
-         totalPrice:inside,
+         totalPrice:this.total,
          date: moment().format('MMMM Do YYYY, h:mm:ss a'),
          product: this.orderProd,
          name: this.name,
@@ -114,8 +119,16 @@ export class AddToCartPage implements OnInit {
        })
         console.log('My prod ', this.orderProd);
         
-        //  this.SuccessModal(key);
+          this.SuccessModal(key);
          this.dismiss();
+      }
+      async SuccessModal(key) {
+        const modal = await this.modalController.create({
+          component: ConfirmationPage,
+          componentProps: {id : key, total : this.total },
+          cssClass: 'my-custom-modal-css'
+        });
+        return await modal.present();
       }
       
 

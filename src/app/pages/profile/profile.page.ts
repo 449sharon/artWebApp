@@ -171,13 +171,16 @@ export class ProfilePage implements OnInit {
       'dismissed':true
     });
   }
-  async createTrackOder() {
+  async createTrackOder(item) {
+    console.log(item)
     const modal = await this.modalController.create({
       component:TrackOrderPage,
       cssClass: 'track-order',
-      
-    
-    });
+      componentProps: { ref: item.ref,name: item.info.product[0].prod.product_name,price: item.info.product[0].prod.amount,quantity: item.info.product[0].prod.quantity,image: item.info.product[0].prod.image,
+      arr:item.info.product },
+    },);
     return await modal.present();
   }
+  
+  
 }
