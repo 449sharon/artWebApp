@@ -1,6 +1,9 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { ModalController, NavController, NavParams } from '@ionic/angular';
 import * as firebase from 'firebase';
+import Swal from 'sweetalert2';
+
+  import { from } from 'rxjs';
 
 @Component({
   selector: 'app-confirmation',
@@ -69,14 +72,14 @@ export class ConfirmationPage implements OnInit {
       'dismissed': true
     });
   }
-  // logoutAlert(){
-  //   Swal.fire(
-  //     'Thank you for shopping with PitsengArt! You will receive your order after your payments has been done.',
-  //     '',
-  //     'success'
-  //   )
-  //   this.dismiss();
-  // }
+  logoutAlert(){
+    Swal.fire(
+      'Thank you for shopping with PitsengArt! You will receive your order after your payments has been done.',
+      '',
+      'success'
+    )
+    this.dismiss();
+  }
   
   
 
