@@ -9,6 +9,8 @@ import { AddToCartPage } from './pages/add-to-cart/add-to-cart.page';
 import { ProfilePage } from './pages/profile/profile.page';
 import { TrackOrderPage } from './pages/track-order/track-order.page';
 import { FaqsPage } from './pages/faqs/faqs.page';
+import * as firebase from 'firebase';
+import { PopoverComponent } from './components/popover/popover.component';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +18,8 @@ import { FaqsPage } from './pages/faqs/faqs.page';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  loader: boolean = true;
+  popoverController: any;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -55,6 +59,11 @@ export class AppComponent {
     });
     return await modal.present();
   }
+  ionViewWillEnter() {
+    setTimeout(() => {
+      this.loader = false;
+    }, 2000);
+  }
 
   async createAddToCart() {
     const modal = await this.modalController.create({
@@ -93,5 +102,26 @@ export class AppComponent {
     this.router.navigateByUrl('/')
   }
 
-
+  async presentPopover(ev) {
+    const popover = await this.popoverController.create({
+      component:PopoverComponent,
+      event: ev,
+      cssClass: 'pop-over-style',
+      translucent: true,
+    });
+    return await popover.present();
+    
+  }
+  getAuth() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user) {
+        this.router.navigateByUrl('/home')
+        //  this.loader
+      }else {
+        this.router.navigateByUrl('/login')
+      }
+     
+      
+    })
+  }
 }

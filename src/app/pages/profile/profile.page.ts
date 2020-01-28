@@ -6,20 +6,19 @@ import { AlertController, PopoverController, NavParams } from '@ionic/angular';
 import { Router, NavigationExtras } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { TrackOrderPage } from '../track-order/track-order.page';
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
   @ViewChild('cart', {static: false, read: ElementRef})fab: ElementRef;
   cartItemCount: BehaviorSubject<number>;
   db = firebase.firestore();
   storage = firebase.storage().ref();
   uid
-  
+  customerUid = firebase.auth().currentUser.uid;
+  dbOrder = firebase.firestore().collection('Order');
   profile = {
     image: '',
     name: '',
@@ -31,13 +30,13 @@ export class ProfilePage implements OnInit {
     uid: '',
     
   }
+  Allorders = [];
+  loader: boolean = true;
   uploadprogress = 0;
   errtext = '';
   isuploading = false;
   isuploaded = false;
-
   isprofile = false;
-
   admin = {
     uid: '',
     email:''
@@ -45,9 +44,15 @@ export class ProfilePage implements OnInit {
   
   constructor(public alertCtrl: AlertController,
     private router: Router,
+    public modalController: ModalController
    ) { 
     this.uid = firebase.auth().currentUser.uid;
     
+  }
+  ionViewWillEnter() {
+    setTimeout(() => {
+      this.loader = false;
+    }, 2000);
   }
  
   ngOnInit() {
@@ -56,6 +61,7 @@ export class ProfilePage implements OnInit {
         console.log('Got admin', user);
         this.admin.uid = user.uid
         this.admin.email = user.email
+        this.GetOrders();
       this.getProfile();
       } else {
         console.log('no admin');
@@ -88,7 +94,6 @@ export class ProfilePage implements OnInit {
         return;
        } else {
         const upload = this.storage.child(image.item(0).name).put(imagetosend);
-
         upload.on('state_changed', snapshot => {
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           this.uploadprogress = progress;
@@ -97,7 +102,6 @@ export class ProfilePage implements OnInit {
             this.isuploading = false;
           } 
         }, error => {
-
         }, () => {
           upload.snapshot.ref.getDownloadURL().then(downUrl => {this.ngOnInit
             this.profile.image = downUrl;
@@ -105,6 +109,7 @@ export class ProfilePage implements OnInit {
             this.isuploaded = true;
           });
         });
+        this.loader
        }
     }
   }
@@ -143,14 +148,11 @@ export class ProfilePage implements OnInit {
       }
     })
     ////
-
-
     //////
   }
   edit() {
     this.isprofile = false;
   }
-
      ////////////////////////////////// 
      GetOrders(){
       this.dbOrder.where('userID','==',firebase.auth().currentUser.uid).onSnapshot((data)=>{

@@ -18,7 +18,17 @@ export class CategorylistPage implements OnInit {
  value
   Products = [];
   myProduct = false;
-  constructor(private router: Router,  public modalController: ModalController, private data: ProductService, private activatedRouter : ActivatedRoute) { }
+  loader: boolean = true;
+  constructor(private router: Router,  public modalController: ModalController,
+    private data: ProductService, private activatedRouter : ActivatedRoute) { }
+  
+  
+  ionViewWillEnter() {
+    setTimeout(() => {
+      this.loader = false;
+    }, 2000);
+  }
+ 
   ngOnInit() {
     this.activatedRouter.queryParams.subscribe(params =>{
       console.log('value', this.router.getCurrentNavigation().extras.state.parms);

@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ProfilePage } from '../profile/profile.page';
+import { LoginPage } from '../login/login.page';
 
 
 @Component({
@@ -84,9 +85,16 @@ export class RegisterPage implements OnInit {
       'dismissed': true
   })
 }
-  loginuser() {
-    this.router.navigateByUrl('/login');
-  }
+async openLogin(){
+  const modal = await this.modalController.create({
+    component:LoginPage,
+    cssClass: 'login-register',
+    
+  
+  });
+  return await modal.present();
+  // this.router.navigateByUrl('/login');
+}
   openRegister(){
     
   }

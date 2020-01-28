@@ -25,6 +25,7 @@ export class AddToWishListPage implements OnInit {
   name;
   key;
   total = 0;
+  loader: boolean = true;
   amount: number;
   dbWishlist = firebase.firestore().collection('Wishlist');
   ///
@@ -40,7 +41,11 @@ export class AddToWishListPage implements OnInit {
       this.name = element.data().name
     })
    }
-
+   ionViewWillEnter() {
+    setTimeout(() => {
+      this.loader = false;
+    }, 2000);
+  }
   ngOnInit() {
     //this.cart = this.cartService.getCart();
     this.getProducts();

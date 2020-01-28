@@ -1,45 +1,4 @@
 
-<!-- (click)="showList()" *ngIf="!list" -->
-<!-- <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>
-      <div class="title">
-        <div class="text" padding>Special Up to 75%</div>
-        <div padding>
-          <ion-button fill="outline" color="light" (click)="Allspecials()"> Shop Now </ion-button>
-        </div>
-      </div>
-    </ion-title>
-  </ion-toolbar> 
-       <div class="navigation-bar">
-        <nav>
-          <ul class="menu">
-            <li class="logo"><img src="../../assets/Group 60.png" alt=""></li>         
-            <ion-button class="item" color="medium"  fill="clear" (click)="openHome()" slot="end">Home</ion-button>
-            <ion-button class="item" color="medium"  fill="clear" (click)="openAboutUS()" slot="end">About Us</ion-button>
-            <ion-button class="item" color="medium"  fill="clear" (click)="ContactUs()" slot="end">Contact Us </ion-button>
-            <ion-button class="item" color="medium"  fill="clear"  slot="end">FARQ's</ion-button>
-            <ion-button class="item" color="medium"  fill="clear" slot="end"  (click)= "createProfile()"> 
-               <ion-icon name="person"></ion-icon>
-              </ion-button>
-
-               <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="createAddToCart()" >
-                 <ion-label>{{cartItemCount | async }}</ion-label> 
-                <ion-icon name="cart"></ion-icon>
-               </ion-button>
-
-               <ion-button class="item" color="medium"  fill="clear" slot="end" (click)="createAddToWishList()">
-                <ion-label  color="warning" class="wishlist-length">{{ wishItemCount | async }}</ion-label>
-                <ion-icon name="heart"></ion-icon>
-              </ion-button>
-
-            <li class="toggle"><a href="#">
-                <ion-icon name="close"></ion-icon>
-              </a></li>
-          </ul>
-        </nav>
-      </div>
-</ion-header>  -->
 <ion-content scroll="true">
   <div class="loader-container" *ngIf="loader">
     <div class="loader">Loading...</div>
@@ -108,8 +67,6 @@
               <div>
                 <ion-title padding class="specials-title">Specials</ion-title>
               </div>
-
-
               <div class="cards-container"  >
       
                       <!-- Fetching all products on special -->
@@ -143,14 +100,9 @@
           </div>
         </div>
       </div>
-
-
-
-
-
     </div>
   </div>
-  <div class="contactUs-section">
+  <!-- <div id="IDofYourDivYouWantToGoTo" class="contactUs-section">
     <div>
       <ion-title>Contact Us</ion-title>
     </div>
@@ -189,62 +141,6 @@
         <div>
           <ion-label class="heading">Leave Us a Message</ion-label>
           <div class="messageInputs">
-           
-            <!-- <form class="form" [formGroup]="validations_form"  (ngSubmit)="addMessage(validations_form)"> -->
-              <!-- <ion-item color="light">
-                <ion-input type="text"  [(ngModel)]="message.fullname"  placeholder="fullnames"></ion-input> 
-              </ion-item> -->
-              <!--
-                formControlName="name" class="form-controll"
-                <div class="validation-errors">
-                <ng-container *ngFor="let validation of validation_messages.name">
-                  <div class="error-message"
-                    *ngIf="validations_form.get('name').hasError(validation.type) && (validations_form.get('name').dirty || validations_form.get('name').touched)">
-                     <ion-label  color="danger" >{{ validation.message }}</ion-label> 
-                  </div>
-                </ng-container>
-              </div> -->
-
-              <!-- <ion-item>
-                <ion-input type="email"  [(ngModel)]="message.email"  placeholder="Email address">
-                </ion-input>
-              </ion-item> -->
-              <!--
-                formControlName="email" class="form-controll"
-                <div class="validation-errors">
-                <ng-container *ngFor="let validation of validation_messages.email">
-                  <div class="error-message"
-                    *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
-                     <ion-label  color="danger" >{{ validation.message }}</ion-label> 
-                  </div>
-                </ng-container>
-             </div> -->
-
-
-              <!-- <div>
-                <ion-list>
-                  <ion-item>
-                    <ion-textarea name=""  [(ngModel)]="message.message" id="" placeholder="message"></ion-textarea>
-                  </ion-item> -->
-                  <!--
-                    formControlName="message" class="form-controll"
-                    <div class="validation-errors">
-                    <ng-container *ngFor="let validation of validation_messages.message">
-                      <div class="error-message"
-                        *ngIf="validations_form.get('name').hasError(validation.type) && (validations_form.get('message').dirty || validations_form.get('message').touched)">
-                         <ion-label  color="danger" >{{ validation.message }}</ion-label> 
-                      </div>
-                    </ng-container>
-                 </div> -->
-                <!-- </ion-list>
-              </div>
-              <div> -->
-                <!-- <ion-button type="submit"  [disabled]="!validations_form.valid"  >Submit</ion-button> -->
-                <!-- <ion-button  (click)="addMessage()" >Submit</ion-button>
-              </div> -->
-
-             
-                <!-- <form> -->
                   <ion-item color="light">
                     <ion-input type="text"   [(ngModel)]="message.fullname"  placeholder="fullnames" required></ion-input> 
                   </ion-item>
@@ -262,11 +158,11 @@
                   <div>
                     <ion-button  (click)="addMessage()">Submit</ion-button>
                   </div>
-                <!-- </form> -->
+               
               </div>
               <div>
               
-            <!-- </form> -->
+          
           </div>
         </div>
       </div>
@@ -279,5 +175,5 @@
         </div>
       </div>
     </ion-toolbar>
-  </div>
+  </div> -->
 </ion-content>

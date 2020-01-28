@@ -37,7 +37,10 @@ firebase.initializeApp(firebaseConfig);
   entryComponents: [PopoverComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule, ReactiveFormsModule,ViewProductDetailsPageModule,
     AddToCartPageModule,
-    AddToWishListPageModule,ProfilePageModule,TrackOrderPageModule,FaqsPageModule,RegisterPageModule,LoginPageModule,ConfirmationPageModule],
+    AddToWishListPageModule,ProfilePageModule,
+    TrackOrderPageModule,FaqsPageModule,
+    RegisterPageModule,LoginPageModule,
+    ConfirmationPageModule,],
   providers: [
     StatusBar,
     SplashScreen,
