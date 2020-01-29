@@ -1,7 +1,7 @@
 import { ProductService } from 'src/app/services/product-service.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { ViewProductDetailsPage } from '../view-product-details/view-product-details.page';
 import * as firebase from 'firebase';
 import { AddToCartPage } from '../add-to-cart/add-to-cart.page';
@@ -20,8 +20,16 @@ export class SpecialsPage {
   Products = [];
   myProduct = false;
   loader: boolean = true;
+  dbMessages = firebase.firestore().collection('Messages');
+  message = {
+    fullname: '',
+    email: '',
+    message:''
+ }
+
   constructor(private router: Router,  public modalController: ModalController,
-    private data: ProductService, private activatedRouter : ActivatedRoute) { }
+    private data: ProductService, private activatedRouter : ActivatedRoute,
+    public toastCtrl: ToastController) { }
   
   
   ionViewWillEnter() {
@@ -94,4 +102,35 @@ export class SpecialsPage {
   // openCart(){
   //   this.router.navigateByUrl('/add-to-cart')
   // }
+
+  async toastController(message) {
+    let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
+    return toast.present();
+}
+  addMessage() {
+    if(firebase.auth().currentUser){
+     let customerUid = firebase.auth().currentUser.uid;
+     this.dbMessages.add({
+       customerUid: customerUid,
+       name : this.message.fullname,
+       email : this.message.email,
+       message : this.message.message
+  
+       
+      }).then(() => {
+        this.toastController('Message Sent!')
+     }).catch(err => {
+              console.error(err);
+     });
+
+     this.message = {
+      fullname: '',
+      email: '',
+      message:''
+   }
+
+    }else{
+      //this.createModalLogin();
+    }
+}
 }

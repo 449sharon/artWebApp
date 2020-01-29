@@ -45,7 +45,7 @@ export class ConfirmationPage implements OnInit {
   myArray = [];
 
   key: string;
-  totalPrice: any;
+  totalPrice: null;
   constructor(private navParams: NavParams, public modalController: ModalController,public navCtrl: NavController, ) { 
     this.key = this.navParams.get('id');
     this.totalPrice = this.navParams.get('total');

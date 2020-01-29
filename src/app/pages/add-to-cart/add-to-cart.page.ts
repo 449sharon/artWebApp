@@ -110,12 +110,12 @@ export class AddToCartPage implements OnInit {
         this.orderProd.push(this.cartProduct[j]);
        }
        this.dbOrder.doc('Pitseng'+ key).set({
-         totalPrice:this.total,
+         totalPrice:inside,
          date: moment().format('MMMM Do YYYY, h:mm:ss a'),
          product: this.orderProd,
          name: this.name,
          size : this.sizes,
-         productCode:this.productCode,
+        //  productCode:this.productCode,
          userID: firebase.auth().currentUser.uid,
          pdfLink : "",
          orderNumber:'Pitseng'+key
@@ -127,9 +127,8 @@ export class AddToCartPage implements OnInit {
             })
        })
         console.log('My prod ', this.orderProd);
-        
-          this.SuccessModal(key);
-         this.dismiss();
+         this.dismiss(); 
+         this.SuccessModal(key);
       }
       async SuccessModal(key) {
         const modal = await this.modalController.create({

@@ -62,7 +62,7 @@ MyPdf = "";
   this.amount = `${this.amount}`;
   this.quantity = `${this.quantity}`;
   this.image=`${this.image}`;
-    this.arr = `${this.arr}`;
+  this.arr = `${this.arr}`;
   }
 
   ngOnInit() {

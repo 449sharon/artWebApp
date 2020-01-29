@@ -77,14 +77,14 @@
           (ratingChanged)="logRatingChange($event, p.productCode)">
       </ionic4-star-rating>
           <div class="quantity">
-            <div  ><p>Qty:   {{currentNumber}}</p></div>
+            <div  ><p>Qty:{{currentNumber}}</p></div>
             <div> <ion-icon name="remove-circle" color="danger" (click)="decrement(p)"></ion-icon>
               <ion-icon name="add-circle" color="success" (click)="increment(p)"></ion-icon></div>
            
           </div>
         </div>
         <div class="cartButton" >
-          <ion-button color="primary" expand="block" (click)="addToCart(p)" >add to cart</ion-button>
+          <ion-button color="primary" expand="block" (click)="addToCart(p)" (click)="toastPopover($event)" >add to cart</ion-button>
         </div>
       </div>
     </div>

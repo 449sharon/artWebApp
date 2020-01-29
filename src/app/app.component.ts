@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Platform, ModalController, PopoverController } from '@ionic/angular';
+import { Platform, ModalController, PopoverController, ToastController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router, NavigationExtras } from '@angular/router';
@@ -21,7 +21,13 @@ import { PopoverComponent } from './components/popover/popover.component';
 })
 export class AppComponent {
   loader: boolean = true;
- 
+  dbMessages = firebase.firestore().collection('Messages');
+  message = {
+    fullname: '',
+    email: '',
+    message:''
+ }
+
   
   constructor(
     private platform: Platform,
@@ -29,7 +35,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     private router: Router,
     public modalController: ModalController,
-    public popoverController: PopoverController
+    public popoverController: PopoverController,
+    public toastCtrl: ToastController
   ) {
     this.initializeApp();
   }
@@ -125,4 +132,35 @@ export class AppComponent {
       
     })
   }
+  async toastController(message) {
+    let toast = await this.toastCtrl.create({ message: message, duration: 2000 });
+    return toast.present();
+}
+  addMessage() {
+    if(firebase.auth().currentUser){
+     let customerUid = firebase.auth().currentUser.uid;
+     this.dbMessages.add({
+       customerUid: customerUid,
+       name : this.message.fullname,
+       email : this.message.email,
+       message : this.message.message
+  
+       
+      }).then(() => {
+        this.toastController('Message Sent!')
+     }).catch(err => {
+              console.error(err);
+     });
+
+     this.message = {
+      fullname: '',
+      email: '',
+      message:''
+   }
+
+    }else{
+      //this.createModalLogin();
+    }
+  }
+
 }

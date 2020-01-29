@@ -20,6 +20,7 @@ import { PopoverComponent } from './components/popover/popover.component';
 import { LoginPageModule } from './pages/login/login.module';
 import { RegisterPageModule } from './pages/register/register.module';
 import { ConfirmationPageModule } from './pages/confirmation/confirmation.module';
+import { Popover2Component } from './components/popover2/popover2.component';
 
 
 const firebaseConfig = {
@@ -35,8 +36,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 @NgModule({
-  declarations: [AppComponent,PopoverComponent],
-  entryComponents: [PopoverComponent],
+  declarations: [AppComponent,PopoverComponent,Popover2Component],
+  entryComponents: [PopoverComponent,Popover2Component],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule, ReactiveFormsModule,ViewProductDetailsPageModule,
     AddToCartPageModule,
     AddToWishListPageModule,ProfilePageModule,

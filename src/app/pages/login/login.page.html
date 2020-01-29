@@ -17,7 +17,7 @@
           </div>
           <div class="text-field" >
             <ion-item class="first" >
-              <ion-input placeholder="Email address" type="text" formControlName="email" [(ngModel)]="email"> <ion-icon name="mail" color="dark"  slot="end"></ion-icon> </ion-input>
+              <ion-input placeholder="Email address" type="text" formControlName="email" > <ion-icon name="mail" color="dark"  slot="end"></ion-icon> </ion-input>
             </ion-item>
             <div class="validation-errors">
               <ng-container *ngFor="let validation of validation_messages.email">
@@ -28,7 +28,7 @@
               </ng-container>
             </div>
             <ion-item>
-              <ion-input placeholder="password" type="password" formControlName="password" class="form-controll" [(ngModel)]="password" required> <ion-icon name="lock" color="dark" slot="end" class="lock" ></ion-icon> </ion-input>
+              <ion-input placeholder="password" type="password" formControlName="password" class="form-controll" required> <ion-icon name="lock" color="dark" slot="end" class="lock" ></ion-icon> </ion-input>
             </ion-item>
             <div class="validation-errors">
               <ng-container *ngFor="let validation of validation_messages.password">
