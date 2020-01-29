@@ -125,13 +125,18 @@ export class ViewProductDetailsPage implements OnInit {
       customerUid: customerUid,
       product_name: i.name,
       productCode: i.productCode,
+      desc: i.desc,
       size: this.sizes,
       price: i.price,
       quantity: this.event.quantity,
       image: i.image,
       amount: i.price * this.event.quantity
     })
+    this.cartItemCount.next(this.cartItemCount.value + 1);
     this.dismiss();
+  }
+  getCartItemCount() {
+    return this.cartItemCount;
   }
   createModalLogin() {
     throw new Error("Method not implemented.");

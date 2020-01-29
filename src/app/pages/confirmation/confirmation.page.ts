@@ -50,7 +50,7 @@ export class ConfirmationPage implements OnInit {
     this.key = this.navParams.get('id');
     this.totalPrice = this.navParams.get('total');
 
-    console.log(this.key, this.totalPrice);
+    console.log('total  rtyerty' ,this.totalPrice);
   this.myArray.push(this.totalPrice);
   console.log("xxx", this.myArray);
   
@@ -59,6 +59,8 @@ export class ConfirmationPage implements OnInit {
 
   ngOnInit() {
   }
+
+
   displayProduct(key) {
     this.dbOrder.doc('Pitseng' + key).onSnapshot((data) => {
       this.conArray.push(data.data());  
