@@ -48,19 +48,19 @@
 
             <div >
               <label  class="container">S
-                <input type="checkbox" checked="checked">
+                <input type="checkbox" value="S" [(ngModel)]="productSize.small" (click)="selectedSize($event)">
                 <span class="checkmark"></span>
               </label>
             </div>
             <div >
               <label class="container">M
-                <input type="checkbox">
+                <input type="checkbox" value="M" [(ngModel)]="productSize.medium" (click)="selectedSize($event)">
                 <span class="checkmark"></span>
               </label>
             </div>
             <div >
             <label class="container">L
-              <input type="checkbox">
+              <input type="checkbox" value="L" [(ngModel)]="productSize.large" (click)="selectedSize($event)">
               <span class="checkmark"></span>
             </label>
             </div>

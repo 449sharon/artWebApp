@@ -34,9 +34,9 @@
         </div>
         <div class="Productselection">
           <div class="size">
-            <p  >Size: </p>
+            <p  >Size:{{ p.prod.size }} </p>
 
-             <div >
+             <!-- <div >
               <label  class="container">S
                 <input type="checkbox" checked="checked">
                 <span class="checkmark"></span>
@@ -53,7 +53,7 @@
               <input type="checkbox">
               <span class="checkmark"></span>
             </label>
-            </div> 
+            </div>  -->
 
           </div>
           <div class="quantity">
@@ -103,7 +103,7 @@
   <!-- <button *ngFor="let button of [1,2,3,4]; let i = index" " (click)="placeOrder()"  
   [ngClass]="{'active':isClicked[i]}" (click)="isClicked[i] = (isClicked[i]? false :true )">collection</button> -->
     <div class="cartButton" >
-      <ion-button color="primary" expand="block" (click)="dismiss()"  (click)="placeOrder()" >Place order {{ getTotal() | currency: '&#82;'}} </ion-button>
+      <ion-button color="primary" expand="block" (click)="dismiss()"  (click)="createConfirmation()" (click)="placeOrder()" >Place order {{ getTotal() | currency: '&#82;'}} </ion-button>
     </div>
 
   </div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Platform, ModalController } from '@ionic/angular';
+import { Platform, ModalController, PopoverController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router, NavigationExtras } from '@angular/router';
@@ -10,8 +10,9 @@ import { ProfilePage } from './pages/profile/profile.page';
 import { TrackOrderPage } from './pages/track-order/track-order.page';
 import { FaqsPage } from './pages/faqs/faqs.page';
 import * as firebase from 'firebase';
-import { PopoverComponent } from './components/popover/popover.component';
+
 import { SpecialsPage } from './pages/specials/specials.page';
+import { PopoverComponent } from './components/popover/popover.component';
 
 @Component({
   selector: 'app-root',
@@ -20,13 +21,15 @@ import { SpecialsPage } from './pages/specials/specials.page';
 })
 export class AppComponent {
   loader: boolean = true;
-  popoverController: any;
+ 
+  
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
-    public modalController: ModalController
+    public modalController: ModalController,
+    public popoverController: PopoverController
   ) {
     this.initializeApp();
   }

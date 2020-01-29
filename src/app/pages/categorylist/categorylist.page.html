@@ -9,8 +9,8 @@
           <div class=" categoryList">
             <div class="cards-container" >
              
-              <div  class="products-section" *ngFor="let event of Products; let i = index">
-              <div *ngIf="Products" class="cards"(click)=" createViewProduct(event)">
+              <div  class="products-section" *ngFor="let event of Products; let i=index;">
+              <div *ngIf="Products" class="cards"(click)=" createViewProduct(event)"   [ngClass]="{'active': active==i}" (click)="showList(i)" >
                 <img class="animated fadeInDown 2s" src="{{event.image}}" alt="">
                 <ion-label class="price">R &nbsp; {{event.price}}</ion-label>
                 <ion-label class="name"> {{event.name}} </ion-label>
@@ -22,7 +22,7 @@
                 readonly="true"
                 rating="{{rateArr[i].rate}}"
                 fontSize = "32px"
-                >
+                ></ionic4-star-rating>
                 <ionic4-star-rating #rating *ngIf="!rateArr[i].rate"
                 activeIcon = "ios-star"
                 defaultIcon = "ios-star-outline"
