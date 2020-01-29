@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ModalController, ToastController, AlertController } from '@ionic/angular';
+import { ModalController, ToastController, AlertController, PopoverController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { BehaviorSubject } from 'rxjs';
 import { ProductService } from 'src/app/services/product-service.service';
 import { CartService } from 'src/app/cart.service';
 import { CartServiceService } from 'src/app/services/cart-service.service';
+import { Popover2Component } from 'src/app/components/popover2/popover2.component';
 
 
 @Component({
@@ -54,7 +55,8 @@ export class ViewProductDetailsPage implements OnInit {
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
     public cartService: CartServiceService,
-    private router: Router) { }
+    private router: Router,
+    public popoverController: PopoverController) { }
 
   ngOnInit() {
     this.wishItemCount = this.cartService.getWishCount();
@@ -180,6 +182,20 @@ export class ViewProductDetailsPage implements OnInit {
     } else {
       // this.createModalLogin();
     }
+  }
+  async toastPopover(ev) {
+    const popover = await this.popoverController.create({
+      component:Popover2Component,
+      event: ev,
+      
+      // cssClass: 'pop-over-style',
+      translucent: true,
+    });
+    
+   popover.present();
+    setTimeout(()=>popover.dismiss(),500);
+    
+    
   }
 
 }

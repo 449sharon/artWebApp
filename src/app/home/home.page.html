@@ -71,6 +71,10 @@
                       <!-- Fetching all products on special -->
                 <div   class="products-section" *ngFor="let event of proSales.slice(0, 5); let i=index;" (click)="allSpecials(event)">
                 <div class="cards"  [ngClass]="{'active': active==i}" (click)="showList(i)" >
+                  <div class="percent-off" >
+                    <p>-80%</p>
+  
+                  </div>
                   <img class="animated fadeInDown 2s" src="{{event.obj.image}}" alt="">
                   <ion-label class="price"> R{{event.obj.price}}</ion-label>
                   <ion-label class="name">  {{event.obj.name}} </ion-label>
@@ -81,6 +85,10 @@
                     <ion-icon name="star" color="warning"></ion-icon>
                     <ion-icon name="star-outline" color="warning"></ion-icon>
                   </div>
+                  <div class="icon-wish" >
+                    <ion-icon name="heart" ></ion-icon>
+                  </div>
+               
                 </div>
               </div>
               </div>
@@ -101,7 +109,7 @@
       </div>
     </div>
   </div>
-   <div id="IDofYourDivYouWantToGoTo" class="contactUs-section">
+    <div id="IDofYourDivYouWantToGoTo" class="contactUs-section"> 
     <div>
       <ion-title>Contact Us</ion-title>
     </div>
