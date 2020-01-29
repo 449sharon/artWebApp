@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
- 
+  loader: boolean = true;
   validations_form: FormGroup;
   errorMessage: string = '';
   
@@ -29,7 +29,12 @@ export class LoginPage implements OnInit {
     public modalController: ModalController
  
   ) { }
- 
+  ionViewWillEnter() {
+    setTimeout(() => {
+      this.loader = false;
+    }, 2000);
+  }
+
   ngOnInit() {
  
     this.validations_form = this.formBuilder.group({
@@ -67,7 +72,7 @@ export class LoginPage implements OnInit {
     }, err => {
       this.errorMessage = err.message;
     });
-    // this.loader()
+    // this.loader();
    
   }
   googleSignin() {

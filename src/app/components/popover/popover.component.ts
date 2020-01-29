@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LoginPage } from 'src/app/pages/login/login.page';
 import { RegisterPage } from 'src/app/pages/register/register.page';
 import * as firebase from 'firebase';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-popover',
@@ -59,8 +60,8 @@ async openRegister(){
 
   const modal = await this.modalController.create({
     component:RegisterPage,
-    cssClass: 'login-register'
-    
+    cssClass: 'login-register',
+
   
   });
   return await modal.present();
@@ -70,7 +71,7 @@ async openRegister(){
 
 }
 logOut(){
-
+ this.ConfirmationAlert();
   firebase.auth().signOut().then(()=> {
      // this.loginBtn = false;
      // this.registerBtn =  false;
@@ -78,10 +79,36 @@ logOut(){
      // // this.orderBtn = true;
      // this.profileBtn = true;
      this.router.navigateByUrl('/');
-    //  this.logoutAlert()
+  
    }).catch((error)=> {
    console.log(error);
    });
+   
+ }
+
+ ConfirmationAlert(){
+  Swal.fire({
+    title: 'Are you sure you want to logout?',
+    showClass: {
+      popup: 'animated fadeInDown faster'
+    },
+    hideClass: {
+      popup: 'animated fadeOutUp faster'
+    },
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#06A94D',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes'
+  }).then((result) => {
+    if (result.value) {
+      Swal.fire(
+        'Logout!',
+        'Your have logged out .',
+        'success'
+      )
+    }
+  })
  }
 
 }

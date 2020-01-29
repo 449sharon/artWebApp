@@ -73,11 +73,23 @@ export class ConfirmationPage implements OnInit {
     });
   }
   logoutAlert(){
-    Swal.fire(
-      'Thank you for shopping with PitsengArt! You will receive your order after your payments has been done.',
-      '',
-      'success'
-    )
+
+    // Swal.fire(
+    //   'Thank you for shopping with PitsengArt! You will receive your order after your payments has been done.',
+      
+    //   '',
+    //   'success',
+      
+    // )
+    Swal.fire({
+      title: 'Thank you for shopping with PitsengArt! You will receive your order after your payments has been done.',
+      showClass: {
+        popup: 'animated fadeInDown faster'
+      },
+      hideClass: {
+        popup: 'animated fadeOutUp faster'
+      }
+    })
     this.dismiss();
   }
   
