@@ -37,10 +37,6 @@
 }
 
 
-.active {
-    background: rgb(85, 59, 59);
-    color: #fff;
-}
 
 
 
@@ -94,6 +90,16 @@
     color: #707070;
     text-transform: capitalize;
     padding-bottom: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    // justify-content: space-around;
+    // margin: 0 auto;
+}
+.productcode > div {
+width: 50%;
+// border: solid red;
+margin: 0 auto;
 }
 .Productselection{
     // border: solid blue;
@@ -342,10 +348,27 @@ ion-content{
   color: #fff  ;
 }
 .active {
-    background: rgb(85, 59, 59);
+  transform: scaleX(1.2);
+  background-color: #eeeeee3a;
     color: #fff;
 }
 
+.total-amount{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #707070;
+    text-align: center;
+    margin-bottom: 16px;
+    margin-top: 8px;
+}
+.pdf{
+width: 40%;
+margin: 0 auto;
+text-align: center;
+}
 
 
  
