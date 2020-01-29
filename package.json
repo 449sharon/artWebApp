@@ -33,6 +33,7 @@
     "firebase": "^7.7.0",
     "i": "^0.3.6",
     "install": "^0.13.0",
+    "ionic4-star-rating": "^1.1.1",
     "moment": "^2.24.0",
     "ngx-page-scroll": "^7.0.0",
     "ngx-page-scroll-core": "^7.0.0",

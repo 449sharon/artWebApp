@@ -18,6 +18,7 @@ export class ViewProductDetailsPage implements OnInit {
   wishItemCount: BehaviorSubject<number>;
   @ViewChild('cart', {static: false, read: ElementRef})fab: ElementRef;
   dbWishlist = firebase.firestore().collection('Wishlist');
+  dbRating = firebase.firestore().collection('Rating');
   private cartItemCount = new BehaviorSubject(0);
 
   dbCart = firebase.firestore().collection('Cart');
@@ -106,7 +107,15 @@ export class ViewProductDetailsPage implements OnInit {
     'dismissed':true
   });
 }
- 
+logRatingChange(rating, id){
+ // console.log("changed rating: ",rating);
+  // do your stuff
+  this.dbRating.add({
+    rate: rating,
+    user: firebase.auth().currentUser.uid,
+    prod: id
+  })
+}
 
 ////////
   /////

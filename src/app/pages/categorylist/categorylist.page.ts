@@ -20,6 +20,8 @@ export class CategorylistPage implements OnInit {
   Products = [];
   myProduct = false;
   loader: boolean = true;
+  rateArr = [];
+  dbRating = firebase.firestore().collection('Rating');
   constructor(private router: Router,  public modalController: ModalController,
     private data: ProductService, private activatedRouter : ActivatedRoute) { }
   
@@ -35,9 +37,25 @@ export class CategorylistPage implements OnInit {
       console.log('value', this.router.getCurrentNavigation().extras.state.parms);
       this.value = this.router.getCurrentNavigation().extras.state.parms;
     })
-    this.getProducts(); 
+    this.getProducts();
+    setTimeout(() => {
+     this.getRating();  
+    }, 2000);
+    
   }
-  
+  getRating() {
+    this.Products.forEach((i)=>{
+      this.dbRating.where('prod','==',i.productCode).onSnapshot((res)=>{
+        this.rateArr = [];
+        res.forEach((doc)=>{
+          this.rateArr.push(doc.data())
+        })
+        console.log('My rating',this.rateArr);
+      })
+      
+      
+    })
+  }
   getProducts(){
     this.db.collection('Products').where('categories', '==', this.value).get().then((snapshot) =>{
       this.Products = []
