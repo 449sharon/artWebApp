@@ -163,23 +163,20 @@ logRatingChange(rating, id){
   // }
 
   addWishlist(i) {
-    //
-    if (firebase.auth().currentUser) {
-      let customerUid = firebase.auth().currentUser.uid;
-      console.log(i);
-      this.dbWishlist.add({
-        timestamp: new Date().getTime(),
-        customerUid: customerUid,
-        name: i.obj.name,
-        price: i.obj.price,
-        // size:i.obj.size,
-        productCode: i.obj.productCode,
-        quantity: i.obj.quantity,
-        percentage: i.obj.percentage,
-        totalprice: i.obj.totalprice,
-        image: i.obj.image
+   
+
+        this.dbWishlist.add({
+          timestamp: new Date().getTime(),
+          product_name: i.name,
+          productCode: i.productCode,
+          size: this.sizes,
+          price: i.price,
+          quantity: this.event.quantity,
+          image: i.image,
       }).then(() => {
-        this.toastController('product Added to wishlist')
+        this.presentToast()
+        this.dismiss();
+        // ('product Added to wishlist')
       })
         .catch(err => {
           console.error(err);
@@ -187,10 +184,11 @@ logRatingChange(rating, id){
 
       //  this.wishItemCount.next(this.wishItemCount.value + 1);
 
-    } else {
-      // this.createModalLogin();
-    }
-  }
+    } 
+  //   else {
+  //     // this.createModalLogin();
+  //   }
+  // }
   async toastPopover(ev) {
     const popover = await this.popoverController.create({
       component:Popover2Component,
@@ -205,5 +203,17 @@ logRatingChange(rating, id){
     
     
   }
-
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Item added successfully',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    // toast.onDidDismiss(() => {
+    //   console.log('Dismissed toast');
+    // });
+  
+    toast.present();
+  }
 }

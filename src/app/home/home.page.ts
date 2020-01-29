@@ -287,6 +287,10 @@ adminInfo(){
    })
 }
 
+specialsAlso(){
+  this.router.navigateByUrl('/specials');
+}
+
 openAboutUS(){
     this.router.navigateByUrl('/about-us');
 }

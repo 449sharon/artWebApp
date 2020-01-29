@@ -34,7 +34,7 @@ export class AddToWishListPage implements OnInit {
   dbUser = firebase.firestore().collection('UserProfile');
   cartProduct = [];
   orderProd = [];
-  private currentNumber = 0;
+  currentNumber = 1;
   constructor(public modalController: ModalController ,public toastController : ToastController,private cartService: CartServiceService, private alertCtrl: AlertController) {
     this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
       console.log(element.data());
@@ -53,14 +53,14 @@ export class AddToWishListPage implements OnInit {
   getProducts() {
     console.log("mylist....");
     
-    this.dbWishlist.where('customerUid','==',firebase.auth().currentUser.uid).onSnapshot((res)=>{
+      this.dbWishlist.onSnapshot((res)=>{
       this.cart = [];
       console.log("inside....mylist");
       res.forEach((doc)=>{
-        this.cart.push({id: doc.id, product: doc.data()});
+        this.cart.push(doc.data());
 
         let i = this.cart.length
-        this.cart[i -1]['productID'] = doc.id
+        this.cart[i -1]['productID'] 
 console.log("vvv", this.cart);
 
      // return  this.total = this.getTotal();
@@ -70,35 +70,47 @@ console.log("vvv", this.cart);
       })
     })
   }
- 
-  decreaseCartItem(p) {
+  dismiss(){
+    this.modalController.dismiss({
+      'dismissed':true
+    });
+  }
+  // private increment (p) {
+  //   this.currentNumber = this.currentNumber + 1;
+  //   this.cart[p].quantity = this.currentNumber
+  // }
   
-    this.cart[p].product.quantity--;
+  // private decrement (p) {
+  //   if (this.currentNumber > 1) {
+  //     this.currentNumber = this.currentNumber - 1;
+  //     this.cart[p].quantity = this.currentNumber;
+  //   }
+  //   return this.currentNumber;
+  // }
+  decreaseCartItem(p) {
+    if (this.currentNumber > 1) {
+      this.currentNumber = this.currentNumber - 1;
+      this.quantity = this.currentNumber;
+    }
+    return this.currentNumber;
   }
  
   increaseCartItem(p) {
-    console.log(p);
-    this.cart[p].product.quantity++;
-
+   this.currentNumber = this.currentNumber + 1;
+    this.quantity = this.currentNumber
   }
  
   removeCartItem(id) {
-
     this.dbWishlist.doc(id).delete();
   }
  
   getTotal() {
-    return this.cart.reduce((i, j) => i + j.product.price * j.product.quantity, 0);
+    return this.cart.reduce((i, j) => i + j.price * j.quantity, 0);
     
   }
   sizeSelect(i, val, y) {
     this.sizes = i.detail.value;
    }
 
-  dismiss(){
-    this.modalController.dismiss({
-      'dismissed':true
-    });
-  }
 
 }
