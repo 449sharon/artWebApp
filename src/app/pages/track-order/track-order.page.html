@@ -42,13 +42,13 @@
           </div>
           <div class="details" >
             <div class="invoice" >
-              <ion-label>{{p.prod.name}}</ion-label>
+              <ion-label>{{p.prod.product_name}}</ion-label>
             </div>
             <div class="purchase-date" >
-              <ion-label >code</ion-label><ion-label padding >23/01/2020</ion-label>
+              <ion-label >Code:{{p.prod.productCode}}</ion-label><ion-label padding >23/01/2020</ion-label>
             </div>
             <div class="expected-date" >
-              <ion-label >Size:</ion-label><ion-label >M, L</ion-label> 
+              <ion-label >Size:</ion-label><ion-label >{{p.prod.size}}</ion-label> 
             </div>
             <div class="expected-date" >
               <ion-label >quantity: </ion-label> <ion-label>{{p.prod.quantity}}</ion-label>

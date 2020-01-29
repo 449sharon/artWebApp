@@ -17,6 +17,7 @@ export class AddToCartPage implements OnInit {
  sizes = [];
 ​ quantity = 1;
   name;
+  productCode;
   key;
   total = 0;
   cart = [];
@@ -107,6 +108,7 @@ export class AddToCartPage implements OnInit {
          product: this.orderProd,
          name: this.name,
          size : this.sizes,
+         productCode:this.productCode,
          userID: firebase.auth().currentUser.uid,
          pdfLink : "",
          orderNumber:'Pitseng'+key
