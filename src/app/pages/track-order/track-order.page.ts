@@ -16,6 +16,8 @@ export class TrackOrderPage implements OnInit {
   quantity;
   image;
   arr;
+  price;
+  totalPrice;
   active: any;
 dbOrder = firebase.firestore().collection('Order');
 dbProfile = firebase.firestore().collection('userProfile');
@@ -37,9 +39,22 @@ delCost: number = 0;
 status: string = '';
 MyPdf = "";
 
-  listDiv: any = document.getElementsByClassName('pedding-oders');
+  listDiv: any = document.getElementsByClassName('item-dsiplay');
   list: boolean = false;
   loader: boolean = true;
+
+  trackOrders =  {
+    product_name: '',
+    size: '',
+    quantity: 0,
+    total: 0,
+    image: '',
+    productCode: '',
+    desc: '',
+    amount: ''
+  }
+
+
   constructor(public modalController: ModalController,private render: Renderer2,public route: ActivatedRoute, ) { 
   //   this.route.queryParams.subscribe((res : any)=>{
   //     console.log(JSON.parse(res.order));
@@ -63,6 +78,8 @@ MyPdf = "";
   this.quantity = `${this.quantity}`;
   this.image=`${this.image}`;
   this.arr = `${this.arr}`;
+  this.price = `${this.price}`;
+  this.totalPrice = `${this.totalPrice}`;
   }
 
   ngOnInit() {
@@ -127,9 +144,34 @@ MyPdf = "";
   //       this.loader = false;
   //     }, 1000);
   // }
-  showList(i) {
+  showList(i, p) {
     this.active = i;
-   
+
+    console.log('year', p);
+
+
+    this.trackOrders.product_name = p.prod.product_name;
+    this.trackOrders.quantity = p.prod.quantity;
+    this.trackOrders.size = p.prod.size;
+    this.trackOrders.total = p.prod.total;
+    this.trackOrders.image = p.prod.image;
+    this.trackOrders.productCode = p.prod.productCode;
+    this.trackOrders.desc = p.prod.desc;
+    this.trackOrders.amount =p.prod.amount;
     
+   
+    this.list = !this.list;
+      // this.loader = true;
+
+          // if(this.list) {
+          //   this.render.setStyle(this.listDiv[0], 'display', 'block');
+      
+          // }else {
+          //   setTimeout(() => {
+          //     this.render.setStyle(this.listDiv[0], 'display', 'none');
+          //   }, 500);
+          // }
+          this.loader = false;
+       
  }
 }
