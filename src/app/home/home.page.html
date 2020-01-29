@@ -10,39 +10,37 @@
         <div class="mainContent-cover">
           <div class="landing" >
             <div class="category-Container">
-
-              <div class="First-Category-Block" (click)="categorylist('Deco')"  *ngFor="let all of Homescreen.slice(2, 3)">
-
-                <img  src="{{all.obj.image}}" alt="">
+              <div class="First-Category-Block" (click)="categorylist('Deco')">
+                <img  src="{{Homescreen.deco}}" alt="">
                 <ion-label class="category-label"><span>Deco</span></ion-label> <br>
-                <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
+                <ion-label class="category-button" (click)="categorylist('')"><span>SHOP NOW <ion-icon
                       name="arrow-forward"></ion-icon></span>
                 </ion-label>
 
               </div>
 
-              <div class="Second-Category-Block" (click)="categorylist('Pottery')" *ngFor="let all of Homescreen.slice(0, 1)" >
+              <div class="Second-Category-Block" (click)="categorylist('Pottery')">
                 <div class="firstSecond-block">
                   <!-- <img src="../../assets/Pottery.jpg" alt=""> -->
-                  <img  src="{{all.obj.image}}" alt="">
+                  <img  src="{{Homescreen.pottery}}" alt="">
                   <ion-label class="category-label"><span>Pottery</span></ion-label> <br>
-                  <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
+                  <ion-label class="category-button" (click)="categorylist('')"><span>SHOP NOW <ion-icon
                         name="arrow-forward"></ion-icon></span>
                   </ion-label>
                 </div>
                 <div class="container-bottom2">
-                  <div class="seconSecond-block" (click)="categorylist('Lamps')"  *ngFor="let all of Homescreen.slice(1, 2)">
-                    <img  src="{{all.obj.image}}" alt="">
+                  <div class="seconSecond-block" (click)="categorylist('Lamps')" >
+                    <img  src="{{Homescreen.lamps}}" alt="">
                     <ion-label class="category-label"><span>Lamps</span></ion-label> <br>
-                    <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
+                    <ion-label class="category-button" (click)="categorylist('')"><span>SHOP NOW <ion-icon
                           name="arrow-forward"></ion-icon></span>
                     </ion-label>
 
                   </div>
-                  <div class="thirdSecond-block" (click)="categorylist('Vase')"  *ngFor="let all of Homescreen.slice(3, 4)">
-                    <img  src="{{all.obj.image}}" alt="">
+                  <div class="thirdSecond-block" (click)="categorylist('Vase')">
+                    <img  src="{{Homescreen.vase}}" alt="">
                     <ion-label class="category-label"><span>Vases</span></ion-label> <br>
-                    <ion-label class="category-button" (click)="categorylist()"><span>SHOP NOW <ion-icon
+                    <ion-label class="category-button" (click)="categorylist('')"><span>SHOP NOW <ion-icon
                           name="arrow-forward"></ion-icon></span>
                     </ion-label>
                   </div>
@@ -69,7 +67,7 @@
               <div class="cards-container"  >
       
                       <!-- Fetching all products on special -->
-                <div   class="products-section" *ngFor="let event of proSales.slice(0, 5); let i=index;" (click)="allSpecials(event)">
+                <div   class="products-section" *ngFor="let event of proSales; let i=index;" (click)="allSpecials(event)">
                 <div class="cards"  [ngClass]="{'active': active==i}" (click)="showList(i)" >
                   <img class="animated fadeInDown 2s" src="{{event.obj.image}}" alt="">
                   <ion-label class="price"> R{{event.obj.price}}</ion-label>
@@ -86,7 +84,7 @@
               </div>
 
               <div class="special-section"  (click)="allSpecials(event)">
-                <div *ngFor="let me of SpecialScrin.slice(0, 1);" >
+                <div *ngFor="let me of SpecialScrin" >
                 <div class="specials">
                   <img src="{{me.obj.image}}" alt="">
                   <ion-title>Up to 50% off </ion-title>

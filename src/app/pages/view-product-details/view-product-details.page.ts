@@ -22,7 +22,7 @@ export class ViewProductDetailsPage implements OnInit {
 
   dbCart = firebase.firestore().collection('Cart');
 
-  private currentNumber: number = 1;
+   currentNumber: number = 1;
   Products = [];
   proSales = [];
   sizes = null;
@@ -62,12 +62,12 @@ export class ViewProductDetailsPage implements OnInit {
 
   }
 
-  private increment(p) {
+   increment(p) {
     this.currentNumber = this.currentNumber + 1;
     this.event.quantity = this.currentNumber
   }
 
-  private decrement(p) {
+   decrement(p) {
     if (this.currentNumber > 1) {
       this.currentNumber = this.currentNumber - 1;
       this.event.quantity = this.currentNumber;
