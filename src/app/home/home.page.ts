@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild, ElementRef, NgModuleFactoryLoader } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
@@ -64,7 +64,12 @@ export class HomePage  {
    list: boolean = false;
    loader: boolean = true;
 
-   Homescreen = [];
+   Homescreen = {
+     deco: null,
+     lamps: null,
+     pottery: null,
+     vase: null
+   }
    SpecialScrin = []
   
 
@@ -207,8 +212,8 @@ export class HomePage  {
 
   async allSpecials(event){
 
-     console.log('SFDSDFSDF', this.data.data.image = event.obj.image);
-     console.log('Image in the service ', this.data.data.image);
+    //  console.log('SFDSDFSDF', this.data.data.image = event.obj.image);
+    //  console.log('Image in the service ', this.data.data.image);
     
     // this.data.data = event
     const modal = await this.modalController.create({
@@ -222,7 +227,7 @@ export class HomePage  {
      ///////////////// for sales
     getSpecials(){
       let obj = {id : '', obj : {}};
-    this.db.collection('sales').get().then(snapshot => {
+    this.db.collection('sales').limit(5).get().then(snapshot => {
       this.proSales = [];
       if (snapshot.empty) {
               this.myProduct = false;
@@ -233,27 +238,36 @@ export class HomePage  {
                 obj.obj = doc.data();
                 this.proSales.push(obj);
                 obj = {id : '', obj : {}};
-                this.SpecialScrin = this.proSales
+                
               });
+              this.SpecialScrin.push(this.proSales[0])
             }
        });
   }
 
   getPictures(){
   let obj = {id : '', obj : {}};
-  this.db.collection('Pictures').get().then(snapshot => {
-    this.Homescreen = [];
-    if (snapshot.empty) {
+  this.db.collection('Pictures').doc('images').get().then(snapshot => {
+    this.Homescreen = {
+      deco: null,
+      lamps: null,
+      pottery: null,
+      vase: null
+    }
+    if (!snapshot.exists) {
             this.myProduct = false;
           } else {
             this.myProduct = true;
-            snapshot.forEach(doc => {
-              obj.id = doc.id;
-              obj.obj = doc.data();
-              this.Homescreen.push(obj);
+              obj.id = snapshot.id;
+              obj.obj = snapshot.data();
+              this.Homescreen = {
+                deco: snapshot.data().deco,
+                lamps: snapshot.data().lamps,
+                pottery: snapshot.data().pottery,
+                vase: snapshot.data().vase
+              }
               obj = {id : '', obj : {}};
-              console.log("xxc", this.proSales);
-            });
+            console.log("xxc", this.Homescreen);
           }
      });
 }
