@@ -10,7 +10,7 @@
 
 
         </div>
-        <div class="form-side" >
+        <div class="form-side " >
           <form class="form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
           <div class="title" >
             <ion-title>welcome back</ion-title>
@@ -32,7 +32,7 @@
             </ion-item>
             <div class="validation-errors">
               <ng-container *ngFor="let validation of validation_messages.password">
-                <div class="error-message"
+                <div class="error-message" 
                   *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
                   <ion-label color="danger" >{{ validation.message }}</ion-label>
                   
@@ -73,7 +73,7 @@
 
   </div>
 
-</ion-content>
+</ion-content >
 
   <!-- <div class="closeButton">
       <ion-button fill="clear"   color="medium"  float="right"	 (click)="dismiss()" slot="end">

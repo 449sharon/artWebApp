@@ -176,7 +176,7 @@ export class ProfilePage implements OnInit {
     const modal = await this.modalController.create({
       component:TrackOrderPage,
       cssClass: 'track-order',
-      componentProps: { ref: item.ref,name: item.info.product[0].prod.product_name,price: item.info.product[0].prod.price,amount: item.info.product[0].prod.amount,quantity: item.info.product[0].prod.quantity,image: item.info.product[0].prod.image,productCode: item.info.product[0].productCode,desc: item.info.product[0].desc,
+      componentProps: { ref: item.ref,totalPrice: item.info.totalPrice,name: item.info.product[0].prod.product_name,price: item.info.product[0].prod.price,quantity: item.info.product[0].prod.quantity,image: item.info.product[0].prod.image,
       arr:item.info.product },
     },);
     return await modal.present();

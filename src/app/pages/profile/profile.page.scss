@@ -205,16 +205,18 @@ input:checked {
 ~ .tab-content {
   max-height: 100vh;
   padding: 1em;
+  margin-bottom: 200px;
 }
 }
 .pedding-oders{
   border-bottom: 0.5px solid rgb(217, 219, 216);
   width: 90%;
-  height: 143px;
+  height: 145px;
   display: flex; 
   flex-direction: row; 
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
   margin-top: 16px;
+  padding-bottom: 150px;
 }
 .image{
   // border:  solid blue;
@@ -231,6 +233,7 @@ input:checked {
   // border: solid black;
   // width: 100%;
   padding-left: 16px;
+  
 }
 .invoice > ion-label {
   color: black;
@@ -244,4 +247,5 @@ input:checked {
   width: 60%;
   margin: 0 auto;
   padding-top: 16px;
+  margin-bottom:160px ;
 }
