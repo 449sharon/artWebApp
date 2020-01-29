@@ -28,6 +28,7 @@ export class AddToCartPage implements OnInit {
   dbUser = firebase.firestore().collection('UserProfile');
   cartProduct = [];
   orderProd = [];
+  loader: boolean = true;
 ​
 
   constructor(public modalController: ModalController) {
@@ -36,6 +37,12 @@ export class AddToCartPage implements OnInit {
      this.name = element.data().name
     })
    }
+
+   ionViewWillEnter() {
+    setTimeout(() => {
+      this.loader = false;
+    }, 2000);
+  }
 
    ngOnInit() {
     this.getProducts();
@@ -120,28 +127,27 @@ export class AddToCartPage implements OnInit {
             })
        })
         console.log('My prod ', this.orderProd);
-        
+         this.dismiss(); 
          this.SuccessModal(key);
-         this.dismiss();
       }
       async SuccessModal(key) {
         const modal = await this.modalController.create({
           component: ConfirmationPage,
           componentProps: {id : key, total : this.total },
-          // cssClass: 'my-custom-modal-css'
+          cssClass: 'confirmation',
         });
         return await modal.present();
       }
       
 
-      async createConfirmation() {
-        const modal = await this.modalController.create({
-          component:ConfirmationPage,
-          cssClass: 'confirmation',
+      // async createConfirmation() {
+      //   const modal = await this.modalController.create({
+      //     component:ConfirmationPage,
+      //     cssClass: 'confirmation',
           
         
-        });
-        return await modal.present();
-      }
+      //   });
+      //   return await modal.present();
+      // }
      
 }
