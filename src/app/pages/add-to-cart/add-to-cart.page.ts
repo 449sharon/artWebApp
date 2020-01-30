@@ -56,6 +56,7 @@ export class AddToCartPage implements OnInit {
     this.dbCart.where('customerUid','==',firebase.auth().currentUser.uid).onSnapshot((res)=>{
       this.cartProduct = [];
       res.forEach((doc)=>{
+        
         this.cartProduct.push({id: doc.id,prod:doc.data()});
         console.log("oooh", this.cartProduct );   
     // return this.total = this.total + parseFloat(doc.data().price) * parseFloat(doc.data().quantity);
