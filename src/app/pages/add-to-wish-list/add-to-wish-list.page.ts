@@ -3,6 +3,7 @@ import { ModalController, ToastController, AlertController } from '@ionic/angula
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
 import { CartServiceService } from 'src/app/services/cart-service.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-add-to-wish-list',
@@ -14,7 +15,7 @@ export class AddToWishListPage implements OnInit {
   private wishItemCount = new BehaviorSubject(0);
   //db = firebase.firestore();
    db = firebase.database();
-  
+   dbCart = firebase.firestore().collection('Cart');
   cart = [];
   myArr = [];
   mysize: string = '';
@@ -35,7 +36,24 @@ export class AddToWishListPage implements OnInit {
   cartProduct = [];
   orderProd = [];
   currentNumber = 1;
-  constructor(public modalController: ModalController ,public toastController : ToastController,private cartService: CartServiceService, private alertCtrl: AlertController) {
+  event = {
+    image: '',
+    categories: '',
+    name: '',
+    price: 0,
+    productno: '',
+    desc: null,
+    small: '',
+    medium: '',
+    large: '',
+    quantity: 1,
+    amount: 0,
+    total: 0
+  };
+  constructor(public modalController: ModalController,
+    public toastController : ToastController,
+    private cartService: CartServiceService,
+    private alertCtrl: AlertController) {
     this.dbUser.doc(firebase.auth().currentUser.uid).onSnapshot(element => {
       console.log(element.data());
       this.name = element.data().name
@@ -47,7 +65,6 @@ export class AddToWishListPage implements OnInit {
     }, 2000);
   }
   ngOnInit() {
-    //this.cart = this.cartService.getCart();
     this.getProducts();
   }
   getProducts() {
@@ -55,39 +72,50 @@ export class AddToWishListPage implements OnInit {
     
       this.dbWishlist.onSnapshot((res)=>{
       this.cart = [];
-      console.log("inside....mylist");
+      let obj = {obj : {}, id : ""}
       res.forEach((doc)=>{
-        this.cart.push(doc.data());
 
+        obj.obj = doc.data()
+        obj.id = doc.id
+
+        this.cart.push(obj);
+        obj = {obj : {}, id : ""}
         let i = this.cart.length
         this.cart[i -1]['productID'] 
 console.log("vvv", this.cart);
-
-     // return  this.total = this.getTotal();
-    // return this.total = this.total + parseFloat(doc.data().price) * parseFloat(doc.data().quantity);
-    ///
-   
       })
     })
   }
+  addToCart(i) {
+
+    let customerUid = firebase.auth().currentUser.uid;
+
+    console.log(i);
+    this.dbCart.add({
+      timestamp: new Date().getTime(),
+      customerUid: customerUid,
+      product_name: i.name,
+      productCode: i.event.productCode,
+      desc: i.desc,
+      size: this.sizes,
+      price: i.price,
+      quantity: this.event.quantity,
+      image: i.image,
+      amount: i.price * this.event.quantity
+    })
+    this.cartItemCount.next(this.cartItemCount.value + 1);
+    this.dismiss();
+  }
+  getCartItemCount() {
+    return this.cartItemCount;
+  }
+  
   dismiss(){
     this.modalController.dismiss({
       'dismissed':true
     });
   }
-  // private increment (p) {
-  //   this.currentNumber = this.currentNumber + 1;
-  //   this.cart[p].quantity = this.currentNumber
-  // }
-  
-  // private decrement (p) {
-  //   if (this.currentNumber > 1) {
-  //     this.currentNumber = this.currentNumber - 1;
-  //     this.cart[p].quantity = this.currentNumber;
-  //   }
-  //   return this.currentNumber;
-  // }
-  decreaseCartItem(p) {
+  decreaseCartItem() {
     if (this.currentNumber > 1) {
       this.currentNumber = this.currentNumber - 1;
       this.quantity = this.currentNumber;
@@ -95,13 +123,14 @@ console.log("vvv", this.cart);
     return this.currentNumber;
   }
  
-  increaseCartItem(p) {
+  increaseCartItem() {
    this.currentNumber = this.currentNumber + 1;
     this.quantity = this.currentNumber
   }
  
-  removeCartItem(id) {
-    this.dbWishlist.doc(id).delete();
+  removeCartItem(o) {
+    // firebase.firestore().collection('Wishlist').doc(o.id).delete()
+    this.dbWishlist.doc(o.id).delete();
   }
  
   getTotal() {

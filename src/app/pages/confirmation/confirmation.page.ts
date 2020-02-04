@@ -65,6 +65,7 @@ export class ConfirmationPage implements OnInit {
     this.dbOrder.doc('Pitseng' + key).onSnapshot((data) => {
       this.conArray.push(data.data());  
       this.totalPrice;
+      this.totalPrice += data.data().totalPrice
     })
      return this.totalPrice;
       console.log("ssssssssssssssss ");
